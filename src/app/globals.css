@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE MODERN CLASSIC — "Ink & Paper" Design System
+   High-Contrast Editorial Aesthetic
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background-color: #ffffff;
+  color: #00008B;
+}
+
+/* Smooth scroll only on desktop - can cause issues on mobile */
+@media (min-width: 1024px) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::selection {
+  background-color: rgba(74, 168, 255, 0.25);
+  color: #00008B;
+}
+
+/* ── Paper Grain Overlay ──
+   Subtle fixed-position noise texture to simulate bond paper.
+   Applied via the .paper-grain utility class on a pseudo-element overlay.
+*/
+
+.paper-grain {
+  position: relative;
+}
+
+.paper-grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: multiply;
+}
+
+/* ── Quill Cursor Styles ──
+   Hide default cursor on elements with custom cursor
+*/
+
+.cursor-quill {
+  cursor: none !important;
+}
+
+.cursor-quill * {
+  cursor: none !important;
+}
+
+/* ── Ink Trail Animation ── */
+
+@keyframes ink-fade {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+.animate-ink-fade {
+  animation: ink-fade 0.8s ease-out forwards;
+}
+
+/* ── SVG Writing Animation ── */
+
+@keyframes draw-stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw {
+  animation: draw-stroke 1.5s ease-in-out forwards;
+}
+
+/* ── Liquid Hover Effect ── */
+
+@keyframes liquid-ripple {
+  0%, 100% {
+    transform: scaleX(1) scaleY(1);
+  }
+  25% {
+    transform: scaleX(1.02) scaleY(0.98);
+  }
+  50% {
+    transform: scaleX(0.98) scaleY(1.02);
+  }
+  75% {
+    transform: scaleX(1.01) scaleY(0.99);
+  }
+}
+
+.liquid-hover:hover {
+  animation: liquid-ripple 0.4s ease-in-out;
+}
+
+/* ── Ink Fill Progress (for Manifesto scroll) ── */
+
+@keyframes ink-fill {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+/* ── Brutalist Card Shadow ── */
+
+.brutalist-shadow {
+  box-shadow: 0 0 0 transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brutalist-shadow:hover {
+  transform: translateY(-8px);
+  box-shadow: 6px 6px 0px #00008B;
+}
+
+/* ── Typography refinements ── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ── Reduced motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ink-fade,
+  .animate-draw,
+  .liquid-hover:hover {
+    animation: none;
+  }
+
+  .animate-ticker {
+    animation-play-state: paused;
+  }
+
+  .brutalist-shadow:hover {
+    transform: none;
+    box-shadow: 4px 4px 0px #00008B;
+  }
+}
+
+/* ── Infinite Ticker Animation ── */
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE VAULT — "Precision Archive" Design System
+   Swiss Minimalist + Fluid Layout Physics
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Mobile Stack Heavy Scroll ── */
+
+.vault-scroll {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Hide scrollbar for horizontal filter scroll ── */
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Focus States for Accessibility ── */
+
+:focus-visible {
+  outline: 2px solid #4AA8FF;
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar styling (optional, subtle) ── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f8f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00008B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000066;
+}
