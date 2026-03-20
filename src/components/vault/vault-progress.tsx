@@ -49,13 +49,23 @@ export function VaultProgressBar({ totalCount }: VaultProgressBarProps) {
   }
 
   const percentage = Math.round((readCount / totalCount) * 100);
+  const isComplete = readCount >= totalCount;
 
   return (
     <div className="mb-6 max-w-[300px] md:max-w-[300px] mx-auto md:mx-0">
       <p className="font-sans text-sm text-[#00008B]/50 mb-2">
-        You&rsquo;ve explored {readCount} of {totalCount} entries.
+        {isComplete
+          ? 'You\u2019ve explored the entire vault.'
+          : `You\u2019ve explored ${readCount} of ${totalCount} entries.`}
       </p>
-      <div className="h-1 rounded-full bg-gray-200 overflow-hidden">
+      <div
+        className="h-1 rounded-full bg-gray-200 overflow-hidden"
+        role="progressbar"
+        aria-valuenow={percentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Reading progress"
+      >
         <div
           className="h-full bg-[#00008B] rounded-full transition-all duration-700 ease-out"
           style={{ width: `${percentage}%` }}

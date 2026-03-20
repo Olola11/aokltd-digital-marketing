@@ -80,7 +80,7 @@ export default function ContactPage() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-sans text-sm text-gray-400 hover:text-[#00008B] transition-colors"
+                    className="font-sans text-sm text-gray-500 hover:text-[#00008B] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -99,7 +99,7 @@ export default function ContactPage() {
       {/* § 5 — Closing */}
       <section className="py-10 md:py-16 px-5 sm:px-6 border-t border-gray-100">
         <FadeIn>
-          <p className="font-serif italic text-lg text-gray-400 text-center max-w-xl mx-auto">
+          <p className="font-serif italic text-lg text-gray-500 text-center max-w-xl mx-auto">
             Knowledge deserves better. So does your attention.
           </p>
         </FadeIn>

@@ -44,9 +44,9 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <h2 className="font-sans text-3xl sm:text-4xl md:text-5xl text-royal-800 tracking-tight mb-8">
+          <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl text-royal-800 tracking-tight mb-8">
             Why <span className="text-quill-500">Apotheosis</span>
-          </h2>
+          </h1>
 
           <div className="prose prose-lg max-w-none">
             <p className="text-lg md:text-xl text-royal-800 leading-relaxed mb-6">

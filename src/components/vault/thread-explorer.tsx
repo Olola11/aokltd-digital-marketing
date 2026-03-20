@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { VAULT_DATA } from '@/lib/vault-data';
 import type { VaultEntry } from '@/types';
@@ -91,7 +89,7 @@ export function ThreadExplorer() {
                   </span>
                 ))}
               </div>
-              <p className="font-serif text-xs text-gray-400 italic">
+              <p className="font-serif text-xs text-gray-500 italic">
                 {thread.description}
               </p>
               <span className="font-sans text-[10px] text-quill-500 uppercase tracking-wider mt-3 block group-hover:translate-x-1 transition-transform">
@@ -113,7 +111,7 @@ export function ThreadExplorer() {
                 <h3 className="font-sans text-sm font-semibold text-[#00008B] mb-0.5">
                   {thread.title}
                 </h3>
-                <p className="font-serif text-xs text-gray-400">
+                <p className="font-serif text-xs text-gray-500">
                   {thread.articles.length} articles
                 </p>
               </div>

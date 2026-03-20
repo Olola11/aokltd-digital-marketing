@@ -64,6 +64,7 @@ export function CommandCenter({
             type="text"
             value={query}
             onChange={(e) => onQueryChange(e.target.value)}
+            aria-label="Search vault articles"
             placeholder="SEARCH ARCHIVE..."
             className={cn(
               'flex-1 bg-transparent outline-none min-w-0',
@@ -81,7 +82,8 @@ export function CommandCenter({
           {query && (
             <button
               onClick={() => onQueryChange('')}
-              className="p-1 text-[#00008B]/40 hover:text-[#00008B] transition-colors"
+              aria-label="Clear search"
+              className="p-1 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#00008B]/40 hover:text-[#00008B] transition-colors"
             >
               <X className="w-4 h-4" />
             </button>

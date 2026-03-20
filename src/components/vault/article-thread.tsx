@@ -44,7 +44,7 @@ function ThreadCard({
       <p className="font-serif text-xs text-[#00008B]/40 line-clamp-1 mb-2">
         {entry.excerpt}
       </p>
-      <span className="font-sans text-[9px] text-[#00008B]/25 uppercase tracking-wider">
+      <span className="font-sans text-[9px] text-[#00008B]/40 uppercase tracking-wider">
         {entry.readingTime} min read
       </span>
     </Link>
@@ -83,7 +83,7 @@ export function ArticleThread({ relatedArticles }: ArticleThreadProps) {
               {i > 0 && (
                 <div className="flex flex-col items-center justify-center mx-2 flex-shrink-0">
                   <div className="w-8 h-px bg-gray-300" />
-                  <span className="font-sans text-[9px] text-gray-400 uppercase tracking-wider bg-white px-1.5 py-0.5 whitespace-nowrap">
+                  <span className="font-sans text-[9px] text-gray-500 uppercase tracking-wider bg-white px-1.5 py-0.5 whitespace-nowrap">
                     {ra.connectionReason}
                   </span>
                   <div className="w-8 h-px bg-gray-300" />
@@ -103,7 +103,7 @@ export function ArticleThread({ relatedArticles }: ArticleThreadProps) {
               {i > 0 && (
                 <div className="flex items-center gap-2 py-2 pl-4">
                   <div className="w-px h-4 bg-gray-300" />
-                  <span className="font-sans text-[9px] text-gray-400 uppercase tracking-wider">
+                  <span className="font-sans text-[9px] text-gray-500 uppercase tracking-wider">
                     {ra.connectionReason}
                   </span>
                 </div>

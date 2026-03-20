@@ -54,7 +54,7 @@ export function WhatWeDo() {
   return (
     <section className="py-10 sm:py-24 px-4 sm:px-6 bg-[#00008B]">
       <div className="max-w-5xl mx-auto">
-        <h2 className="font-sans text-xs md:text-sm tracking-[0.3em] text-white/30 uppercase mb-6 sm:mb-16">
+        <h2 className="font-sans text-xs md:text-sm tracking-[0.3em] text-white/50 uppercase mb-6 sm:mb-16">
           What We Do
         </h2>
 

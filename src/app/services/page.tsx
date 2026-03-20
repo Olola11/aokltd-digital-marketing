@@ -104,7 +104,7 @@ export default function ServicesPage() {
       {/* § 6 — Closing */}
       <section className="py-10 md:py-16 px-6 border-t border-gray-100">
         <FadeIn>
-          <p className="font-serif italic text-lg text-gray-400 text-center max-w-xl mx-auto">
+          <p className="font-serif italic text-lg text-gray-500 text-center max-w-xl mx-auto">
             Strategy without substance is noise. We build both.
           </p>
         </FadeIn>

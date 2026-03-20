@@ -121,7 +121,7 @@ function StackingVaultCard({
           </p>
 
           {/* Meta */}
-          <div className="flex items-center gap-3 font-sans text-[10px] sm:text-xs text-[#00008B]/25 tracking-wider uppercase">
+          <div className="flex items-center gap-3 font-sans text-[10px] sm:text-xs text-[#00008B]/40 tracking-wider uppercase">
             <span>{entry.readingTime} min read</span>
             <span>&middot;</span>
             <span>

@@ -189,6 +189,7 @@ export function VaultSearch({
             }}
             onFocus={() => setIsOpen(true)}
             onKeyDown={handleKeyDown}
+            aria-label="Search vault articles"
             placeholder="SEARCH ARCHIVE..."
             className={cn(
               'flex-1 bg-transparent outline-none min-w-0',
@@ -209,7 +210,8 @@ export function VaultSearch({
                 onQueryChange('');
                 setIsOpen(false);
               }}
-              className="p-1 text-[#00008B]/40 hover:text-[#00008B] transition-colors"
+              aria-label="Clear search"
+              className="p-1 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#00008B]/40 hover:text-[#00008B] transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -243,7 +245,7 @@ export function VaultSearch({
                       <span className="font-sans text-[10px] uppercase tracking-widest text-quill-500">
                         {CATEGORY_LABELS[result.entry.category]}
                       </span>
-                      <span className="font-sans text-[10px] text-gray-400">
+                      <span className="font-sans text-[10px] text-gray-500">
                         {result.entry.readingTime} min
                       </span>
                     </div>
@@ -256,17 +258,17 @@ export function VaultSearch({
                   </Link>
                 ))}
                 <div className="px-4 py-2 border-t border-gray-100">
-                  <span className="font-sans text-[10px] text-gray-400">
+                  <span className="font-sans text-[10px] text-gray-500">
                     {results.length} {results.length === 1 ? 'result' : 'results'}
                   </span>
                 </div>
               </>
             ) : (
               <div className="py-8 text-center">
-                <p className="font-sans text-sm text-gray-400 mb-1">
+                <p className="font-sans text-sm text-gray-500 mb-1">
                   No articles found for &ldquo;{debouncedQuery}&rdquo;
                 </p>
-                <p className="font-sans text-xs text-gray-300">
+                <p className="font-sans text-xs text-gray-500">
                   Try a different search term.
                 </p>
               </div>

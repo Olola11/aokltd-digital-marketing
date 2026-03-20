@@ -111,9 +111,9 @@ export function CurtainHero({ children }: { children: React.ReactNode }) {
               className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px]"
             />
           </motion.div>
-          <h1 className="font-sans text-xl sm:text-2xl font-bold text-[#00008B] tracking-[0.06em] uppercase text-center">
+          <p className="font-sans text-xl sm:text-2xl font-bold text-[#00008B] tracking-[0.06em] uppercase text-center" aria-hidden="true">
             Apotheosis of Knowledge
-          </h1>
+          </p>
           <p className="font-serif text-sm text-[#00008B]/45 italic mt-2 text-center">
             Elevating curiosity. Countering noise.
           </p>

@@ -4,28 +4,44 @@ import { useState, useSyncExternalStore, FormEvent } from 'react';
 import { cn } from '@/lib/utils';
 
 function generateFingerprint(): string {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  if (ctx) {
-    ctx.textBaseline = 'top';
-    ctx.font = '14px Arial';
-    ctx.fillText('fingerprint', 2, 2);
-  }
-  const data = [
-    navigator.userAgent,
-    navigator.language,
-    screen.width + 'x' + screen.height,
-    new Date().getTimezoneOffset(),
-    canvas.toDataURL(),
-  ].join('|');
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.textBaseline = 'top';
+      ctx.font = '14px Arial';
+      ctx.fillText('fingerprint', 2, 2);
+    }
+    const data = [
+      navigator.userAgent,
+      navigator.language,
+      screen.width + 'x' + screen.height,
+      new Date().getTimezoneOffset(),
+      canvas.toDataURL(),
+    ].join('|');
 
-  let hash = 0;
-  for (let i = 0; i < data.length; i++) {
-    const char = data.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
+    let hash = 0;
+    for (let i = 0; i < data.length; i++) {
+      const char = data.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(36);
+  } catch {
+    // Fallback for browsers with canvas fingerprint protection (Firefox, Brave)
+    const data = [
+      navigator.userAgent,
+      navigator.language,
+      screen.width + 'x' + screen.height,
+      new Date().getTimezoneOffset(),
+    ].join('|');
+    let hash = 0;
+    for (let i = 0; i < data.length; i++) {
+      hash = ((hash << 5) - hash) + data.charCodeAt(i);
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(36);
   }
-  return Math.abs(hash).toString(36);
 }
 
 function getCookie(name: string): string | null {
@@ -107,6 +123,7 @@ export function ProspectusContact() {
           id="prospectus-email"
           type="email"
           required
+          aria-required="true"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={isDisabled}
@@ -123,6 +140,7 @@ export function ProspectusContact() {
         <button
           type="submit"
           disabled={isDisabled}
+          aria-live="polite"
           className={cn(
             'px-6 py-3 font-sans text-sm font-medium uppercase tracking-[0.1em]',
             'transition-colors duration-200',
@@ -162,14 +180,14 @@ export function ProspectusContact() {
 
       {/* Success message */}
       {status === 'success' && successMessage && (
-        <p className="mt-4 font-sans text-sm text-royal-800/60 animate-in fade-in duration-300">
+        <p role="status" className="mt-4 font-sans text-sm text-royal-800/60 animate-in fade-in duration-300">
           {successMessage}
         </p>
       )}
 
       {/* Error message */}
       {status === 'error' && errorMessage && (
-        <p className="mt-4 font-sans text-sm text-red-500 animate-in fade-in duration-300">
+        <p role="alert" className="mt-4 font-sans text-sm text-red-500 animate-in fade-in duration-300">
           {errorMessage}
         </p>
       )}
