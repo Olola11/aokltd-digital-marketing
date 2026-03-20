@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { useIsDesktop, useMounted } from '@/hooks/useMediaQuery';
 
 // ─── SVG Geometry (100×100 viewBox) ─────────────────────────────
 
@@ -139,18 +140,13 @@ function AnimatedLogo({ quillOpacity }: { quillOpacity: MotionValue<number> }) {
 }
 
 export function BrandConstruction() {
-  const [mounted, setMounted] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const mounted = useMounted();
+  const isDesktop = useIsDesktop();
   const logoRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
   // Quill lifts (scale) then vanishes (opacity) as user scrolls
   const quillOpacity = useTransform(scrollY, [20, 80], [1, 0]);
-
-  useEffect(() => {
-    setIsDesktop(window.matchMedia('(min-width: 1024px)').matches);
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return <div className="w-[72px] h-[72px] mx-auto mb-6 sm:mb-8" />;

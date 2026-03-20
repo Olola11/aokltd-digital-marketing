@@ -89,7 +89,7 @@ export function ProjectTimeline() {
   return (
     <div>
       <FadeIn>
-        <h2 className="font-sans text-xs md:text-sm tracking-[0.3em] uppercase text-[#00008B]/30 mb-12 md:mb-16">
+        <h2 className="font-sans text-xs md:text-sm tracking-[0.3em] uppercase text-[#00008B]/30 mb-6 md:mb-16">
           Forthcoming Projects
         </h2>
       </FadeIn>

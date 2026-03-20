@@ -8,7 +8,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
 } from 'framer-motion';
-import { useTouchDevice } from '@/hooks/useTouchDevice';
+
 
 /**
  * PrinciplesCards — "The Card Deck" for About Page
@@ -40,8 +40,8 @@ const PRINCIPLES = [
   },
 ];
 
-const STACK_OFFSET = 56; // How much of each card remains visible when stacked
-const STICKY_TOP = 100; // Distance from top when stuck (accounts for nav + spacing)
+const PEEK_HEIGHT = 16; // Thin sliver of previous card visible when stacked
+const STICKY_TOP = 68; // Just below 64px nav
 
 /**
  * Individual stacking card with haptic landing effect
@@ -87,8 +87,8 @@ function StackingCard({
     }
   });
 
-  const zIndex = index + 1;
-  const stickyTop = STICKY_TOP + index * STACK_OFFSET;
+  const zIndex = (index + 1) * 10;
+  const stickyTop = STICKY_TOP + index * PEEK_HEIGHT;
 
   return (
     <motion.div
@@ -149,9 +149,9 @@ function MobileStack() {
   const totalCards = PRINCIPLES.length;
 
   return (
-    <div className="py-16 px-0">
+    <div className="py-10 px-0">
       {/* Header */}
-      <div className="text-center mb-10 px-4">
+      <div className="text-center mb-6 px-4">
         <span className="text-xs font-sans font-medium text-quill-500 uppercase tracking-[0.25em]">
           Our Principles
         </span>
@@ -164,7 +164,7 @@ function MobileStack() {
       <div
         ref={containerRef}
         className="relative"
-        style={{ minHeight: totalCards * 220 + 150 }}
+        style={{ minHeight: totalCards * 250 + 100 }}
       >
         <div className="space-y-4">
           {PRINCIPLES.map((principle, index) => (
@@ -178,7 +178,7 @@ function MobileStack() {
           ))}
         </div>
 
-        <div style={{ height: 100 }} />
+        <div style={{ height: 60 }} />
       </div>
 
       {/* Stack complete indicator */}
@@ -204,9 +204,9 @@ function MobileStack() {
  */
 function DesktopGrid() {
   return (
-    <div className="py-24 md:py-32 px-4 sm:px-6">
+    <div className="py-12 md:py-32 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <span className="text-xs font-sans font-medium text-quill-500 uppercase tracking-[0.25em]">
             Our Principles
           </span>

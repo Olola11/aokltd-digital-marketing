@@ -1,19 +1,26 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+  useMotionValueEvent,
+} from 'framer-motion';
 
 /**
  * ManifestoScroll — "Ink Bleed" Sticky Scrollytelling
  *
  * THE MODERN CLASSIC — "Ink & Paper" Design
  *
- * Left column: Sticky headline that starts as an OUTLINE (Royal Blue stroke,
- * transparent fill) and progressively "fills up" with solid color as the user
- * scrolls, acting as a visual progress indicator for the section.
+ * Desktop (lg+): Two-column layout. Left column is a sticky headline with
+ * ink-fill scroll effect. Right column has brutalist cards that scroll past.
  *
- * Right column: White cards with 1px Royal Blue borders and brutalist
- * hard shadows on hover (-translate-y-2, shadow-[6px_6px_0px_#00008B]).
+ * Mobile (below lg): Single-column layout. Headline is sticky at the top
+ * with the ink-fill scroll effect visible on mobile. Cards below use
+ * sticky stacking (overlapping deck effect) matching the About page pattern.
  */
 
 const PARAGRAPHS = [
@@ -30,6 +37,11 @@ const PARAGRAPHS = [
     body: 'We are not a blog. We are not a content farm. We are a knowledge institution — registered in Nigeria, deliberate in purpose, and built for permanence. Every piece of content we produce is an argument that depth still matters, that curiosity is its own reward, and that the pursuit of knowledge is one of the most human things we can do.',
   },
 ];
+
+// Mobile stacking constants (matches About page PrinciplesCards pattern)
+const MOBILE_STACK_OFFSET = 16;
+const MOBILE_HEADLINE_TOP = 80; // Clears nav bar
+const MOBILE_CARD_START = 300; // Below sticky headline
 
 function InkFillHeadline({
   progress,
@@ -93,6 +105,9 @@ function InkFillHeadline({
   );
 }
 
+/**
+ * Desktop paragraph card with scroll-driven fade-in
+ */
 function ParagraphCard({
   index,
   title,
@@ -137,8 +152,104 @@ function ParagraphCard({
   );
 }
 
+/**
+ * Mobile stacking card with haptic landing effect
+ * (mirrors About page StackingCard pattern)
+ */
+function MobileStackingCard({
+  index,
+  title,
+  body,
+  totalCards,
+  containerRef,
+}: {
+  index: number;
+  title: string;
+  body: string;
+  totalCards: number;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    container: containerRef,
+    offset: ['start end', 'start start'],
+  });
+
+  // Scale spring for haptic landing effect
+  const rawScale = useMotionValue(1);
+  const scale = useSpring(rawScale, {
+    stiffness: 500,
+    damping: 25,
+    mass: 0.3,
+  });
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    if (latest > 0.9 && latest < 0.98) {
+      rawScale.set(0.98);
+    } else if (latest >= 0.98) {
+      rawScale.set(1);
+    }
+  });
+
+  const zIndex = index + 1;
+  const stickyTop = MOBILE_CARD_START + index * MOBILE_STACK_OFFSET;
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className="sticky will-change-transform"
+      style={{
+        top: stickyTop,
+        zIndex,
+        scale,
+      }}
+    >
+      <article
+        className="relative bg-white border border-royal-800 p-6 sm:p-8 mx-0 rounded-md"
+        style={{
+          boxShadow: `
+            0 -8px 25px -5px rgba(0, 0, 139, 0.15),
+            0 -4px 10px -5px rgba(0, 0, 139, 0.1),
+            6px 6px 0px #00008B
+          `,
+        }}
+      >
+        {/* Number watermark */}
+        <span className="font-sans text-5xl text-royal-800/8 block mb-3">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        {/* Title */}
+        <h3 className="font-sans text-lg text-royal-800 mb-3">
+          {title}
+        </h3>
+
+        {/* Body */}
+        <p className="font-serif text-royal-800/70 leading-relaxed text-sm">
+          {body}
+        </p>
+
+        {/* Stack indicator dots */}
+        <div className="absolute top-4 right-4 flex gap-1">
+          {Array.from({ length: totalCards }).map((_, i) => (
+            <div
+              key={i}
+              className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                i === index ? 'bg-quill-500' : 'bg-royal-800/20'
+              }`}
+            />
+          ))}
+        </div>
+      </article>
+    </motion.div>
+  );
+}
+
 export function ManifestoScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mobileCardContainerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -148,10 +259,12 @@ export function ManifestoScroll() {
   // Map overall scroll to ink fill progress
   const inkFillProgress = useTransform(scrollYProgress, [0.1, 0.85], [0, 1]);
 
+  const totalCards = PARAGRAPHS.length;
+
   return (
     <section
       ref={containerRef}
-      className="relative bg-white min-h-[300vh] border-t border-royal-800/10"
+      className="relative bg-white min-h-0 lg:min-h-[300vh] border-t border-royal-800/10"
     >
       {/* Section label */}
       <div className="absolute top-0 left-0 right-0 py-8 px-4 sm:px-6 lg:px-8">
@@ -163,10 +276,13 @@ export function ManifestoScroll() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* ── Left: Sticky "Ink Fill" Headline ── */}
-          <div className="lg:sticky lg:top-0 lg:h-screen flex items-center py-32 lg:py-0">
+      {/* ══════════════════════════════════════════════
+          Desktop layout (lg+): Two-column sticky scroll
+          ══════════════════════════════════════════════ */}
+      <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-10 lg:gap-20">
+          {/* Left: Sticky headline */}
+          <div className="sticky top-0 h-screen flex items-center">
             <div className="max-w-lg">
               <InkFillHeadline progress={inkFillProgress} />
 
@@ -200,8 +316,8 @@ export function ManifestoScroll() {
             </div>
           </div>
 
-          {/* ── Right: Scrolling Brutalist Cards ── */}
-          <div className="py-32 lg:py-[50vh] space-y-12 lg:space-y-16">
+          {/* Right: Scrolling cards */}
+          <div className="py-[50vh] space-y-8 lg:space-y-16">
             {PARAGRAPHS.map((para, i) => (
               <ParagraphCard
                 key={i}
@@ -212,6 +328,57 @@ export function ManifestoScroll() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════
+          Mobile layout (below lg): Sticky headline + stacking cards
+          ══════════════════════════════════════════════ */}
+      <div className="lg:hidden px-4 sm:px-6">
+        {/* Sticky ink-fill headline */}
+        <div
+          className="sticky z-20 bg-white pb-4 pt-12 md:pt-24"
+          style={{ top: MOBILE_HEADLINE_TOP }}
+        >
+          <InkFillHeadline progress={inkFillProgress} />
+        </div>
+
+        {/* Stacking cards container */}
+        <div
+          ref={mobileCardContainerRef}
+          className="relative mt-8"
+          style={{ minHeight: totalCards * 320 + 100 }}
+        >
+          <div className="space-y-4">
+            {PARAGRAPHS.map((para, i) => (
+              <MobileStackingCard
+                key={i}
+                index={i}
+                title={para.title}
+                body={para.body}
+                totalCards={totalCards}
+                containerRef={mobileCardContainerRef}
+              />
+            ))}
+          </div>
+
+          {/* Spacer for scroll room */}
+          <div style={{ height: 60 }} />
+        </div>
+
+        {/* Stack complete indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-6 text-center pb-16"
+        >
+          <div className="inline-flex items-center gap-2 text-xs font-sans text-royal-800/50 uppercase tracking-wider">
+            <div className="w-6 h-px bg-royal-800/20" />
+            <span>Three Tenets</span>
+            <div className="w-6 h-px bg-royal-800/20" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

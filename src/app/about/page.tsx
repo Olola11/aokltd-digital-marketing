@@ -35,9 +35,9 @@ export default function AboutPage() {
       <QuillHero />
 
       {/* § 2 — The Name */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-white border-t border-royal-800/10">
+      <section className="relative py-12 md:py-32 px-4 sm:px-6 bg-white border-t border-royal-800/10">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-4 mb-6 md:mb-12">
             <div className="w-16 h-px bg-royal-800" />
             <span className="text-xs font-sans font-medium text-quill-500 uppercase tracking-[0.25em]">
               The Name
@@ -69,9 +69,9 @@ export default function AboutPage() {
       </section>
 
       {/* § 3 — Who We Are */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-paper-cream">
+      <section className="relative py-12 md:py-32 px-4 sm:px-6 bg-paper-cream">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-4 mb-6 md:mb-12">
             <div className="w-16 h-px bg-royal-800" />
             <span className="text-xs font-sans font-medium text-quill-500 uppercase tracking-[0.25em]">
               Who We Are
@@ -101,7 +101,7 @@ export default function AboutPage() {
       <PrinciplesCards />
 
       {/* § 4 — Registration Details */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-paper-cool border-t border-royal-800/10">
+      <section className="relative py-12 md:py-32 px-4 sm:px-6 bg-paper-cool border-t border-royal-800/10">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-xs font-sans font-medium text-quill-500 uppercase tracking-[0.25em]">
             Legal Entity
@@ -147,12 +147,12 @@ export default function AboutPage() {
       </section>
 
       {/* § 5 — Closing */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-royal-800">
+      <section className="relative py-12 md:py-32 px-4 sm:px-6 bg-royal-800">
         <div className="max-w-2xl mx-auto text-center">
           <p className="font-sans text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-snug">
             Knowledge deserves to be elevated, celebrated, and shared with the reverence it warrants.
           </p>
-          <div className="mt-12 flex items-center justify-center gap-4">
+          <div className="mt-8 md:mt-12 flex items-center justify-center gap-4">
             <div className="w-8 h-px bg-quill-500/60" />
             <span className="text-xs font-sans text-quill-400 uppercase tracking-[0.2em]">
               Apotheosis of Knowledge

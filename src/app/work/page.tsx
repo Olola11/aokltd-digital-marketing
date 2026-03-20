@@ -13,7 +13,7 @@ export default function WorkPage() {
   return (
     <main className="bg-white min-h-screen">
       {/* ═══ Section A: The Opening ═══ */}
-      <section className="relative px-6 md:px-12 lg:px-24 pt-20 md:pt-32 pb-16 md:pb-24">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-32 pb-10 md:pb-24">
         {/* Timestamp */}
         <div className="absolute top-6 right-6 md:right-12 lg:right-24">
           <span className="font-sans text-xs md:text-sm tracking-[0.2em] text-[#00008B]/30 uppercase">
@@ -37,19 +37,19 @@ export default function WorkPage() {
       </section>
 
       {/* ═══ Section B: The Operations Board ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
+      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
         <FadeIn delay={0.1}>
           <SocialMonitor />
         </FadeIn>
       </section>
 
       {/* ═══ Section C: Future Projects ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
+      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
         <ProjectTimeline />
       </section>
 
       {/* ═══ Section D: The Quiet Close ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
+      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
         <FadeIn>
           <p className="text-center text-sm font-serif italic text-[#00008B]/40 max-w-xl mx-auto">
             This is a long-term institutional project. We build slowly and deliberately.

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useTouchDevice } from '@/hooks/useTouchDevice';
 import {
   motion,
   useMotionValue,
@@ -26,16 +27,7 @@ const CERTIFICATE_PDF = '/images/certificate/CERTIFICATE - APOTHEOSIS OF KNOWLED
 export function ArtifactShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isTouch, setIsTouch] = useState(false);
-
-  // Detect touch device
-  useEffect(() => {
-    const mq = window.matchMedia('(pointer: coarse)');
-    setIsTouch(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsTouch(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
+  const isTouch = useTouchDevice();
 
   // Raw mouse position (0-1 normalized)
   const mouseX = useMotionValue(0.5);

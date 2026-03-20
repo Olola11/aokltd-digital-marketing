@@ -42,7 +42,7 @@ export default function RegistrationPage() {
       <HeroSection />
 
       {/* § 2 — Certificate artifact display */}
-      <section className="relative py-20 md:py-28 px-4 sm:px-6">
+      <section className="relative py-12 md:py-28 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <ArtifactShowcase />
         </div>
@@ -65,7 +65,7 @@ export default function RegistrationPage() {
  */
 function HeroSection() {
   return (
-    <section className="relative py-28 md:py-36 lg:py-44 px-4 sm:px-6 overflow-hidden">
+    <section className="relative py-16 md:py-36 lg:py-44 px-4 sm:px-6 overflow-hidden">
       {/* Subtle radial glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
@@ -109,10 +109,10 @@ function HeroSection() {
  */
 function InstitutionalClosing() {
   return (
-    <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-navy-950">
+    <section className="relative py-12 md:py-32 px-4 sm:px-6 bg-navy-950">
       <div className="max-w-2xl mx-auto text-center">
         {/* Decorative divider */}
-        <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent mx-auto mb-12" />
+        <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent mx-auto mb-8 md:mb-12" />
 
         <p className="font-serif text-xl md:text-2xl text-navy-200 leading-relaxed mb-8">
           Registration is not bureaucracy. It is a declaration of
@@ -137,7 +137,7 @@ function InstitutionalClosing() {
         </div>
 
         {/* Final border */}
-        <div className="mt-16 pt-8 border-t border-navy-800">
+        <div className="mt-10 md:mt-16 pt-8 border-t border-navy-800">
           <p className="text-[10px] text-navy-600 uppercase tracking-[0.2em]">
             Apotheosis of Knowledge Limited — A Nigerian Institution
           </p>

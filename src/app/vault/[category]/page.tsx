@@ -10,6 +10,7 @@ import {
 } from '@/lib/vault-data';
 import { formatDate } from '@/lib/utils';
 import type { VaultCategory } from '@/types';
+import { ReadCheckmark } from '@/components/vault/vault-progress';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -44,7 +45,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="relative border-b border-[#58AEFE]/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-28">
           <Link
             href="/vault"
             className="inline-flex items-center gap-2 font-sans text-xs md:text-sm uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[#00008B]/30 mb-4 hover:text-[#00008B]/60 transition-colors py-1"
@@ -107,6 +108,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     <div className="flex items-center gap-3 sm:gap-4 font-sans text-[9px] sm:text-[10px] text-[#00008B]/30 uppercase tracking-wider">
                       <span>{formatDate(entry.publishedAt, { month: 'short', year: 'numeric' })}</span>
                       <span>{entry.readingTime} MIN READ</span>
+                      {entry.sourceCount ? <span>{entry.sourceCount} SOURCES</span> : null}
+                      <ReadCheckmark slug={entry.slug} />
                     </div>
                   </div>
                 </div>

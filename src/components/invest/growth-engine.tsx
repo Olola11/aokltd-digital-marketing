@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 
 const NODES = ['Research', 'Content', 'Audience', 'Revenue', 'Reinvestment'];
@@ -8,22 +8,16 @@ const NODE_SPACING = 72;
 const START_Y = 40;
 const CX = 140;
 
+// Pre-computed constants for stroke-dash animation
+const LINE_LENGTH = (NODES.length - 1) * NODE_SPACING;
+// Approximate arc length for the bezier return curve — sufficient for dash animation
+const ARC_LENGTH = 400;
+
 function FlywheelSVG({ animate }: { animate: boolean }) {
   const lineRef = useRef<SVGLineElement>(null);
-  const arcRef = useRef<SVGPathElement>(null);
-  const [lineLength, setLineLength] = useState(1000);
-  const [arcLength, setArcLength] = useState(1000);
 
-  useEffect(() => {
-    if (lineRef.current) {
-      const y1 = START_Y;
-      const y2 = START_Y + (NODES.length - 1) * NODE_SPACING;
-      setLineLength(y2 - y1);
-    }
-    if (arcRef.current) {
-      setArcLength(arcRef.current.getTotalLength());
-    }
-  }, []);
+  const lineLength = LINE_LENGTH;
+  const arcLength = ARC_LENGTH;
 
   const lastY = START_Y + (NODES.length - 1) * NODE_SPACING;
 
@@ -52,7 +46,6 @@ function FlywheelSVG({ animate }: { animate: boolean }) {
 
       {/* Return arc from bottom back to top */}
       <path
-        ref={arcRef}
         d={`M ${CX} ${lastY} C ${CX - 90} ${lastY - 60}, ${CX - 90} ${START_Y + 60}, ${CX} ${START_Y}`}
         fill="none"
         stroke="#4AA8FF"

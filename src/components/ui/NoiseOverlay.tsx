@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useTouchDevice } from '@/hooks/useTouchDevice';
 
 /**
  * NoiseOverlay — Subtle film grain texture over the viewport.
@@ -16,16 +16,7 @@ import { useEffect, useState } from 'react';
  * Both:     pointer-events-none, z-[1], mix-blend-overlay.
  */
 export function NoiseOverlay() {
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(pointer: coarse)');
-    setIsTouch(mq.matches);
-
-    const handler = (e: MediaQueryListEvent) => setIsTouch(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
+  const isTouch = useTouchDevice();
 
   // Mobile: lightweight repeating PNG — no SVG filter, no animation
   if (isTouch) {

@@ -21,7 +21,7 @@ export default function InvestPage() {
       <ScrollProgress />
 
       {/* Section A: Hero — "The Blueprint for Scale" */}
-      <section className="relative px-6 md:px-12 lg:px-24 pt-20 md:pt-32 pb-16 md:pb-24">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-32 pb-10 md:pb-24">
         {/* Section marker — desktop only */}
         <span className="hidden lg:block absolute left-3 top-24 max-w-[72px] font-sans text-[11px] uppercase tracking-[0.15em] text-royal-800/50 leading-tight">
           01 / Proposition
@@ -60,7 +60,7 @@ export default function InvestPage() {
       <div className="mx-6 md:mx-12 lg:mx-24 border-t border-royal-800/10" />
 
       {/* Section B: The Pillars — "The Asset Classes" */}
-      <section className="relative px-6 md:px-12 lg:px-24 pt-16 md:pt-20 pb-20 md:pb-32">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-10 md:pt-20 pb-6 md:pb-32">
         {/* Section marker — desktop only */}
         <span className="hidden lg:block absolute left-3 top-16 md:top-20 max-w-[72px] font-sans text-[11px] uppercase tracking-[0.15em] text-royal-800/50 leading-tight">
           02 / Asset Classes
@@ -73,7 +73,7 @@ export default function InvestPage() {
       <div className="mx-6 md:mx-12 lg:mx-24 border-t border-royal-800/10" />
 
       {/* Section C: Growth Engine — The Flywheel */}
-      <section className="relative px-6 md:px-12 lg:px-24 pt-16 md:pt-20 pb-20 md:pb-32">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-10 md:pt-20 pb-8 md:pb-32">
         {/* Section marker — desktop only */}
         <span className="hidden lg:block absolute left-3 top-16 md:top-20 max-w-[72px] font-sans text-[11px] uppercase tracking-[0.15em] text-royal-800/50 leading-tight">
           03 / Growth Engine
@@ -88,7 +88,7 @@ export default function InvestPage() {
       <div className="mx-6 md:mx-12 lg:mx-24 border-t border-royal-800/10" />
 
       {/* Section D: Contact — "Request the Full Prospectus" */}
-      <section className="relative px-6 md:px-12 lg:px-24 pt-16 md:pt-20 pb-20 md:pb-32">
+      <section className="relative px-6 md:px-12 lg:px-24 pt-10 md:pt-20 pb-8 md:pb-32">
         {/* Section marker — desktop only */}
         <span className="hidden lg:block absolute left-3 top-16 md:top-20 max-w-[72px] font-sans text-[11px] uppercase tracking-[0.15em] text-royal-800/50 leading-tight">
           04 / Dialogue

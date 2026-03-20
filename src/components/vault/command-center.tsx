@@ -6,11 +6,7 @@ import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { VaultCategory } from '@/types';
 
-// Brand Colors
-const BRAND = {
-  deep: '#00008B',     // rgb(0, 0, 139) — Headers, borders, primary text
-  quill: '#58AEFE',    // rgb(88, 174, 254) — Active states, highlights
-};
+
 
 interface CommandCenterProps {
   query: string;

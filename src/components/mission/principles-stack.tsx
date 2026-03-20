@@ -9,7 +9,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
 } from 'framer-motion';
-import { useTouchDevice } from '@/hooks/useTouchDevice';
+
 
 /**
  * PrinciplesStack — "The Card Deck" Sticky Stacking for Mobile
@@ -55,10 +55,9 @@ const PRINCIPLES = [
   },
 ];
 
-// Card height for calculating stack positions
-const CARD_HEIGHT = 280; // Approximate card height in pixels
-const STACK_OFFSET = 64; // How much of each card remains visible when stacked (header area)
-const STICKY_TOP = 80; // Distance from top of viewport when stuck (accounts for nav)
+// Card stacking positions
+const PEEK_HEIGHT = 16; // Thin sliver of previous card visible when stacked
+const STICKY_TOP = 68; // Just below 64px nav
 
 /**
  * Individual stacking card with haptic landing effect
@@ -105,12 +104,8 @@ function StackingCard({
     }
   });
 
-  // Calculate z-index: later cards stack on top
-  const zIndex = index + 1;
-
-  // Calculate the sticky top position for this card
-  // Each subsequent card sticks slightly lower to show the stack
-  const stickyTop = STICKY_TOP + index * STACK_OFFSET;
+  const zIndex = (index + 1) * 10;
+  const stickyTop = STICKY_TOP + index * PEEK_HEIGHT;
 
   return (
     <motion.div
@@ -252,12 +247,10 @@ function MobileStack() {
   const containerRef = useRef<HTMLDivElement>(null);
   const totalCards = PRINCIPLES.length;
 
-  // Calculate total scroll height needed for all cards to stack
-  // We need enough scroll distance for each card to reach its sticky position
-  const scrollHeight = totalCards * CARD_HEIGHT + 200; // Extra padding
+  const scrollHeight = totalCards * 260 + 100;
 
   return (
-    <div className="py-16 px-0">
+    <div className="py-10 px-0">
       <SectionHeader />
 
       {/* Scrollable stack container */}
@@ -279,7 +272,7 @@ function MobileStack() {
         </div>
 
         {/* Spacer to allow full scrolling */}
-        <div style={{ height: CARD_HEIGHT * 0.5 }} />
+        <div style={{ height: 60 }} />
       </div>
 
       {/* Stack complete indicator */}
@@ -304,8 +297,6 @@ function MobileStack() {
  * Exported component — switches between mobile stack and desktop slider
  */
 export function PrinciplesStack() {
-  const isTouch = useTouchDevice();
-
   return (
     <section className="relative bg-paper-cool border-t border-royal-800/10">
       {/* Desktop: horizontal scroll-jack */}

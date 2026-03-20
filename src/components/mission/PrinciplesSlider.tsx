@@ -151,7 +151,7 @@ function DesktopSlider() {
  * ═══════════════════════════════════════════════ */
 function MobileStack() {
   return (
-    <div className="py-20 px-4 sm:px-6">
+    <div className="py-10 md:py-20 px-4 sm:px-6">
       <SectionHeader />
 
       <div className="max-w-lg mx-auto space-y-6">

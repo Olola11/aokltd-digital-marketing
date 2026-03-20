@@ -1,3 +1,9 @@
 export { CommandCenter } from './command-center';
 export { PrecisionGrid } from './precision-grid';
 export { MobileIndex } from './mobile-index';
+export { ReadTracker } from './read-tracker';
+export { VaultProgressBar, CategoryProgressRing, ReadCheckmark } from './vault-progress';
+export { SourceBadge, DepthIndicator, ArticleSourceDisplay } from './source-badge';
+export { ArticleThread } from './article-thread';
+export { ThreadExplorer } from './thread-explorer';
+export { VaultSearch } from './vault-search';

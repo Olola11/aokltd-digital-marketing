@@ -72,7 +72,7 @@ function TimelineNode({
     <motion.div
       ref={ref}
       style={{ opacity, scale, y }}
-      className="relative pl-12 sm:pl-16 pb-20 last:pb-0"
+      className="relative pl-12 sm:pl-16 pb-10 sm:pb-20 last:pb-0"
     >
       {/* Dot on the line */}
       <div
@@ -124,10 +124,10 @@ export function VisionTimeline() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section ref={containerRef} className="relative bg-white py-24 md:py-32 px-4 sm:px-6 border-t border-royal-800/10">
+    <section ref={containerRef} className="relative bg-white py-12 md:py-32 px-4 sm:px-6 border-t border-royal-800/10">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <span className="text-xs font-sans font-medium text-quill-500 uppercase tracking-[0.25em]">
             Our Vision
           </span>

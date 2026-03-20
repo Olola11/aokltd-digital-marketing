@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { useMounted } from '@/hooks/useMediaQuery';
 import {
   motion,
   useSpring,
@@ -30,7 +31,7 @@ const INCORPORATION_DATE = new Date('2022-07-27T00:00:00Z');
  */
 export function CredentialVerification() {
   return (
-    <section className="relative py-20 md:py-28 px-4 sm:px-6">
+    <section className="relative py-12 md:py-28 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -38,7 +39,7 @@ export function CredentialVerification() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="mb-14 md:mb-16"
+          className="mb-8 md:mb-16"
         >
           <p className="text-sm font-medium text-blue-400 uppercase tracking-[0.2em] mb-3">
             Verification Protocol
@@ -205,19 +206,17 @@ function TINCard() {
  * UptimeCard — Live counter of days since incorporation.
  */
 function UptimeCard() {
-  const [daysActive, setDaysActive] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
+
+  const calculateDays = () => {
+    const now = new Date();
+    const diff = now.getTime() - INCORPORATION_DATE.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+  };
+
+  const [daysActive, setDaysActive] = useState(calculateDays);
 
   useEffect(() => {
-    setMounted(true);
-    const calculateDays = () => {
-      const now = new Date();
-      const diff = now.getTime() - INCORPORATION_DATE.getTime();
-      return Math.floor(diff / (1000 * 60 * 60 * 24));
-    };
-
-    setDaysActive(calculateDays());
-
     // Update every minute to catch day changes
     const interval = setInterval(() => {
       setDaysActive(calculateDays());
@@ -328,19 +327,21 @@ function JurisdictionCard() {
 /**
  * StatusVerificationBar — Theatrical stepped verification sequence.
  */
+const VERIFICATION_STEPS = [
+  { label: 'Initializing secure connection...', duration: 800 },
+  { label: 'Handshaking with CAC database...', duration: 1200 },
+  { label: 'Verifying RC 1956161...', duration: 1000 },
+  { label: 'Cross-referencing TIN records...', duration: 900 },
+  { label: 'Validating incorporation date...', duration: 700 },
+  { label: 'Authentication complete', duration: 0 },
+];
+
 function StatusVerificationBar() {
   const [step, setStep] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
 
-  const steps = [
-    { label: 'Initializing secure connection...', duration: 800 },
-    { label: 'Handshaking with CAC database...', duration: 1200 },
-    { label: 'Verifying RC 1956161...', duration: 1000 },
-    { label: 'Cross-referencing TIN records...', duration: 900 },
-    { label: 'Validating incorporation date...', duration: 700 },
-    { label: 'Authentication complete', duration: 0 },
-  ];
+  const steps = VERIFICATION_STEPS;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -370,7 +371,7 @@ function StatusVerificationBar() {
     };
 
     setTimeout(advanceStep, steps[0].duration);
-  }, [hasStarted, steps.length]);
+  }, [hasStarted, steps]);
 
   const progress = ((step + 1) / steps.length) * 100;
   const isComplete = step === steps.length - 1;

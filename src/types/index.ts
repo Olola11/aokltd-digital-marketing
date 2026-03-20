@@ -1,5 +1,11 @@
 export type VaultCategory = 'history' | 'culture' | 'bizarre-facts' | 'true-crime';
 
+export interface RelatedArticle {
+  slug: string;
+  category: VaultCategory;
+  connectionReason: string;
+}
+
 export interface VaultEntry {
   slug: string;
   category: VaultCategory;
@@ -11,6 +17,8 @@ export interface VaultEntry {
   readingTime: number;
   tags: string[];
   relatedEntries?: string[];
+  relatedArticles?: RelatedArticle[];
+  sourceCount?: number;
   featuredImage?: {
     src: string;
     alt: string;

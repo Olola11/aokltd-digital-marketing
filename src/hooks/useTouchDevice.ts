@@ -1,24 +1,32 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 /**
  * useTouchDevice — Detects touch-primary devices via `(pointer: coarse)`.
  *
- * Uses useEffect to avoid hydration mismatches (SSR always returns false).
+ * Uses useSyncExternalStore to avoid hydration mismatches and lint warnings.
  * Listens for media query changes (e.g. desktop ↔ tablet mode on Surface).
  */
+
+function subscribeTouchDevice(callback: () => void) {
+  const mq = window.matchMedia('(pointer: coarse)');
+  mq.addEventListener('change', callback);
+  return () => mq.removeEventListener('change', callback);
+}
+
+function getTouchSnapshot() {
+  return window.matchMedia('(pointer: coarse)').matches;
+}
+
+function getTouchServerSnapshot() {
+  return false;
+}
+
 export function useTouchDevice(): boolean {
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(pointer: coarse)');
-    setIsTouch(mq.matches);
-
-    const handler = (e: MediaQueryListEvent) => setIsTouch(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
-  return isTouch;
+  return useSyncExternalStore(
+    subscribeTouchDevice,
+    getTouchSnapshot,
+    getTouchServerSnapshot
+  );
 }

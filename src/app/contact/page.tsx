@@ -26,7 +26,7 @@ export default function ContactPage() {
   return (
     <main className="bg-white">
       {/* § 1 — Header */}
-      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-5 sm:px-6">
+      <section className="pt-12 sm:pt-32 pb-10 sm:pb-20 px-5 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
@@ -35,7 +35,7 @@ export default function ContactPage() {
             <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-[#00008B] tracking-tight mt-4 mb-6 text-center md:text-left">
               We&rsquo;d like to hear from you.
             </h1>
-            <p className="font-serif text-lg text-gray-600 leading-relaxed max-w-[640px] text-center md:text-left">
+            <p className="font-serif text-lg text-[#00008B]/60 leading-relaxed max-w-[640px] text-center md:text-left">
               Whether you&rsquo;re a potential partner, a fellow knowledge enthusiast,
               or a creator looking to collaborate — this is where the conversation
               begins.
@@ -45,14 +45,14 @@ export default function ContactPage() {
       </section>
 
       {/* § 2 — Contact Paths */}
-      <section className="pb-16 sm:pb-24 px-5 sm:px-6">
+      <section className="pb-10 sm:pb-24 px-5 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <ContactPaths />
         </div>
       </section>
 
       {/* § 3 — Form */}
-      <section className="py-16 md:py-24 px-5 sm:px-6 border-t border-gray-100">
+      <section className="py-10 md:py-24 px-5 sm:px-6 border-t border-gray-100">
         <div className="max-w-[600px] mx-auto">
           <FadeIn>
             <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
@@ -66,9 +66,9 @@ export default function ContactPage() {
       </section>
 
       {/* § 4 — Company Information */}
-      <section className="py-16 px-5 sm:px-6">
+      <section className="py-10 md:py-16 px-5 sm:px-6">
         <FadeIn>
-          <div className="max-w-[500px] mx-auto bg-gray-50 rounded-lg py-10 px-8 text-center">
+          <div className="max-w-[500px] mx-auto bg-gray-50 rounded-lg py-8 md:py-10 px-8 text-center">
             <div className="space-y-1 font-sans text-sm text-gray-500">
               <p>Apotheosis of Knowledge Limited</p>
               <p>RC 1956161</p>
@@ -98,7 +98,7 @@ export default function ContactPage() {
       </section>
 
       {/* § 5 — Closing */}
-      <section className="py-16 px-5 sm:px-6 border-t border-gray-100">
+      <section className="py-10 md:py-16 px-5 sm:px-6 border-t border-gray-100">
         <FadeIn>
           <p className="font-serif italic text-lg text-gray-400 text-center max-w-xl mx-auto">
             Knowledge deserves better. So does your attention.

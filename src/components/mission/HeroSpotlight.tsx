@@ -86,7 +86,7 @@ export function HeroSpotlight() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-navy-950 select-none ${
+      className={`relative min-h-[50vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy-950 select-none ${
         isTouch ? '' : 'cursor-crosshair'
       }`}
     >

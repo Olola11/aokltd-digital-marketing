@@ -85,7 +85,7 @@ export function QuillHero() {
   const totalWidth = xOffset - letterSpacing;
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-4">
+    <section className="relative min-h-0 md:min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white px-4 py-16 md:py-0">
       {/* Subtle radial gradient behind text */}
       <div className="absolute inset-0 bg-gradient-to-b from-paper-cream via-white to-paper-cool opacity-60" />
 
@@ -195,7 +195,7 @@ export function QuillHero() {
         transition={{ delay: 2, duration: 0.8 }}
         className="relative z-10 mt-8 sm:mt-12 text-center"
       >
-        <p className="font-serif text-lg sm:text-xl md:text-2xl text-royal-800/80 max-w-2xl mx-auto leading-relaxed pb-20 md:pb-28">
+        <p className="font-serif text-lg sm:text-xl md:text-2xl text-royal-800/80 max-w-2xl mx-auto leading-relaxed pb-4 md:pb-28">
           Elevating knowledge to its highest form
         </p>
       </motion.div>

@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
  */
 export function LegalMatte() {
   return (
-    <section className="relative py-20 md:py-28 px-4 sm:px-6 bg-navy-900">
+    <section className="relative py-12 md:py-28 px-4 sm:px-6 bg-navy-900">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

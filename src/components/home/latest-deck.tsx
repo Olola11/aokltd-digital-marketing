@@ -63,7 +63,7 @@ export function LatestDeck() {
             <article className="relative border border-[#00008B] bg-white p-4 sm:p-5 md:p-6 rounded-md transition-transform duration-300 ease-out md:group-hover:-translate-y-1.5">
               {/* Category + Index */}
               <div className="flex items-center justify-between mb-3 md:mb-4">
-                <span className="font-sans text-[11px] md:text-xs text-[#4A90E2] tracking-wider uppercase">
+                <span className="font-sans text-xs md:text-xs text-[#4A90E2] tracking-wider uppercase">
                   {CATEGORY_LABELS[entry.category]}
                 </span>
                 <span className="font-sans text-xs md:text-[13px] text-[#00008B]/20">
@@ -77,12 +77,12 @@ export function LatestDeck() {
               </h3>
 
               {/* Excerpt */}
-              <p className="font-serif text-xs sm:text-sm text-[#00008B]/50 leading-relaxed line-clamp-2 md:line-clamp-3 mb-3 md:mb-4">
+              <p className="font-serif text-sm md:text-base text-[#00008B]/50 leading-relaxed line-clamp-2 md:line-clamp-3 mb-3 md:mb-4">
                 {entry.excerpt}
               </p>
 
               {/* Meta */}
-              <div className="flex items-center gap-3 font-sans text-[8px] sm:text-[9px] md:text-[10px] text-[#00008B]/25 tracking-wider uppercase">
+              <div className="flex items-center gap-3 font-sans text-[10px] sm:text-xs md:text-xs text-[#00008B]/25 tracking-wider uppercase">
                 <span>{entry.readingTime} min read</span>
                 <span>&middot;</span>
                 <span>
@@ -91,6 +91,12 @@ export function LatestDeck() {
                     year: 'numeric',
                   })}
                 </span>
+                {entry.sourceCount ? (
+                  <>
+                    <span>&middot;</span>
+                    <span>{entry.sourceCount} sources</span>
+                  </>
+                ) : null}
               </div>
             </article>
           </Link>

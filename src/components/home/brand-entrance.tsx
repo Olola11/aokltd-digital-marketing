@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useIsDesktop, useMounted } from '@/hooks/useMediaQuery';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 
@@ -115,17 +115,12 @@ function AnimatedLogo({ quillOpacity }: { quillOpacity: MotionValue<number> }) {
 }
 
 export function BrandEntrance() {
-  const [mounted, setMounted] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const mounted = useMounted();
+  const isDesktop = useIsDesktop();
 
   const { scrollY } = useScroll();
   // Fade logo quill out as user scrolls past hero (for floating quill handoff)
   const quillOpacity = useTransform(scrollY, [50, 100], [1, 0]);
-
-  useEffect(() => {
-    setIsDesktop(window.matchMedia('(min-width: 1024px)').matches);
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     // Placeholder during SSR — avoids layout shift

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useIsDesktop, useMounted } from '@/hooks/useMediaQuery';
 import Image from 'next/image';
 import {
   motion,
@@ -145,8 +145,8 @@ function ConstructedLogo({
 // ─── Exported Component ─────────────────────────────────────────
 
 export function HeroLogoConstruction() {
-  const [mounted, setMounted] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const mounted = useMounted();
+  const isDesktop = useIsDesktop();
 
   const { scrollY } = useScroll();
 
@@ -157,11 +157,6 @@ export function HeroLogoConstruction() {
   // Ring + A: fade and shrink once quill starts leaving
   const ringOpacity = useTransform(scrollY, [50, 150], [1, 0]);
   const ringScale = useTransform(scrollY, [50, 150], [1, 0.92]);
-
-  useEffect(() => {
-    setIsDesktop(window.matchMedia('(min-width: 1024px)').matches);
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return <div className="w-[72px] h-[72px] mx-auto mb-6 sm:mb-8" />;

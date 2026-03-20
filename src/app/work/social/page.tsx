@@ -49,7 +49,7 @@ const channels = [
 export default function SocialPage() {
   return (
     <main className="bg-white min-h-screen">
-      <section className="px-6 md:px-12 lg:px-24 pt-20 md:pt-32 pb-16 md:pb-24">
+      <section className="px-6 md:px-12 lg:px-24 pt-12 md:pt-32 pb-10 md:pb-24">
         {/* Breadcrumb */}
         <nav className="font-sans text-[10px] tracking-[0.3em] uppercase text-[#00008B]/30 mb-12">
           <Link
@@ -69,7 +69,7 @@ export default function SocialPage() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <p className="font-serif text-base text-[#00008B]/60 max-w-prose leading-relaxed mb-16">
+          <p className="font-serif text-base text-[#00008B]/60 max-w-prose leading-relaxed mb-8 md:mb-16">
             Our social media channels function as distribution infrastructure for knowledge
             content. Each platform serves a specific pedagogical purpose within the broader
             initiative.
@@ -78,7 +78,7 @@ export default function SocialPage() {
       </section>
 
       {/* Channel breakdown */}
-      <section className="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
+      <section className="px-6 md:px-12 lg:px-24 pb-12 md:pb-32">
         <div className="border-t border-[#00008B]/10">
           {channels.map((channel, i) => (
             <FadeIn key={channel.platform} delay={i * 0.08}>
@@ -116,7 +116,7 @@ export default function SocialPage() {
       </section>
 
       {/* The Quiet Close */}
-      <section className="px-6 md:px-12 lg:px-24 pb-20 md:pb-32">
+      <section className="px-6 md:px-12 lg:px-24 pb-12 md:pb-32">
         <FadeIn>
           <p className="text-center text-sm font-serif italic text-[#00008B]/40 max-w-xl mx-auto">
             This is a long-term institutional project. We build slowly and deliberately.

@@ -11,6 +11,9 @@ import {
 } from '@/lib/vault-data';
 import { formatDate } from '@/lib/utils';
 import type { VaultCategory } from '@/types';
+import { ReadTracker } from '@/components/vault/read-tracker';
+import { ArticleSourceDisplay } from '@/components/vault/source-badge';
+import { ArticleThread } from '@/components/vault/article-thread';
 
 interface ArticlePageProps {
   params: Promise<{ category: string; slug: string }>;
@@ -84,6 +87,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="min-h-screen bg-white">
+      <ReadTracker slug={slug} />
+
       {/* Article Header */}
       <header className="relative border-b border-[#58AEFE]/10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
@@ -119,6 +124,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <span>{formatDate(entry.publishedAt)}</span>
             <span>{entry.readingTime} MIN READ</span>
           </div>
+
+          {/* Source count */}
+          {entry.sourceCount ? (
+            <ArticleSourceDisplay sourceCount={entry.sourceCount} />
+          ) : null}
         </div>
       </header>
 
@@ -221,6 +231,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
           </div>
         </section>
+      )}
+
+      {/* The Thread — connected articles */}
+      {entry.relatedArticles && entry.relatedArticles.length > 0 && (
+        <ArticleThread relatedArticles={entry.relatedArticles} />
       )}
 
       {/* Back to Vault */}

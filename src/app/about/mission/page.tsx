@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { InkCursor } from '@/components/ui/ink-cursor';
 import {
   ManifestoScroll,
@@ -35,18 +36,18 @@ export default function MissionPage() {
       <InkCursor />
 
       {/* § 1 — Hero: Mission Statement */}
-      <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 bg-white">
+      <section className="relative min-h-0 md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 bg-white py-16 md:py-0">
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-paper-cream via-white to-white opacity-60" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Kicker */}
-          <p className="text-xs sm:text-sm font-sans font-medium text-quill-500 uppercase tracking-[0.3em] mb-8">
+          <p className="text-xs sm:text-sm font-sans font-medium text-quill-500 uppercase tracking-[0.3em] mb-4 md:mb-8">
             Our Mission
           </p>
 
           {/* Main headline */}
-          <h1 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-royal-800 tracking-tight leading-[1.1] mb-8">
+          <h1 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-royal-800 tracking-tight leading-[1.1] mb-4 md:mb-8">
             Signal in
             <br />
             <span
@@ -76,7 +77,7 @@ export default function MissionPage() {
           </p>
 
           {/* Decorative element */}
-          <div className="mt-12 flex items-center justify-center gap-4">
+          <div className="mt-6 md:mt-12 flex items-center justify-center gap-4">
             <div className="w-12 h-px bg-royal-800/20" />
             <svg
               width="20"
@@ -112,7 +113,7 @@ export default function MissionPage() {
       <VisionTimeline />
 
       {/* § 5 — Final CTA: Dark Section */}
-      <section className="relative py-24 md:py-32 px-4 sm:px-6 bg-royal-800">
+      <section className="relative py-12 md:py-32 px-4 sm:px-6 bg-royal-800">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-sans text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-snug">
             Knowledge is not just power.
@@ -120,8 +121,8 @@ export default function MissionPage() {
             <span className="text-quill-400">It is purpose.</span>
           </p>
 
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
+          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
               href="/about"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-royal-800 font-sans font-medium text-sm uppercase tracking-wider hover:bg-paper-cream transition-colors"
             >
@@ -135,13 +136,13 @@ export default function MissionPage() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/vault"
               className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white font-sans font-medium text-sm uppercase tracking-wider hover:bg-white/10 transition-colors"
             >
               Explore The Vault
-            </a>
+            </Link>
           </div>
         </div>
       </section>

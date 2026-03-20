@@ -5,14 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import type { VaultEntry } from '@/types';
-
-// Brand Colors
-const BRAND = {
-  deep: '#00008B',     // rgb(0, 0, 139) — Headers, borders, primary text
-  quill: '#58AEFE',    // rgb(88, 174, 254) — Active states, highlights
-};
+import { DepthIndicator } from './source-badge';
+import { ReadCheckmark } from './vault-progress';
 
 interface PrecisionGridProps {
   entries: VaultEntry[];
@@ -89,11 +84,12 @@ function VaultCard({
         onMouseLeave={onLeave}
         className="relative cursor-pointer bg-white rounded-md border border-[#00008B]/10 p-6 pb-8"
       >
-        {/* Category Label */}
-        <div className="mb-4">
+        {/* Category Label + Read indicator */}
+        <div className="mb-4 flex items-center justify-between">
           <span className="font-sans text-xs md:text-[13px] uppercase tracking-[0.25em] text-[#00008B]/40">
             {entry.category.replace('-', ' ')}
           </span>
+          <ReadCheckmark slug={entry.slug} />
         </div>
 
         {/* Title */}
@@ -107,27 +103,36 @@ function VaultCard({
         </p>
 
         {/* Metadata Footer */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 font-sans text-[10px] text-[#00008B]/40 uppercase tracking-wider">
-            <span>
-              {new Date(entry.publishedAt).toLocaleDateString('en-US', {
-                month: 'short',
-                year: 'numeric',
-              })}
-            </span>
-            <span>{entry.readingTime} MIN</span>
-          </div>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4 font-sans text-[10px] text-[#00008B]/40 uppercase tracking-wider">
+              <span>
+                {new Date(entry.publishedAt).toLocaleDateString('en-US', {
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </span>
+              <span>{entry.readingTime} MIN</span>
+              {entry.sourceCount ? (
+                <>
+                  <span>&middot;</span>
+                  <span>{entry.sourceCount} SOURCES</span>
+                </>
+              ) : null}
+            </div>
 
-          {/* Arrow */}
-          <motion.div
-            animate={{
-              x: isHovered ? 4 : 0,
-              opacity: isHovered ? 1 : 0.3,
-            }}
-            transition={{ duration: 0.15 }}
-          >
-            <ArrowUpRight className="w-4 h-4 text-[#00008B]" />
-          </motion.div>
+            {/* Arrow */}
+            <motion.div
+              animate={{
+                x: isHovered ? 4 : 0,
+                opacity: isHovered ? 1 : 0.3,
+              }}
+              transition={{ duration: 0.15 }}
+            >
+              <ArrowUpRight className="w-4 h-4 text-[#00008B]" />
+            </motion.div>
+          </div>
+          {entry.sourceCount ? <DepthIndicator sourceCount={entry.sourceCount} /> : null}
         </div>
 
         {/* Hover Accent Line */}
@@ -152,7 +157,7 @@ export function PrecisionGrid({ entries }: PrecisionGridProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="py-24 text-center"
+        className="py-8 md:py-24 text-center"
       >
         <p className="font-sans text-sm text-[#00008B]/40 tracking-wider">
           NO RESULTS

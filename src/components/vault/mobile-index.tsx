@@ -7,12 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { VaultEntry, VaultCategory } from '@/types';
+import { ReadCheckmark, CategoryProgressRing } from './vault-progress';
 
-// Brand Colors
-const BRAND = {
-  deep: '#00008B',     // rgb(0, 0, 139) — Headers, borders, primary text
-  quill: '#58AEFE',    // rgb(88, 174, 254) — Active states, highlights
-};
 
 interface MobileIndexProps {
   entries: VaultEntry[];
@@ -102,6 +98,7 @@ function StickyHeader({
             {CATEGORY_LABELS[category]}
           </h2>
         </div>
+        <CategoryProgressRing articleSlugs={entries.map((e) => e.slug)} />
       </div>
     </div>
   );
@@ -147,10 +144,14 @@ function EntryRow({ entry, index }: { entry: VaultEntry; index: number }) {
             })}
             {' · '}
             {entry.readingTime} MIN
+            {entry.sourceCount ? ` · ${entry.sourceCount} SOURCES` : ''}
           </div>
         </div>
 
-        {/* Chevron */}
+        {/* Read checkmark or Chevron */}
+        <div className="flex-shrink-0 mt-1">
+          <ReadCheckmark slug={entry.slug} />
+        </div>
         <ChevronRight className="w-4 h-4 text-[#00008B]/20 flex-shrink-0 mt-1" />
       </div>
     </motion.article>
@@ -169,7 +170,7 @@ export function MobileIndex({ entries }: MobileIndexProps) {
 
   if (entries.length === 0) {
     return (
-      <div className="py-16 text-center">
+      <div className="py-10 md:py-16 text-center">
         <p className="font-sans text-sm text-[#00008B]/40 tracking-wider">
           NO RESULTS
         </p>

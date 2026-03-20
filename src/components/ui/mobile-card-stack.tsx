@@ -12,25 +12,26 @@ import {
 /**
  * MobileCardStack — Reusable "Tactile Depth" sticky card stacking.
  *
- * Replicates the About page's "Our Principles" mobile stacking pattern:
- * - Cards stick to the top of the viewport as user scrolls
- * - Each subsequent card stacks on top of the previous one
- * - Spring-based "haptic thud" on landing
- * - Dot indicators show position in the deck
- * - Always-visible shadow for depth separation
+ * Cards stick to the top of the viewport as the user scrolls. Each subsequent
+ * card stacks on top of the previous one, leaving only a thin "peek" sliver
+ * visible so the user can see how many cards are in the deck.
  *
- * Usage:
- *   <MobileCardStack>
- *     <div className="bg-white border ...">Card 1</div>
- *     <div className="bg-white border ...">Card 2</div>
- *   </MobileCardStack>
+ * The container's height is sized to give the user enough scroll distance to
+ * read each card's full content before the next card arrives to cover it.
+ *
+ * Props:
+ *  - peekHeight: px of previous card visible when stacked (default 16)
+ *  - stickyStart: top offset for the first card (default 68, below 64px nav)
+ *  - itemHeight: estimated card height in px for scroll sizing (default 300)
+ *  - shadowStyle: custom box-shadow override
+ *  - label: text shown after all cards have been scrolled through
  *
  * Cards MUST have a solid background (bg-white or similar).
- * Shadow is applied via the wrapper — do not add mobile shadows to cards.
  */
 
-const STACK_OFFSET = 56;
-const STICKY_TOP = 100;
+const DEFAULT_PEEK = 16;
+const DEFAULT_STICKY_START = 68;
+const DEFAULT_ITEM_HEIGHT = 300;
 
 function StackingCard({
   children,
@@ -38,12 +39,14 @@ function StackingCard({
   totalCards,
   containerRef,
   shadowStyle,
+  stickyTop,
 }: {
   children: ReactNode;
   index: number;
   totalCards: number;
   containerRef: React.RefObject<HTMLDivElement | null>;
   shadowStyle?: string;
+  stickyTop: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -68,15 +71,13 @@ function StackingCard({
     }
   });
 
-  const stickyTop = STICKY_TOP + index * STACK_OFFSET;
-
   return (
     <motion.div
       ref={cardRef}
       className="sticky will-change-transform"
       style={{
         top: stickyTop,
-        zIndex: index + 1,
+        zIndex: (index + 1) * 10,
         scale,
       }}
     >
@@ -85,8 +86,8 @@ function StackingCard({
         style={{
           boxShadow:
             shadowStyle ??
-            `0 -8px 25px -5px rgba(0, 0, 139, 0.15),
-             0 -4px 10px -5px rgba(0, 0, 139, 0.1),
+            `0 -4px 16px -4px rgba(0, 0, 139, 0.12),
+             0 -2px 6px -2px rgba(0, 0, 139, 0.08),
              6px 6px 0px #00008B`,
         }}
       >
@@ -111,23 +112,36 @@ interface MobileCardStackProps {
   children: ReactNode;
   shadowStyle?: string;
   label?: string;
+  /** Pixels of the previous card visible when stacked. Default 16. */
+  peekHeight?: number;
+  /** Top offset for the first card (below nav). Default 68. */
+  stickyStart?: number;
+  /** Estimated card height in px, used to size the scroll container. Default 300. */
+  itemHeight?: number;
 }
 
 export function MobileCardStack({
   children,
   shadowStyle,
   label,
+  peekHeight = DEFAULT_PEEK,
+  stickyStart = DEFAULT_STICKY_START,
+  itemHeight = DEFAULT_ITEM_HEIGHT,
 }: MobileCardStackProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const items = Children.toArray(children);
   const totalCards = items.length;
+
+  // Each card needs enough scroll distance to be fully read before the next arrives.
+  // The scroll distance per card ≈ itemHeight. Add modest buffer after last card.
+  const containerHeight = totalCards * itemHeight + itemHeight * 0.3;
 
   return (
     <div className="py-4 px-0">
       <div
         ref={containerRef}
         className="relative"
-        style={{ minHeight: totalCards * 220 + 150 }}
+        style={{ minHeight: containerHeight }}
       >
         <div className="space-y-4">
           {items.map((child, index) => (
@@ -137,12 +151,13 @@ export function MobileCardStack({
               totalCards={totalCards}
               containerRef={containerRef}
               shadowStyle={shadowStyle}
+              stickyTop={stickyStart + index * peekHeight}
             >
               {child}
             </StackingCard>
           ))}
         </div>
-        <div style={{ height: 100 }} />
+        <div style={{ height: itemHeight * 0.15 }} />
       </div>
 
       {/* Stack complete indicator */}

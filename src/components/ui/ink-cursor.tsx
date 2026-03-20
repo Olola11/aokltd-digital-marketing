@@ -23,6 +23,7 @@ interface TrailPoint {
   x: number;
   y: number;
   timestamp: number;
+  age: number;
 }
 
 const TRAIL_LIFETIME_MS = 600;
@@ -67,6 +68,7 @@ export function InkCursor() {
           x,
           y,
           timestamp: Date.now(),
+          age: 0,
         };
 
         setTrailPoints((prev) => {
@@ -91,7 +93,9 @@ export function InkCursor() {
     const cleanup = () => {
       const now = Date.now();
       setTrailPoints((prev) =>
-        prev.filter((point) => now - point.timestamp < TRAIL_LIFETIME_MS)
+        prev
+          .filter((point) => now - point.timestamp < TRAIL_LIFETIME_MS)
+          .map((point) => ({ ...point, age: now - point.timestamp }))
       );
       frameRef.current = requestAnimationFrame(cleanup);
     };
@@ -125,8 +129,8 @@ export function InkCursor() {
     >
       {/* ── Ink Trail ── */}
       <svg className="absolute inset-0 w-full h-full overflow-visible">
-        {trailPoints.map((point, index) => {
-          const age = Date.now() - point.timestamp;
+        {trailPoints.map((point) => {
+          const age = point.age;
           const progress = Math.min(age / TRAIL_LIFETIME_MS, 1);
           const opacity = 0.6 * (1 - progress);
           const scale = 1 - progress * 0.7;

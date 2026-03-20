@@ -118,6 +118,16 @@ function PillarCard({
           [ {pillar.status} ]
         </span>
       </motion.div>
+
+      {/* Expand CTA — visible on mobile always, on desktop on hover only */}
+      {!isExpanded && (
+        <div className="flex items-center gap-1.5 mt-4 text-[#4A90E2] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+          <span className="font-sans text-xs tracking-wider uppercase">Tap to explore</span>
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      )}
     </motion.article>
   );
 }
@@ -141,7 +151,7 @@ export function AssetPillars() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="transition-all duration-300 ease-out rounded-md hover:-translate-y-2 hover:shadow-brutalist">
+            <div className="group transition-all duration-300 ease-out rounded-md hover:-translate-y-2 hover:shadow-brutalist">
               <PillarCard
                 pillar={pillar}
                 isExpanded={expandedIndex === i}

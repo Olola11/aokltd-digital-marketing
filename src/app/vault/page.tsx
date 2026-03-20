@@ -1,16 +1,12 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { CommandCenter, PrecisionGrid, MobileIndex } from '@/components/vault';
+import { PrecisionGrid, MobileIndex } from '@/components/vault';
+import { VaultSearch } from '@/components/vault/vault-search';
+import { VaultProgressBar } from '@/components/vault/vault-progress';
+import { ThreadExplorer } from '@/components/vault/thread-explorer';
 import { VAULT_DATA } from '@/lib/vault-data';
 import type { VaultCategory } from '@/types';
-
-/**
- * BRAND COLORS:
- * - Brand Deep Blue: rgb(0, 0, 139) / #00008B (headers, borders, primary text)
- * - Brand Quill Blue: rgb(88, 174, 254) / #58AEFE (active states, grid lines, highlights)
- * - Background: #FFFFFF (pure white)
- */
 
 export default function VaultPage() {
   const [query, setQuery] = useState('');
@@ -19,12 +15,9 @@ export default function VaultPage() {
   // Filter entries
   const filteredEntries = useMemo(() => {
     return VAULT_DATA.filter((entry) => {
-      // Category filter
       if (activeCategory && entry.category !== activeCategory) {
         return false;
       }
-
-      // Search filter
       if (query) {
         const q = query.toLowerCase();
         return (
@@ -34,7 +27,6 @@ export default function VaultPage() {
           entry.category.toLowerCase().includes(q)
         );
       }
-
       return true;
     });
   }, [query, activeCategory]);
@@ -43,7 +35,7 @@ export default function VaultPage() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="relative border-b border-[#58AEFE]/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-28">
           <p className="font-sans text-xs md:text-sm uppercase tracking-[0.4em] text-[#00008B]/30 mb-3 md:mb-4">
             Archive
           </p>
@@ -56,10 +48,10 @@ export default function VaultPage() {
         </div>
       </header>
 
-      {/* Command Center */}
+      {/* Search & Filters */}
       <section className="relative sticky top-16 z-20 bg-white/95 backdrop-blur-sm border-b border-[#58AEFE]/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          <CommandCenter
+          <VaultSearch
             query={query}
             onQueryChange={setQuery}
             activeCategory={activeCategory}
@@ -69,6 +61,14 @@ export default function VaultPage() {
           />
         </div>
       </section>
+
+      {/* Progress & Threads */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-6">
+        <VaultProgressBar totalCount={VAULT_DATA.length} />
+      </section>
+
+      {/* Thread Explorer */}
+      <ThreadExplorer />
 
       {/* Main Content */}
       <main className="relative">

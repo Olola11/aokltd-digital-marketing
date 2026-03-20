@@ -93,7 +93,7 @@ export function CurtainHero({ children }: { children: React.ReactNode }) {
 
         {/* ═══ MOBILE: Unified masthead — fades on scroll ═══ */}
         <motion.div
-          className="md:hidden absolute inset-0 z-10 bg-white flex flex-col items-center justify-center px-6"
+          className="md:hidden absolute inset-0 z-10 bg-white flex flex-col items-center justify-center px-6 pointer-events-none"
           style={{ opacity: mobileOpacity, y: mobileSlide }}
         >
           <motion.div

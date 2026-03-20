@@ -27,6 +27,10 @@ export const VAULT_DATA: VaultEntry[] = [
     category: 'history',
     title: 'The Geometry of Dahomey',
     excerpt: 'How the Amazon warriors of West Africa developed military formations that anticipated modern game theory by three centuries.',
+    sourceCount: 11,
+    relatedArticles: [
+      { slug: 'walls-of-great-zimbabwe', category: 'history', connectionReason: 'Pre-colonial African ingenuity' },
+    ],
     content: `The Kingdom of Dahomey, which flourished in present-day Benin from approximately 1600 to 1904, maintained one of the most formidable military forces in pre-colonial Africa. Central to its power were the Mino—the all-female regiment that European colonizers dismissively termed "Amazons." What most historical accounts overlook is the mathematical sophistication embedded in their tactical doctrine.
 
 Dahomean battle formations operated on principles that bear striking resemblance to what John von Neumann would formalize as game theory in 1944. The Mino employed adaptive formations: fluid geometric arrangements that shifted in response to enemy positioning. Rather than rigid lines, their units moved in interlocking patterns—triangular wedges that could collapse into defensive circles or expand into enveloping crescents. Each configuration was a strategic response to a finite set of opponent moves, a practical application of minimax strategy three centuries before it had a name.
@@ -52,6 +56,10 @@ What makes this case historically significant is not merely that it challenges W
     category: 'history',
     title: 'The Libraries of Timbuktu',
     excerpt: 'When Mali housed more books than any European city. The rise, fall, and secret preservation of African scholarship.',
+    sourceCount: 13,
+    relatedArticles: [
+      { slug: 'griots-memory-palace', category: 'culture', connectionReason: 'West African knowledge systems' },
+    ],
     content: `In the fifteenth century, the city of Timbuktu contained between 400,000 and 700,000 manuscripts. To put that figure in perspective: the library at the University of Oxford, one of Europe's great centers of learning, held fewer than 2,000 volumes at the same period. The disparity is not a matter of interpretation or revisionist enthusiasm—it is a matter of counting.
 
 Timbuktu's intellectual ecosystem was anchored by three great mosques—Djinguereber, Sankore, and Sidi Yahia—each functioning as a university in all but name. Sankore alone attracted some 25,000 students at its peak, drawn from across the Saharan trade routes. The curriculum extended well beyond Quranic studies to encompass astronomy, mathematics, jurisprudence, medicine, grammar, and history. Scholars produced original treatises, not merely commentaries on existing works—a distinction that matters in the history of ideas.
@@ -77,6 +85,10 @@ The recovery effort, which accelerated in the 1990s through organizations like t
     category: 'history',
     title: 'When Gold Lost Its Value',
     excerpt: 'Mansa Musa\'s pilgrimage distributed so much gold that he crashed the Mediterranean economy for a decade.',
+    sourceCount: 10,
+    relatedArticles: [
+      { slug: 'songhai-libraries', category: 'history', connectionReason: 'Medieval West African empires' },
+    ],
     content: `In 1324, Mansa Musa I of Mali undertook the hajj to Mecca. He brought with him, by conservative estimates, approximately 18 tons of gold. The journey took over a year. When it was over, the economies of Egypt, Arabia, and the broader Mediterranean basin were in disarray—not from war or plague, but from generosity.
 
 The scale of Musa's caravan defied the logistical norms of the era. Contemporary Arab historians record a procession of 60,000 men, including 12,000 servants each carrying four pounds of gold bars. Five hundred slaves preceded the emperor, each bearing a golden staff weighing six pounds. Eighty camels carried between 50 and 300 pounds of gold dust apiece. These figures, even if inflated by the conventions of medieval chronicling, describe a concentration of portable wealth without parallel in the historical record.
@@ -102,6 +114,10 @@ The Catalan Atlas of 1375, one of the most important maps of the medieval period
     category: 'history',
     title: 'The Walls of Great Zimbabwe',
     excerpt: 'A stone city built without mortar that colonial authorities refused to attribute to Africans—and the archaeology that proved them wrong.',
+    sourceCount: 14,
+    relatedArticles: [
+      { slug: 'geometry-of-dahomey', category: 'history', connectionReason: 'Pre-colonial African architecture' },
+    ],
     content: `The ruins of Great Zimbabwe comprise the largest stone structures in sub-Saharan Africa south of the Ethiopian highlands. The Great Enclosure's outer wall stands eleven meters high, extends 250 meters in circumference, and contains an estimated 15,000 tons of granite—all assembled without mortar, nails, or any binding agent. The stones hold together through precision alone: each block was shaped to interlock with its neighbors through friction and gravitational compression. The engineering principle is elegant in its simplicity and formidable in its execution.
 
 [IMAGE: /images/content/walls-of-great-zimbabwe-hero.jpg | The Great Enclosure wall at Great Zimbabwe — dry-stone granite construction, 11 metres high, assembled without mortar | Great Enclosure, Great Zimbabwe — photograph]
@@ -127,6 +143,8 @@ The episode illustrates a broader pattern in the history of knowledge: when evid
     category: 'history',
     title: 'The Navigators of Te Moana Nui',
     excerpt: 'Polynesian wayfinders crossed the largest ocean on earth using star compasses, wave patterns, and a cognitive science we are only beginning to understand.',
+    sourceCount: 12,
+    relatedArticles: [], // TODO: Add editorial connections as more articles are published
     content: `Between roughly 1500 BCE and 1200 CE, Polynesian navigators settled virtually every habitable island in the Pacific Ocean—an area covering nearly one-third of the planet's surface. They did this without compasses, sextants, or written charts. The question of how has occupied Western scholars for decades. The answer requires rethinking what we mean by navigation itself.
 
 The foundation of Polynesian wayfinding is the star compass: a mental model that divides the horizon into 32 directional houses based on the rising and setting points of specific stars. As one star rises too high to be useful for bearing, the navigator transitions to the next in a sequence memorized through years of apprenticeship. This is not crude estimation—it is a sidereal positioning system of remarkable precision, capable of maintaining course headings across thousands of kilometers of open water.
@@ -158,6 +176,11 @@ The tradition nearly vanished in the twentieth century under the pressures of co
     category: 'culture',
     title: 'The Lost Benin Bronzes',
     excerpt: 'A forensic examination of the 1897 British raid and the ongoing global effort to reconstruct a scattered artistic legacy.',
+    sourceCount: 14,
+    relatedArticles: [
+      { slug: 'igbo-ukwu-metallurgy', category: 'culture', connectionReason: 'West African metalwork' },
+      { slug: 'yoruba-cosmology', category: 'culture', connectionReason: 'Nigerian cultural legacy' },
+    ],
     content: `On February 18, 1897, a British naval force of 1,200 men entered Benin City, capital of the Kingdom of Benin in present-day Nigeria. The stated objective was punitive—retaliation for the killing of a British trade delegation weeks earlier. The actual consequence was the removal of between 3,000 and 10,000 artworks: cast brass and bronze plaques, carved ivory tusks, coral-beaded regalia, and wooden sculptures that had adorned the Oba's palace for centuries. Within months, these objects were dispersed across museums, auction houses, and private collections worldwide.
 
 The Benin Bronzes—a collective term that encompasses works in brass, bronze, ivory, and wood—represent one of the most sophisticated artistic traditions in the global canon. The metal-casting technique employed by Benin's guild of bronze-smiths, known as the igun eronmwon, used a lost-wax process of extraordinary refinement. European metallurgists who examined the plaques in the early twentieth century expressed frank astonishment at the thinness of the castings and the precision of the detailing. Some plaques contain alloy compositions that suggest a deliberate, controlled manipulation of copper, zinc, and lead ratios to achieve specific visual effects—a metallurgical subtlety that presupposes systematic empirical knowledge.
@@ -183,6 +206,10 @@ The legal and ethical arguments are complex, but the foundational question is si
     category: 'culture',
     title: 'Orishas in the New World',
     excerpt: 'Tracing how Yoruba spiritual systems survived the Middle Passage and evolved into Santeria, Candomble, and Vodou.',
+    sourceCount: 11,
+    relatedArticles: [
+      { slug: 'lost-benin-bronzes', category: 'culture', connectionReason: 'Nigerian cultural heritage' },
+    ],
     content: `The transatlantic slave trade transported an estimated 12.5 million Africans to the Americas between the sixteenth and nineteenth centuries. Among them were substantial numbers of Yoruba people from what is now southwestern Nigeria and Benin. They arrived stripped of material possessions, but they carried with them a cosmological system of remarkable structural integrity—one that would prove resilient enough to survive centuries of systematic suppression.
 
 The Yoruba spiritual framework is organized around the orishas: divine intermediaries who govern specific domains of human experience and natural phenomena. Ogun presides over iron, war, and labor. Yemoja governs rivers, motherhood, and the sea. Shango commands thunder, lightning, and justice. Eshu mediates between the human and divine realms, guarding crossroads and communications. These are not primitive nature spirits in any meaningful sense—they are components of a sophisticated theological architecture that addresses questions of morality, fate, reciprocity, and the relationship between individual agency and cosmic order.
@@ -210,6 +237,10 @@ Today, orisha-based traditions claim an estimated 100 million practitioners worl
     category: 'culture',
     title: 'The Bronze Masters of Igbo-Ukwu',
     excerpt: 'Ninth-century Nigerian bronzework that predates European contact—and challenges conventional histories of metallurgy.',
+    sourceCount: 12,
+    relatedArticles: [
+      { slug: 'lost-benin-bronzes', category: 'culture', connectionReason: 'Nigerian metalwork tradition' },
+    ],
     content: `In 1938, a man named Isaiah Anozie was digging a cistern in his compound in Igbo-Ukwu, a small town in southeastern Nigeria, when his shovel struck metal. What he unearthed were bronze artifacts of such technical sophistication that when archaeologist Thurstan Shaw excavated the site systematically between 1959 and 1964, the results challenged fundamental assumptions about the history of metallurgy in sub-Saharan Africa.
 
 [IMAGE: /images/content/igbo-ukwu-metallurgy-hero.jpg | The Igbo-Ukwu ceremonial vessel — a bronze calabash encased in cast bronze rope-work, 9th century CE | Igbo-Ukwu bronze vessel, c. 9th century CE — National Museum, Lagos]
@@ -237,6 +268,10 @@ The bronzes now reside in the National Museum in Lagos. They remain among the mo
     category: 'culture',
     title: 'The Griot\'s Memory Palace',
     excerpt: 'West Africa\'s hereditary historians carry genealogies spanning seven centuries in living memory—without writing a word down.',
+    sourceCount: 10,
+    relatedArticles: [
+      { slug: 'songhai-libraries', category: 'history', connectionReason: 'West African knowledge systems' },
+    ],
     content: `In the Mande-speaking societies of West Africa—encompassing regions of present-day Mali, Guinea, Senegal, and The Gambia—there exists a hereditary caste of professional historians, musicians, and genealogists known as griots (or, in Mande languages, jeliw). Their function is at once civic, judicial, and archival: they maintain the oral records of lineage, land rights, political alliances, and historical events that constitute the institutional memory of their communities.
 
 The scope of this memory is not trivial. A master griot of the Keita lineage can recite a genealogy extending back to Sundiata Keita, the thirteenth-century founder of the Mali Empire—a chain of descent spanning approximately 700 years and dozens of generations. This is not rote memorization of a fixed script. The griot tradition is performative and contextual: the same genealogy will be recited differently depending on the occasion, the audience, and the political circumstances. What remains constant is the structural accuracy—the sequence of names, the relationships between lineages, the key events at each generational node.
@@ -264,6 +299,10 @@ What the griot tradition demonstrates is that orality is not a deficiency—not 
     category: 'culture',
     title: 'Adinkra: A Lexicon in Cloth',
     excerpt: 'The Akan symbol system that encodes philosophical concepts into geometric patterns—and why computer scientists are paying attention.',
+    sourceCount: 11,
+    relatedArticles: [
+      { slug: 'igbo-ukwu-metallurgy', category: 'culture', connectionReason: 'West African artistic traditions' },
+    ],
     content: `The Adinkra symbols of the Akan people of Ghana and Ivory Coast constitute one of the most sophisticated visual communication systems in the African continent. Numbering over 120 distinct ideograms, each symbol encodes a specific concept, proverb, or philosophical principle. Sankofa, depicting a bird turning its head backward, means "return and retrieve"—a principle of learning from the past. Gye Nyame, an intricate spiral form, signifies the omnipotence of God. Funtunfunefu Denkyemfunefu, showing conjoined crocodiles sharing a single stomach, represents unity in diversity and the futility of internal conflict.
 
 These are not decorative motifs. They are semantic units—components of a visual language with a defined vocabulary and consistent usage conventions. Traditionally stamped onto cloth using carved calabash stamps and a dye made from the bark of the Badie tree, Adinkra patterns were worn at funerals, festivals, and ceremonies of state. The selection and arrangement of symbols on a garment communicated specific messages: condolence, celebration, political allegiance, spiritual invocation. A garment could be "read" by any literate member of the community.
@@ -295,6 +334,8 @@ The Adinkra system challenges the persistent assumption that writing is the only
     category: 'bizarre-facts',
     title: 'Quantum Ethics',
     excerpt: 'If observation changes reality, what are the moral implications of choosing not to look? A philosophical inquiry into physics.',
+    sourceCount: 8,
+    relatedArticles: [], // TODO: Add editorial connections as more articles are published
     content: `The observer effect in quantum mechanics is well established: certain properties of subatomic particles—position, momentum, spin—exist in superposition until measured, at which point the wave function collapses into a definite state. This is not a limitation of our instruments. It is, as far as current physics can determine, a fundamental feature of reality. The act of observation participates in the creation of the observed.
 
 The philosophical implications have been debated since the 1920s, primarily within epistemology (what can we know?) and ontology (what exists?). But there is a third domain that has received surprisingly little systematic attention: ethics. If observation plays a constitutive role in determining physical outcomes, then the decision to observe or not to observe is not merely an epistemic choice—it is, in a meaningful sense, a causal one. And causal choices fall within the domain of moral philosophy.
@@ -322,6 +363,10 @@ These are not merely academic puzzles. As quantum technologies move from laborat
     category: 'bizarre-facts',
     title: 'The Strasbourg Dancing Plague',
     excerpt: '1518: Hundreds danced for days without rest. Modern neuroscience offers disturbing explanations for mass psychogenic illness.',
+    sourceCount: 9,
+    relatedArticles: [
+      { slug: 'sleepers-of-kalachi', category: 'bizarre-facts', connectionReason: 'Mass psychogenic phenomena' },
+    ],
     content: `On a July day in 1518, a woman identified in historical records as Frau Troffea stepped into a narrow street in Strasbourg and began to dance. There was no music. She did not stop. She danced for hours, then through the night, and was still dancing the following morning. Within a week, 34 others had joined her. By August, the number had reached approximately 400. Many danced until they collapsed from exhaustion, stroke, or heart failure. Contemporary accounts describe bleeding feet, expressions of terror, and desperate pleas for help—the dancers did not appear to be enjoying themselves. They appeared to be compelled.
 
 [IMAGE: /images/content/dancing-plague-hero.jpg | The Pilgrimage of the Epileptics to the Church at Molenbeek, Pieter Brueghel the Younger (c. 1564) — depicting compulsive group dancing associated with Saint Vitus | Pieter Brueghel the Younger, The Pilgrimage of the Epileptics to the Church at Molenbeek, c. 1564 — Kunsthistorisches Museum, Vienna]
@@ -349,6 +394,10 @@ The Strasbourg dancing plague remains one of the most thoroughly documented inst
     category: 'bizarre-facts',
     title: 'The Unreadable Book',
     excerpt: 'The Voynich Manuscript has defeated every cryptographer, linguist, and AI for 600 years. Why it might never be solved.',
+    sourceCount: 9,
+    relatedArticles: [
+      { slug: 'cipher-of-zodiac', category: 'true-crime', connectionReason: 'Unsolved codes' },
+    ],
     content: `Yale University's Beinecke Rare Book and Manuscript Library houses, under catalogue number MS 408, a 240-page vellum codex written in an unknown script, illustrated with drawings of unidentifiable plants, astronomical diagrams of uncertain meaning, and images of small human figures bathing in interconnected pools of green liquid. The text flows with the fluency and visual consistency of a natural language. No one has ever been able to read a single word of it.
 
 [IMAGE: /images/content/voynich-manuscript-hero.jpg | A page from the Voynich Manuscript showing unidentified botanical illustrations alongside undeciphered text in an unknown script, c. 1404–1438 | Voynich Manuscript, folio 25v — Beinecke Rare Book and Manuscript Library, Yale University (MS 408), c. 1404–1438]
@@ -376,6 +425,10 @@ The Voynich Manuscript endures as an object lesson in the limits of analytical m
     category: 'bizarre-facts',
     title: 'The Red Rain of Kerala',
     excerpt: 'In 2001, blood-colored rain fell across southern India for two months. The explanation divided the scientific community in unexpected ways.',
+    sourceCount: 9,
+    relatedArticles: [
+      { slug: 'sleepers-of-kalachi', category: 'bizarre-facts', connectionReason: 'Unexplained phenomena' },
+    ],
     content: `Between July 25 and September 23, 2001, the southern Indian state of Kerala experienced intermittent rainfall of a striking red color. The rain stained clothes, collected in cisterns as a deeply pigmented liquid, and alarmed a population already unsettled by reports of a loud atmospheric boom that preceded the first occurrence. Initial speculation ranged from volcanic dust to divine intervention. The actual explanation proved more interesting than either.
 
 The Centre for Earth Science Studies (CESS) in Thiruvananthapuram collected and analyzed samples within weeks of the first reports. Their findings, published in 2001, identified the red coloration as biological in origin: the rain contained dense concentrations of cell-like particles approximately 4 to 10 micrometers in diameter, lacking nuclei but possessing thick cell walls and red pigmentation. The particles were alive—or at least, they exhibited metabolic activity.
@@ -403,6 +456,10 @@ The Kerala red rain episode is instructive less for its resolution than for the 
     category: 'bizarre-facts',
     title: 'The Sleepers of Kalachi',
     excerpt: 'An entire village fell asleep without explanation. Residents slumbered for days, woke with hallucinations, and no one could determine why.',
+    sourceCount: 8,
+    relatedArticles: [
+      { slug: 'red-rain-of-kerala', category: 'bizarre-facts', connectionReason: 'Unexplained phenomena' },
+    ],
     content: `Beginning in 2013, residents of Kalachi—a small village in the Akmola region of northern Kazakhstan—began falling asleep without warning. Not ordinary sleep: a sudden, irresistible unconsciousness that lasted for days. Affected individuals could not be roused by normal means. When they eventually woke, many reported vivid hallucinations, memory loss, dizziness, and profound disorientation. Some experienced the episodes repeatedly. Children, adults, and the elderly were all affected. Cats in the village were reportedly affected as well.
 
 By 2015, over 150 of the village's approximately 680 residents had experienced at least one episode. The pattern was irregular—episodes clustered unpredictably, sometimes affecting multiple households simultaneously, sometimes striking isolated individuals. There was no consistent correlation with age, occupation, diet, or pre-existing health conditions. The randomness of the affliction was, for the affected community, perhaps its most disturbing feature.
@@ -434,6 +491,10 @@ The Kazakh government eventually relocated most of Kalachi's residents to other 
     category: 'true-crime',
     title: 'The Cipher of Zodiac',
     excerpt: 'Inside the 51-year quest to decode the Zodiac Killer\'s final message—and what amateur codebreakers finally discovered.',
+    sourceCount: 16,
+    relatedArticles: [
+      { slug: 'voynich-manuscript', category: 'bizarre-facts', connectionReason: 'Unsolved codes' },
+    ],
     content: `Between December 1968 and October 1969, a serial killer operating in Northern California murdered at least five people and claimed responsibility for as many as 37 in a series of taunting letters sent to Bay Area newspapers. He called himself the Zodiac. Enclosed with several of his letters were cryptograms—substitution ciphers of varying complexity that, he claimed, contained his identity. The first, a 408-character cipher sent in three parts, was solved within a week by a high school teacher and his wife. The second, a 340-character cipher mailed on November 8, 1969, resisted decryption for 51 years.
 
 The 340-character cipher—designated Z340 by investigators—became one of the most famous unsolved codes in history. Its persistence was not for lack of effort. The cipher attracted the attention of professional cryptanalysts, academic mathematicians, FBI codebreakers, and thousands of amateur enthusiasts. The American Cryptogram Association devoted decades of collective effort to the problem. Computational approaches grew increasingly sophisticated as processing power increased, but the cipher held.
@@ -461,6 +522,10 @@ The Zodiac Killer has never been conclusively identified. The case remains open 
     category: 'true-crime',
     title: 'The Somerton Man Identified',
     excerpt: 'After 73 years, DNA finally named the body on the beach. But the answer raised more questions than it resolved.',
+    sourceCount: 14,
+    relatedArticles: [
+      { slug: 'db-cooper-physics', category: 'true-crime', connectionReason: 'Vanished identities' },
+    ],
     content: `On the morning of December 1, 1948, the body of a man was found propped against the seawall at Somerton Park beach in Adelaide, South Australia. He was well-dressed, physically fit, and appeared to be in his early forties. He carried no identification. The labels had been carefully removed from all of his clothing. His dental records matched no one in Australian files. His fingerprints were not on record anywhere in the world. He was, in every administrative sense, nobody.
 
 The autopsy deepened the mystery. The cause of death was consistent with poisoning, but no specific toxin was identified. The pathologist noted an enlarged spleen, congestion of the liver, and blood in the stomach—findings suggestive of digitalis or a similar cardiac glycoside, but no definitive chemical was isolated. A half-smoked cigarette rested on his collar, as though he had fallen asleep smoking and never woken.
@@ -488,6 +553,10 @@ Webb's identity, once established, raised immediate questions. Why would an elec
     category: 'true-crime',
     title: 'D.B. Cooper: The Physics of Escape',
     excerpt: 'Aerodynamic analysis of the only unsolved skyjacking. Could anyone survive that jump? The math says probably not.',
+    sourceCount: 11,
+    relatedArticles: [
+      { slug: 'somerton-man', category: 'true-crime', connectionReason: 'Vanished identities' },
+    ],
     content: `On November 24, 1971, a man using the name Dan Cooper boarded Northwest Orient Airlines Flight 305 from Portland to Seattle. He was wearing a dark suit, a narrow tie, and sunglasses. Shortly after takeoff, he handed a note to a flight attendant informing her that he had a bomb in his briefcase. He demanded $200,000 in cash (approximately $1.5 million in today's dollars) and four parachutes. His demeanor was calm, polite, and specific. After the plane landed in Seattle and his demands were met, he released the 36 passengers and two of the three flight attendants. He then directed the crew to fly toward Mexico City at minimum airspeed, with the landing gear deployed and flaps at fifteen degrees. Somewhere over the forested wilderness of southwestern Washington State, he lowered the rear airstair of the Boeing 727, stepped into the darkness, and vanished.
 
 No confirmed trace of D.B. Cooper—a name coined by a media transcription error—has ever been found. The FBI investigated the case for 45 years before formally suspending active investigation in 2016. It remains the only unsolved case of air piracy in American commercial aviation history.
@@ -517,6 +586,10 @@ The most economical explanation is that Cooper did not survive the jump. The phy
     category: 'true-crime',
     title: 'The Silence at Hinterkaifeck',
     excerpt: 'Six people murdered on a Bavarian farmstead in 1922. The killer fed the livestock for days afterward. The case has never been solved.',
+    sourceCount: 12,
+    relatedArticles: [
+      { slug: 'servant-girl-annihilator', category: 'true-crime', connectionReason: 'Unsolved historical murders' },
+    ],
     content: `On the evening of March 31, 1922, six people were killed at Hinterkaifeck, an isolated farmstead located between the Bavarian towns of Ingolstadt and Schrobenhausen. The victims were Andreas Gruber (63), his wife Cazilia (72), their widowed daughter Viktoria Gabriel (35), Viktoria's children Cazilia (7) and Josef (2), and Maria Baumgartner (44), the maid, who had arrived at the farm for the first time that day. Their bodies were not discovered until April 4, four days later.
 
 The crime scene reconstruction suggests a methodical sequence. Four of the six victims—Andreas, Cazilia the elder, Viktoria, and young Cazilia—were lured or led individually to the barn, where each was killed with a mattock (a heavy agricultural tool similar to a pickaxe). The staggered nature of the killings indicates that each victim entered the barn without awareness of what had happened to the previous one. Seven-year-old Cazilia had torn clumps of her own hair out—evidence that she survived the initial blows and lay dying in the barn for some time. The maid and the infant were killed inside the house, apparently in their respective rooms.
@@ -546,6 +619,10 @@ No arrest was ever made. The farmstead was demolished in 1923. Hinterkaifeck per
     category: 'true-crime',
     title: 'The Servant Girl Annihilator',
     excerpt: 'Three years before Jack the Ripper, a serial killer stalked Austin, Texas. The case shaped American criminal investigation—and was never solved.',
+    sourceCount: 15,
+    relatedArticles: [
+      { slug: 'silence-at-hinterkaifeck', category: 'true-crime', connectionReason: 'Unsolved historical murders' },
+    ],
     content: `Between December 1884 and December 1885, the city of Austin, Texas—then a small state capital of approximately 23,000 people—was terrorized by a series of murders that would constitute the first documented serial killing spree in American history. The victims, initially, were all young Black women who worked as domestic servants. The press eventually dubbed the unknown assailant the "Servant Girl Annihilator," a name attributed to the writer O. Henry, who was living in Austin at the time.
 
 The first victim, Mollie Smith, was attacked on December 30, 1884. She was dragged from her bed in the servants' quarters behind her employer's home, sexually assaulted, and killed with an axe. Her partner, Walter Spencer, was found unconscious with severe head wounds; he survived but could not identify the attacker. The pattern repeated with grim consistency over the following months: Eliza Shelly in May 1885, Irene Cross in May, Mary Ramey in August, Gracie Vance in September. In each case, the victim was a Black woman, the attack occurred at night in or near the servants' quarters of a white household, and the weapon was a bladed or blunt instrument.
