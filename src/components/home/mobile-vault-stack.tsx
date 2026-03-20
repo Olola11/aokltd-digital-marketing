@@ -168,7 +168,7 @@ export function MobileVaultStack() {
   const totalCards = latest.length;
 
   return (
-    <section className="md:hidden bg-white pt-10 pb-4">
+    <section className="md:hidden bg-white pt-6 pb-4">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6 px-4 sm:px-6">
         <h2 className="font-sans text-[10px] sm:text-xs tracking-[0.3em] text-[#00008B]/30 uppercase">
@@ -186,7 +186,7 @@ export function MobileVaultStack() {
       <div
         ref={containerRef}
         className="relative"
-        style={{ minHeight: totalCards * 260 + 100 }}
+        style={{ minHeight: totalCards * 220 + 40 }}
       >
         <div className="space-y-4">
           {latest.map((entry, index) => (
@@ -201,7 +201,7 @@ export function MobileVaultStack() {
         </div>
 
         {/* Spacer for scroll room */}
-        <div style={{ height: 60 }} />
+        <div style={{ height: 20 }} />
       </div>
     </section>
   );

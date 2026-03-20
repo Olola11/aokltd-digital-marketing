@@ -76,33 +76,6 @@ export default function MissionPage() {
             The internet is drowning in noise. We exist to surface what matters.
           </p>
 
-          {/* Decorative element */}
-          <div className="mt-6 md:mt-12 flex items-center justify-center gap-4">
-            <div className="w-12 h-px bg-royal-800/20" />
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="text-quill-500"
-            >
-              <path
-                d="M12 5v14M5 12h14"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-            <div className="w-12 h-px bg-royal-800/20" />
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
-          <span className="text-[10px] font-sans text-royal-800/40 uppercase tracking-[0.3em] mb-3">
-            Scroll
-          </span>
-          <div className="w-px h-8 bg-gradient-to-b from-royal-800/30 to-transparent" />
         </div>
       </section>
 

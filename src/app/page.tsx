@@ -37,7 +37,7 @@ export default function HomePage() {
                   View All &rarr;
                 </Link>
               </div>
-              <p className="font-serif text-sm text-[#00008B]/25 text-center mt-4" aria-hidden="true">
+              <p className="font-serif text-sm text-[#00008B]/25 text-center mt-2" aria-hidden="true">
                 Scroll to explore
               </p>
             </div>

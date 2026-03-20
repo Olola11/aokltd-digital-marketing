@@ -29,7 +29,7 @@ export function CurtainHero({ children }: { children: React.ReactNode }) {
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   return (
-    <section ref={sectionRef} className="relative" style={{ height: '250vh' }}>
+    <section ref={sectionRef} className="relative h-[150vh] md:h-[250vh]">
       {/* Sticky viewport — below fixed nav (h-16 = 4rem) */}
       <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden bg-white">
 

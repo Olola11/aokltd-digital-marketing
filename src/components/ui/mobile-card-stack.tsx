@@ -31,7 +31,7 @@ import {
 
 const DEFAULT_PEEK = 16;
 const DEFAULT_STICKY_START = 68;
-const DEFAULT_ITEM_HEIGHT = 300;
+const DEFAULT_ITEM_HEIGHT = 220;
 
 function StackingCard({
   children,
@@ -133,8 +133,8 @@ export function MobileCardStack({
   const totalCards = items.length;
 
   // Each card needs enough scroll distance to be fully read before the next arrives.
-  // The scroll distance per card ≈ itemHeight. Add modest buffer after last card.
-  const containerHeight = totalCards * itemHeight + itemHeight * 0.3;
+  // The scroll distance per card ≈ itemHeight. Tight buffer to avoid mobile whitespace gaps.
+  const containerHeight = totalCards * itemHeight + itemHeight * 0.1;
 
   return (
     <div className="py-4 px-0">
@@ -157,7 +157,7 @@ export function MobileCardStack({
             </StackingCard>
           ))}
         </div>
-        <div style={{ height: itemHeight * 0.15 }} />
+        <div style={{ height: 20 }} />
       </div>
 
       {/* Stack complete indicator */}
@@ -167,7 +167,7 @@ export function MobileCardStack({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-6 px-4 text-center"
+          className="mt-4 px-4 text-center"
         >
           <div className="inline-flex items-center gap-2 text-xs font-sans text-royal-800/50 uppercase tracking-wider">
             <div className="w-6 h-px bg-royal-800/20" />

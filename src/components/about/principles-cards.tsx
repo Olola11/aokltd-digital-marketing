@@ -164,7 +164,7 @@ function MobileStack() {
       <div
         ref={containerRef}
         className="relative"
-        style={{ minHeight: totalCards * 250 + 100 }}
+        style={{ minHeight: totalCards * 220 + 40 }}
       >
         <div className="space-y-4">
           {PRINCIPLES.map((principle, index) => (
@@ -178,7 +178,7 @@ function MobileStack() {
           ))}
         </div>
 
-        <div style={{ height: 60 }} />
+        <div style={{ height: 20 }} />
       </div>
 
       {/* Stack complete indicator */}
@@ -187,7 +187,7 @@ function MobileStack() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mt-6 px-4 text-center"
+        className="mt-4 px-4 text-center"
       >
         <div className="inline-flex items-center gap-2 text-xs font-sans text-royal-800/50 uppercase tracking-wider">
           <div className="w-6 h-px bg-royal-800/20" />

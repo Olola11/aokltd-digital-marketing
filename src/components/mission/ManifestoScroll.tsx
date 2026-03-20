@@ -346,7 +346,7 @@ export function ManifestoScroll() {
         <div
           ref={mobileCardContainerRef}
           className="relative mt-8"
-          style={{ minHeight: totalCards * 320 + 100 }}
+          style={{ minHeight: totalCards * 220 + 40 }}
         >
           <div className="space-y-4">
             {PARAGRAPHS.map((para, i) => (
@@ -362,7 +362,7 @@ export function ManifestoScroll() {
           </div>
 
           {/* Spacer for scroll room */}
-          <div style={{ height: 60 }} />
+          <div style={{ height: 20 }} />
         </div>
 
         {/* Stack complete indicator */}
@@ -371,7 +371,7 @@ export function ManifestoScroll() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-6 text-center pb-16"
+          className="mt-4 text-center pb-6 md:pb-16"
         >
           <div className="inline-flex items-center gap-2 text-xs font-sans text-royal-800/50 uppercase tracking-wider">
             <div className="w-6 h-px bg-royal-800/20" />
