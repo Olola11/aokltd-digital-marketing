@@ -7,11 +7,26 @@ import { getReadArticles, getCategoryReadCount } from '@/lib/reading-progress';
 // since cookies don't change during a single page view (reads happen on navigation).
 const emptySubscribe = () => () => {};
 
+// Stable references for useSyncExternalStore — React compares snapshots by reference,
+// so returning new arrays/objects each call causes infinite re-render loops.
+const EMPTY_ARRAY: string[] = [];
+let cachedArticles: string[] = EMPTY_ARRAY;
+let cachedCookieValue = '';
+
+function getReadArticlesStable(): string[] {
+  const currentCookie = typeof document !== 'undefined' ? document.cookie : '';
+  if (currentCookie !== cachedCookieValue) {
+    cachedCookieValue = currentCookie;
+    cachedArticles = getReadArticles();
+  }
+  return cachedArticles;
+}
+
 function useReadArticles(): string[] {
   return useSyncExternalStore(
     emptySubscribe,
-    () => getReadArticles(),
-    () => [] as string[]
+    getReadArticlesStable,
+    () => EMPTY_ARRAY
   );
 }
 
