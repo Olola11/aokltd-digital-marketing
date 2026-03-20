@@ -34,7 +34,7 @@ export default function VaultPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="relative border-b border-[#58AEFE]/10">
+      <header className="relative border-b border-quill-500/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-28">
           <p className="font-sans text-xs md:text-sm uppercase tracking-[0.4em] text-[#00008B]/30 mb-3 md:mb-4">
             Archive
@@ -49,7 +49,7 @@ export default function VaultPage() {
       </header>
 
       {/* Search & Filters */}
-      <section className="relative sticky top-16 z-20 bg-white/95 backdrop-blur-sm border-b border-[#58AEFE]/10">
+      <section className="relative sticky top-16 z-20 bg-white/95 backdrop-blur-sm border-b border-quill-500/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           <VaultSearch
             query={query}
@@ -86,7 +86,7 @@ export default function VaultPage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative border-t border-[#58AEFE]/10">
+      <footer className="relative border-t border-quill-500/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="flex items-center justify-between font-sans text-[9px] sm:text-[10px] text-[#00008B]/30 tracking-wider">
             <span>APOTHEOSIS OF KNOWLEDGE</span>

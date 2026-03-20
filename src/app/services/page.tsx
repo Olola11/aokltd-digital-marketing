@@ -18,7 +18,7 @@ export default function ServicesPage() {
       <section className="px-6 md:px-12 lg:px-24 pt-12 md:pt-32 pb-10 md:pb-20">
         <div className="max-w-5xl mx-auto text-center md:text-left">
           <FadeIn>
-            <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
+            <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
               Services
             </span>
           </FadeIn>
@@ -38,7 +38,7 @@ export default function ServicesPage() {
 
           <FadeIn delay={0.25}>
             <div
-              className="mt-8 bg-[#4A90E2] mx-auto md:mx-0"
+              className="mt-8 bg-quill-500 mx-auto md:mx-0"
               style={{ width: 60, height: 2 }}
               aria-hidden="true"
             />
@@ -65,7 +65,7 @@ export default function ServicesPage() {
       <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
+            <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
               How We Work
             </span>
             <h2 className="font-sans text-2xl md:text-3xl font-semibold text-[#00008B] mt-4 mb-6 md:mb-12">

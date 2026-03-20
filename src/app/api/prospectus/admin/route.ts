@@ -1,5 +1,11 @@
 import { kv } from '@vercel/kv';
+import { timingSafeEqual } from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
+
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
 
 /**
  * GET /api/prospectus/admin
@@ -11,8 +17,9 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
+  const expectedToken = process.env.ADMIN_SECRET_KEY;
 
-  if (!process.env.ADMIN_SECRET_KEY || authHeader !== `Bearer ${process.env.ADMIN_SECRET_KEY}`) {
+  if (!expectedToken || !authHeader || !safeCompare(authHeader, `Bearer ${expectedToken}`)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

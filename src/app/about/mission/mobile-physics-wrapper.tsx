@@ -23,7 +23,7 @@ export function MobilePhysicsWrapper({ children }: MobilePhysicsWrapperProps) {
     <>
       {/* Global touch ripple effect (spawns at touch coordinates) */}
       <TouchRippleProvider
-        color="#4AA8FF" // quill-500
+        color="#4A90E2" // quill-500
         maxSize={150}
         duration={600}
       />

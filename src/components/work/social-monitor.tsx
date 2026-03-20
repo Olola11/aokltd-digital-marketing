@@ -90,12 +90,12 @@ export function SocialMonitor() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-xs md:text-sm text-[#4A90E2] hover:underline"
+              className="font-sans text-xs md:text-sm text-quill-500 hover:underline"
             >
               {item.handle}
             </a>
           ) : (
-            <span className="font-sans text-xs md:text-sm text-[#4A90E2]">
+            <span className="font-sans text-xs md:text-sm text-quill-500">
               {item.handle}
             </span>
           )}

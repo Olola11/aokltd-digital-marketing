@@ -128,7 +128,7 @@ function ConstructedLogo({
           }}
           style={{ transformOrigin: '50px 52px' }}
         >
-          <path d={QUILL_BODY} fill="#4AA8FF" />
+          <path d={QUILL_BODY} fill="#4A90E2" />
           <path
             d={QUILL_SHAFT}
             fill="none"

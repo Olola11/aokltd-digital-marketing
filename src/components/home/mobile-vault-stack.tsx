@@ -102,7 +102,7 @@ function StackingVaultCard({
         <article className="relative bg-white border border-[#00008B] p-4 sm:p-5 rounded-md">
           {/* Category + Index */}
           <div className="flex items-center justify-between mb-3">
-            <span className="font-sans text-xs text-[#4A90E2] tracking-wider uppercase">
+            <span className="font-sans text-xs text-quill-500 tracking-wider uppercase">
               {CATEGORY_LABELS[entry.category]}
             </span>
             <span className="font-sans text-xs text-[#00008B]/20">
@@ -144,7 +144,7 @@ function StackingVaultCard({
               <div
                 key={i}
                 className={`w-1.5 h-1.5 rounded-full ${
-                  i === index ? 'bg-[#4A90E2]' : 'bg-[#00008B]/20'
+                  i === index ? 'bg-quill-500' : 'bg-[#00008B]/20'
                 }`}
               />
             ))}

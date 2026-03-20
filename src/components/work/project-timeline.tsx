@@ -55,8 +55,8 @@ function TimelineNode({ project, delayIndex }: { project: typeof projects[number
           <span
             className={cn(
               'font-sans text-sm tracking-wider transition-all duration-500 motion-reduce:transition-none',
-              'md:text-[#4A90E2]',
-              isInView ? 'text-[#4A90E2]' : 'text-slate-300',
+              'md:text-quill-500',
+              isInView ? 'text-quill-500' : 'text-slate-300',
             )}
             style={{ textShadow: isInView ? '0 0 12px rgba(74,144,226,0.4)' : 'none' }}
           >

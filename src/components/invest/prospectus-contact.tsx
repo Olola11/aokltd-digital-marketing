@@ -80,7 +80,7 @@ export function ProspectusContact() {
       // Success
       setStatus('success');
       setSuccessMessage(data.message || 'Request received.');
-      document.cookie = 'prospectus_requested=1; max-age=31536000; path=/; SameSite=Lax';
+      document.cookie = 'prospectus_requested=1; max-age=31536000; path=/; SameSite=Lax; Secure';
     } catch {
       setStatus('error');
       setErrorMessage('Something went wrong. Please try again.');

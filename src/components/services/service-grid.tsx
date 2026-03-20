@@ -93,7 +93,7 @@ function ServiceCard({ service }: { service: (typeof SERVICES)[number] }) {
       </span>
 
       {/* Category label */}
-      <span className="font-sans text-xs md:text-sm uppercase tracking-widest text-[#4A90E2]">
+      <span className="font-sans text-xs md:text-sm uppercase tracking-widest text-quill-500">
         {service.label}
       </span>
 
@@ -147,7 +147,7 @@ export function ServiceGrid() {
               ease: [0.4, 0, 0.2, 1],
             }}
           >
-            <div className="h-full transition-all duration-300 ease-out rounded-md hover:-translate-y-1 hover:shadow-brutalist">
+            <div className="h-full transition-all duration-300 ease-out rounded-md hover:-translate-y-2 hover:shadow-brutalist">
               <ServiceCard service={service} />
             </div>
           </motion.div>

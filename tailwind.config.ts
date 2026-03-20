@@ -28,13 +28,13 @@ const config: Config = {
 
         // Accent Ink — Cyan/Quill Blue
         quill: {
-          600: '#2B8AD9',
-          500: '#4AA8FF', // Primary accent — borders, active states, motion
-          400: '#6BBAFF',
-          300: '#8DCCFF',
-          200: '#AEDDFF',
-          100: '#D0EEFF',
-          50: '#E8F6FF',
+          600: '#3A78C2',
+          500: '#4A90E2', // Primary accent — borders, active states, motion
+          400: '#6BA8E8',
+          300: '#8CC0EE',
+          200: '#ADD8F4',
+          100: '#CEE8FA',
+          50: '#E7F3FD',
         },
 
         // Paper shades — for backgrounds and subtle contrasts
@@ -81,8 +81,8 @@ const config: Config = {
         'brutalist-lg': '8px 8px 0px #00008B',
         'brutalist-xl': '12px 12px 0px #00008B',
         // Ink glow for active states
-        'ink-glow': '0 0 20px rgba(74, 168, 255, 0.3)',
-        'ink-glow-lg': '0 0 40px rgba(74, 168, 255, 0.4)',
+        'ink-glow': '0 0 20px rgba(74, 144, 226, 0.3)',
+        'ink-glow-lg': '0 0 40px rgba(74, 144, 226, 0.4)',
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out forwards',

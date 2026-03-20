@@ -91,12 +91,12 @@ function DesktopProcess() {
             }}
           >
             {/* Node dot */}
-            <div className="w-[26px] h-[26px] rounded-full bg-white border-2 border-[#4A90E2] flex items-center justify-center mb-5">
-              <div className="w-2 h-2 rounded-full bg-[#4A90E2]" />
+            <div className="w-[26px] h-[26px] rounded-full bg-white border-2 border-quill-500 flex items-center justify-center mb-5">
+              <div className="w-2 h-2 rounded-full bg-quill-500" />
             </div>
 
             {/* Step number */}
-            <span className="font-sans text-lg font-bold text-[#4A90E2] block mb-1">
+            <span className="font-sans text-lg font-bold text-quill-500 block mb-1">
               {step.number}
             </span>
 
@@ -182,12 +182,12 @@ function MobileProcess() {
             className="relative"
           >
             {/* Node dot (on the line) */}
-            <div className="absolute -left-10 top-0.5 w-[26px] h-[26px] rounded-full bg-white border-2 border-[#4A90E2] flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-[#4A90E2]" />
+            <div className="absolute -left-10 top-0.5 w-[26px] h-[26px] rounded-full bg-white border-2 border-quill-500 flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-quill-500" />
             </div>
 
             {/* Step number */}
-            <span className="font-sans text-lg font-bold text-[#4A90E2] block mb-1">
+            <span className="font-sans text-lg font-bold text-quill-500 block mb-1">
               {step.number}
             </span>
 

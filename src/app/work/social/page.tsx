@@ -94,7 +94,7 @@ export default function SocialPage() {
                     <span className="font-sans text-sm font-medium text-[#00008B]">
                       {channel.platform}
                     </span>
-                    <span className="block font-sans text-xs text-[#4A90E2] mt-1">
+                    <span className="block font-sans text-xs text-quill-500 mt-1">
                       {channel.handle}
                     </span>
                   </div>

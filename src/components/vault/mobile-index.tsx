@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { VaultEntry, VaultCategory } from '@/types';
+import { CATEGORY_LABELS } from '@/lib/vault-data';
 import { ReadCheckmark, CategoryProgressRing } from './vault-progress';
 
 
@@ -15,13 +16,6 @@ interface MobileIndexProps {
 }
 
 const CATEGORY_ORDER: VaultCategory[] = ['history', 'culture', 'bizarre-facts', 'true-crime'];
-
-const CATEGORY_LABELS: Record<VaultCategory, string> = {
-  history: 'HISTORY',
-  culture: 'CULTURE',
-  'bizarre-facts': 'BIZARRE FACTS',
-  'true-crime': 'TRUE CRIME',
-};
 
 interface CategoryGroup {
   category: VaultCategory;
@@ -95,7 +89,7 @@ function StickyHeader({
             </span>
           </div>
           <h2 className="font-sans text-sm font-bold text-[#00008B] tracking-wider">
-            {CATEGORY_LABELS[category]}
+            {CATEGORY_LABELS[category].toUpperCase()}
           </h2>
         </div>
         <CategoryProgressRing articleSlugs={entries.map((e) => e.slug)} />
@@ -118,9 +112,9 @@ function EntryRow({ entry, index }: { entry: VaultEntry; index: number }) {
       onTouchEnd={() => setIsPressed(false)}
       onTouchCancel={() => setIsPressed(false)}
       className={cn(
-        'border-b border-[#58AEFE]/10 border-l-2',
+        'border-b border-quill-500/10 border-l-2',
         'transition-colors duration-100',
-        isPressed && 'bg-[#58AEFE]/5'
+        isPressed && 'bg-quill-500/5'
       )}
     >
       <div className="flex items-start gap-4 px-4 py-5">
@@ -202,7 +196,7 @@ export function MobileIndex({ entries }: MobileIndexProps) {
       </AnimatePresence>
 
       {/* End marker */}
-      <div className="py-8 text-center border-t border-[#58AEFE]/10">
+      <div className="py-8 text-center border-t border-quill-500/10">
         <span className="font-sans text-[10px] text-[#00008B]/20 tracking-[0.3em]">
           END
         </span>

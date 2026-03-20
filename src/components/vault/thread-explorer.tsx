@@ -60,7 +60,7 @@ export function ThreadExplorer() {
     <section className="px-4 sm:px-6 pb-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-2">
-          <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
+          <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
             Follow a Thread
           </span>
         </div>
@@ -94,7 +94,7 @@ export function ThreadExplorer() {
               <p className="font-serif text-xs text-gray-400 italic">
                 {thread.description}
               </p>
-              <span className="font-sans text-[10px] text-[#4A90E2] uppercase tracking-wider mt-3 block group-hover:translate-x-1 transition-transform">
+              <span className="font-sans text-[10px] text-quill-500 uppercase tracking-wider mt-3 block group-hover:translate-x-1 transition-transform">
                 {thread.articles.length} articles &rarr;
               </span>
             </Link>

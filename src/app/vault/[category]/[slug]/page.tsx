@@ -90,7 +90,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <ReadTracker slug={slug} />
 
       {/* Article Header */}
-      <header className="relative border-b border-[#58AEFE]/10">
+      <header className="relative border-b border-quill-500/10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#00008B]/30 mb-6 sm:mb-8">
@@ -192,7 +192,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </article>
 
         {/* Tags */}
-        <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-[#58AEFE]/10">
+        <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-quill-500/10">
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {entry.tags.map((tag) => (
               <span
@@ -208,7 +208,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       {/* Related Entries */}
       {related.length > 0 && (
-        <section className="border-t border-[#58AEFE]/10">
+        <section className="border-t border-quill-500/10">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
             <h2 className="font-sans text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[#00008B]/30 mb-6 sm:mb-8">
               More in {categoryLabel}
@@ -218,7 +218,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <Link
                   key={rel.slug}
                   href={`/vault/${rel.category}/${rel.slug}`}
-                  className="group block border-b border-[#58AEFE]/10 py-5 sm:py-6 first:pt-0 last:border-b-0"
+                  className="group block border-b border-quill-500/10 py-5 sm:py-6 first:pt-0 last:border-b-0"
                 >
                   <h3 className="font-sans text-base sm:text-lg font-bold text-[#00008B] mb-1 group-hover:text-[#00008B]/70 transition-colors">
                     {rel.title}
@@ -239,7 +239,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       )}
 
       {/* Back to Vault */}
-      <div className="border-t border-[#58AEFE]/10">
+      <div className="border-t border-quill-500/10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <Link
             href="/vault"
@@ -251,7 +251,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </div>
 
       {/* Footer */}
-      <footer className="relative border-t border-[#58AEFE]/10">
+      <footer className="relative border-t border-quill-500/10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="flex items-center justify-between font-sans text-[9px] sm:text-[10px] text-[#00008B]/30 tracking-wider">
             <span>APOTHEOSIS OF KNOWLEDGE</span>

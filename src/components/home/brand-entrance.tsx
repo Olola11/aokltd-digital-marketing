@@ -56,7 +56,7 @@ function AnimatedLogo({ quillOpacity }: { quillOpacity: MotionValue<number> }) {
             ease: 'easeInOut',
           }}
         >
-          <path d={QUILL_BODY} fill="#4AA8FF" />
+          <path d={QUILL_BODY} fill="#4A90E2" />
           <path
             d={QUILL_SHAFT}
             fill="none"

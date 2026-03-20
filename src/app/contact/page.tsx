@@ -14,12 +14,11 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO: Replace "#" with actual social URLs when available
 const SOCIAL_LINKS = [
-  { name: 'YouTube', href: '#' },
-  { name: 'Facebook', href: '#' },
-  { name: 'TikTok', href: '#' },
-  { name: 'X (Twitter)', href: '#' },
+  { name: 'YouTube', href: '#' }, // TODO: Add YouTube URL when channel is public
+  { name: 'Facebook', href: 'https://facebook.com/apotheosisofknowledge' },
+  { name: 'TikTok', href: 'https://tiktok.com/@apotheosisofknowledge' },
+  { name: 'X (Twitter)', href: 'https://x.com/aok_ltd' },
 ];
 
 export default function ContactPage() {
@@ -29,7 +28,7 @@ export default function ContactPage() {
       <section className="pt-12 sm:pt-32 pb-10 sm:pb-20 px-5 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
+            <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
               Contact
             </span>
             <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-[#00008B] tracking-tight mt-4 mb-6 text-center md:text-left">
@@ -55,7 +54,7 @@ export default function ContactPage() {
       <section className="py-10 md:py-24 px-5 sm:px-6 border-t border-gray-100">
         <div className="max-w-[600px] mx-auto">
           <FadeIn>
-            <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
+            <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
               Send a Message
             </span>
             <div className="mt-8">

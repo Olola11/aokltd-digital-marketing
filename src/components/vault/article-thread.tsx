@@ -29,13 +29,13 @@ function ThreadCard({
       className="block bg-white border border-[#00008B]/10 rounded-md p-4 hover:-translate-y-1 transition-all duration-200 relative"
     >
       {isRead && (
-        <div className="absolute top-3 right-3 w-4 h-4 rounded-full border border-[#4A90E2]/40 flex items-center justify-center">
-          <svg className="w-2.5 h-2.5 text-[#4A90E2]/60" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+        <div className="absolute top-3 right-3 w-4 h-4 rounded-full border border-quill-500/40 flex items-center justify-center">
+          <svg className="w-2.5 h-2.5 text-quill-500/60" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
       )}
-      <span className="font-sans text-[10px] uppercase tracking-widest text-[#4A90E2] block mb-1.5">
+      <span className="font-sans text-[10px] uppercase tracking-widest text-quill-500 block mb-1.5">
         {CATEGORY_LABELS[entry.category]}
       </span>
       <h4 className="font-sans text-sm font-semibold text-[#00008B] mb-1 leading-snug pr-6">
@@ -66,11 +66,11 @@ export function ArticleThread({ relatedArticles }: ArticleThreadProps) {
   if (validRelated.length === 0) return null;
 
   return (
-    <section className="border-t border-[#58AEFE]/10">
+    <section className="border-t border-quill-500/10">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-px bg-[#00008B]/20" />
-          <span className="font-sans text-xs sm:text-sm font-medium text-[#4A90E2] uppercase tracking-[0.25em]">
+          <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
             Continue the Thread
           </span>
           <div className="w-12 h-px bg-[#00008B]/20" />

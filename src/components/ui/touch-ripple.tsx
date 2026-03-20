@@ -103,7 +103,7 @@ function RippleEffect({
  * Place this once at the top level of your app (e.g., in layout.tsx or page).
  */
 export function TouchRippleProvider({
-  color = '#4AA8FF', // quill-500
+  color = '#4A90E2', // quill-500
   maxSize = 150,
   duration = 600,
   enabled = true,

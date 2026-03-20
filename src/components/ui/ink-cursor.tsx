@@ -142,7 +142,7 @@ export function InkCursor() {
               cx={point.x}
               cy={point.y}
               r={size}
-              fill="#4AA8FF"
+              fill="#4A90E2"
               initial={{ opacity: 0.6, scale: 1 }}
               animate={{ opacity, scale }}
               style={{
@@ -161,7 +161,7 @@ export function InkCursor() {
                 i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`
               )
               .join(' ')}
-            stroke="#4AA8FF"
+            stroke="#4A90E2"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -219,13 +219,13 @@ export function InkCursor() {
           {/* Quill spine */}
           <path
             d="M16 8L2 22"
-            stroke="#4AA8FF"
+            stroke="#4A90E2"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           {/* Ink nib */}
-          <circle cx="2" cy="22" r="1.5" fill="#4AA8FF" />
+          <circle cx="2" cy="22" r="1.5" fill="#4A90E2" />
           {/* Feather detail lines */}
           <path
             d="M17.5 6.5L9.5 14.5"

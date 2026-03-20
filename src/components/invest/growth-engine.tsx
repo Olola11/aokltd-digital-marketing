@@ -48,7 +48,7 @@ function FlywheelSVG({ animate }: { animate: boolean }) {
       <path
         d={`M ${CX} ${lastY} C ${CX - 90} ${lastY - 60}, ${CX - 90} ${START_Y + 60}, ${CX} ${START_Y}`}
         fill="none"
-        stroke="#4AA8FF"
+        stroke="#4A90E2"
         strokeWidth="1"
         strokeDasharray={arcLength}
         strokeDashoffset={animate ? 0 : arcLength}
@@ -62,7 +62,7 @@ function FlywheelSVG({ animate }: { animate: boolean }) {
       {/* Small arrowhead at the top of the return arc */}
       <polygon
         points={`${CX},${START_Y - 4} ${CX - 4},${START_Y + 4} ${CX + 4},${START_Y + 4}`}
-        fill="#4AA8FF"
+        fill="#4A90E2"
         className={animate ? 'opacity-100' : 'opacity-0'}
         style={{
           transition: 'opacity 0.3s ease-in-out 1.8s',

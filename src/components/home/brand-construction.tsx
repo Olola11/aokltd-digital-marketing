@@ -126,7 +126,7 @@ function AnimatedLogo({ quillOpacity }: { quillOpacity: MotionValue<number> }) {
         }}
         style={{ originX: '50%', originY: '50%', opacity: quillOpacity }}
       >
-        <path d={QUILL_BODY} fill="#4AA8FF" />
+        <path d={QUILL_BODY} fill="#4A90E2" />
         <path
           d={QUILL_SHAFT}
           fill="none"

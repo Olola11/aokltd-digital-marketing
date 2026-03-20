@@ -18,7 +18,7 @@ export function InfiniteTicker() {
               PHRASES.map((phrase, i) => (
                 <span
                   key={`${set}-${r}-${i}`}
-                  className="font-sans text-[11px] sm:text-xs text-[#4A90E2] tracking-[0.2em] mx-3 sm:mx-5 whitespace-nowrap"
+                  className="font-sans text-[11px] sm:text-xs text-quill-500 tracking-[0.2em] mx-3 sm:mx-5 whitespace-nowrap"
                 >
                   {phrase} &bull;
                 </span>

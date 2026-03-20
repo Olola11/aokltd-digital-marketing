@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
   try {
     const { email, fingerprint } = await request.json();
 
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Validate email (RFC 5322 simplified — rejects double @, trailing dots, empty parts)
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
     if (!email || !emailRegex.test(email)) {
       return NextResponse.json(
         { error: 'Please enter a valid email address.' },

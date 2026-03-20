@@ -16,7 +16,7 @@ function highlightMatch(text: string, query: string): ReactNode {
     <>
       {parts.map((part, i) =>
         regex.test(part) ? (
-          <mark key={i} className="bg-[#4A90E2]/15 text-[#00008B] rounded-sm px-0.5">
+          <mark key={i} className="bg-quill-500/15 text-[#00008B] rounded-sm px-0.5">
             {part}
           </mark>
         ) : (
@@ -240,7 +240,7 @@ export function VaultSearch({
                     )}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-sans text-[10px] uppercase tracking-widest text-[#4A90E2]">
+                      <span className="font-sans text-[10px] uppercase tracking-widest text-quill-500">
                         {CATEGORY_LABELS[result.entry.category]}
                       </span>
                       <span className="font-sans text-[10px] text-gray-400">

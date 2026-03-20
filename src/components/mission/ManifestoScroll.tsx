@@ -71,7 +71,7 @@ function InkFillHeadline({
         <br />
         what deserves
         <br />
-        <span className="text-quill-500" style={{ WebkitTextStroke: '1.5px #4AA8FF' }}>
+        <span className="text-quill-500" style={{ WebkitTextStroke: '1.5px #4A90E2' }}>
           attention
         </span>
       </h2>

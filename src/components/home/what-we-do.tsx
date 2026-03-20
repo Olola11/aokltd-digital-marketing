@@ -37,7 +37,7 @@ function PillarCard({
 }) {
   return (
     <div className="bg-[#00008B] border border-white/10 p-6 rounded-md">
-      <div className="font-sans text-[13px] text-[#4A90E2] tracking-wider mb-3">
+      <div className="font-sans text-[13px] text-quill-500 tracking-wider mb-3">
         {pillar.number}
       </div>
       <h3 className="font-sans text-xl font-bold text-white mb-3">
@@ -62,7 +62,7 @@ export function WhatWeDo() {
         <div className="hidden md:grid md:grid-cols-3 gap-8 sm:gap-12">
           {PILLARS.map((pillar) => (
             <div key={pillar.number}>
-              <div className="font-sans text-[13px] md:text-[15px] text-[#4A90E2] tracking-wider mb-3">
+              <div className="font-sans text-[13px] md:text-[15px] text-quill-500 tracking-wider mb-3">
                 {pillar.number}
               </div>
               <h3 className="font-sans text-xl font-bold text-white mb-3">
