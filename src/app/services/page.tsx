@@ -14,6 +14,37 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="bg-white min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            serviceType: 'Digital Marketing',
+            provider: {
+              '@type': 'Organization',
+              name: 'Apotheosis of Knowledge Limited',
+              url: 'https://aokltd.org',
+            },
+            areaServed: {
+              '@type': 'Country',
+              name: 'Nigeria',
+            },
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Digital Marketing Services',
+              itemListElement: [
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Marketing Strategy' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Viral Content Engineering' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Blog Articles & Content Scripts' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meta Advertising' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data Analysis & Interpretation' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Content Strategy & Planning' } },
+              ],
+            },
+          }),
+        }}
+      />
       {/* § 1 — Header */}
       <section className="px-6 md:px-12 lg:px-24 pt-12 md:pt-32 pb-10 md:pb-20">
         <div className="max-w-5xl mx-auto text-center md:text-left">

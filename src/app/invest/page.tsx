@@ -9,9 +9,9 @@ import {
 } from '@/components/invest';
 
 export const metadata: Metadata = {
-  title: 'Invest',
+  title: 'Strategic Prospectus',
   description:
-    'Strategic prospectus for Apotheosis of Knowledge — media, product, and publishing asset classes built for long-term knowledge infrastructure.',
+    'Scaling intellectual infrastructure. We are seeking strategic partners to capitalise the next generation of African knowledge products.',
 };
 
 export default function InvestPage() {

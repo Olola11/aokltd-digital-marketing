@@ -14,6 +14,8 @@ import type { VaultCategory } from '@/types';
 import { ReadTracker } from '@/components/vault/read-tracker';
 import { ArticleSourceDisplay } from '@/components/vault/source-badge';
 import { ArticleThread } from '@/components/vault/article-thread';
+import { ArticleSchema } from '@/components/vault/article-schema';
+import { BreadcrumbSchema } from '@/components/vault/breadcrumb-schema';
 
 interface ArticlePageProps {
   params: Promise<{ category: string; slug: string }>;
@@ -31,16 +33,31 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const entry = getVaultEntry(category, slug);
   if (!entry) return {};
 
+  const description = entry.excerpt.length > 155
+    ? entry.excerpt.slice(0, 155) + '...'
+    : entry.excerpt;
+
   return {
     title: entry.title,
-    description: entry.excerpt,
+    description,
     openGraph: {
       title: entry.title,
-      description: entry.excerpt,
+      description,
       type: 'article',
       publishedTime: entry.publishedAt,
+      authors: ['Apotheosis of Knowledge'],
       tags: entry.tags,
-      ...(entry.ogImage && { images: [{ url: entry.ogImage }] }),
+      ...(entry.featuredImage && {
+        images: [{ url: entry.featuredImage.src, width: 1200, height: 630 }],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: entry.title,
+      description,
+      ...(entry.featuredImage && {
+        images: [entry.featuredImage.src],
+      }),
     },
   };
 }
@@ -86,6 +103,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     });
 
   return (
+    <>
+    <ArticleSchema
+      title={entry.title}
+      excerpt={entry.excerpt}
+      category={categoryLabel}
+      publishedAt={entry.publishedAt}
+      readingTime={entry.readingTime}
+      slug={slug}
+      categorySlug={category}
+      featuredImage={entry.featuredImage?.src}
+      sourceCount={entry.sourceCount}
+    />
+    <BreadcrumbSchema items={[
+      { name: 'Home', url: '/' },
+      { name: 'The Vault', url: '/vault' },
+      { name: categoryLabel, url: `/vault/${category}` },
+      { name: entry.title, url: `/vault/${category}/${slug}` },
+    ]} />
     <div className="min-h-screen bg-white">
       <ReadTracker slug={slug} />
 
@@ -260,5 +295,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </footer>
     </div>
+    </>
   );
 }

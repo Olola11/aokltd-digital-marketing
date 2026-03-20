@@ -4,13 +4,13 @@ import { InkCursor } from '@/components/ui/ink-cursor';
 import { MobilePhysicsWrapper } from './mobile-physics-wrapper';
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About Us',
   description:
-    'Apotheosis of Knowledge — a Nigerian knowledge institution dedicated to elevating curiosity through research-driven, intellectually stimulating content.',
+    'Apotheosis of Knowledge Limited — a Nigerian media and education company elevating knowledge to its highest form. Registered with the Corporate Affairs Commission (RC 1956161).',
   openGraph: {
-    title: 'About | Apotheosis of Knowledge',
+    title: 'About Us — Apotheosis of Knowledge',
     description:
-      'Discover who we are and why we exist. A knowledge institution built for permanence.',
+      'Apotheosis of Knowledge Limited — a Nigerian media and education company elevating knowledge to its highest form. Registered with the Corporate Affairs Commission (RC 1956161).',
   },
 };
 

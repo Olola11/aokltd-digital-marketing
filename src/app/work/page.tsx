@@ -5,8 +5,8 @@ import { SocialMonitor } from '@/components/work/social-monitor';
 import { ProjectTimeline } from '@/components/work/project-timeline';
 
 export const metadata: Metadata = {
-  title: 'Work',
-  description: 'An operations log of what Apotheosis of Knowledge is building — active platforms, ongoing projects, and long-term infrastructure.',
+  title: 'What We Are Building',
+  description: 'A transparent record of active platforms, ongoing projects, and the infrastructure Apotheosis of Knowledge is constructing for long-form knowledge work.',
 };
 
 export default function WorkPage() {

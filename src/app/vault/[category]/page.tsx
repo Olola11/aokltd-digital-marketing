@@ -11,6 +11,7 @@ import {
 import { formatDate } from '@/lib/utils';
 import type { VaultCategory } from '@/types';
 import { ReadCheckmark } from '@/components/vault/vault-progress';
+import { BreadcrumbSchema } from '@/components/vault/breadcrumb-schema';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -25,9 +26,16 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   if (!isValidCategory(category)) return {};
 
   const label = CATEGORY_LABELS[category];
+  const categoryDescriptions: Record<string, string> = {
+    'history': 'Explore deeply researched articles on African and world history.',
+    'culture': 'Cultural phenomena, traditions, identity, and the stories that shape societies.',
+    'bizarre-facts': 'Strange true stories, unexplained events, and the facts too bizarre to believe.',
+    'true-crime': 'Historical and contemporary crime cases investigated with rigour and depth.',
+  };
+
   return {
     title: `${label} — The Vault`,
-    description: `Explore ${label.toLowerCase()} entries in The Vault — intellectual curiosities from the margins of recorded history.`,
+    description: categoryDescriptions[category] || `Explore ${label} articles in the Apotheosis of Knowledge vault.`,
   };
 }
 
@@ -42,6 +50,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const label = CATEGORY_LABELS[category as VaultCategory];
 
   return (
+    <>
+    <BreadcrumbSchema items={[
+      { name: 'Home', url: '/' },
+      { name: 'The Vault', url: '/vault' },
+      { name: label, url: `/vault/${category}` },
+    ]} />
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="relative border-b border-quill-500/10">
@@ -129,5 +143,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </footer>
     </div>
+    </>
   );
 }

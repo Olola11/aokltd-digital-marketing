@@ -10,11 +10,11 @@ import { MobilePhysicsWrapper } from './mobile-physics-wrapper';
 export const metadata: Metadata = {
   title: 'Our Mission',
   description:
-    'Why Apotheosis of Knowledge exists — countering shallow content with depth, curiosity, and intellectual honesty.',
+    'We refuse to let algorithms dictate what deserves attention. Apotheosis of Knowledge exists to surface what matters — depth over virality, signal over noise.',
   openGraph: {
     title: 'Our Mission | Apotheosis of Knowledge',
     description:
-      'We believe curiosity is a virtue worth cultivating. Discover the principles behind AOK.',
+      'We refuse to let algorithms dictate what deserves attention. Apotheosis of Knowledge exists to surface what matters — depth over virality, signal over noise.',
   },
 };
 

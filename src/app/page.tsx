@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Apotheosis of Knowledge — Elevating curiosity. Countering noise.',
+  title: {
+    absolute: 'Apotheosis of Knowledge — Elevating curiosity. Countering noise.',
+  },
   description: 'A Nigerian knowledge initiative producing research-driven, curiosity-fuelled content across history, culture, true crime, and bizarre facts.',
 };
 import { CurtainHero } from '@/components/home/curtain-hero';
