@@ -119,7 +119,7 @@ export function BrandEntrance() {
   const isDesktop = useIsDesktop();
 
   const { scrollY } = useScroll();
-  // Fade logo quill out as user scrolls past hero (for floating quill handoff)
+  // Fade logo quill out as user scrolls past hero
   const quillOpacity = useTransform(scrollY, [50, 100], [1, 0]);
 
   if (!mounted) {

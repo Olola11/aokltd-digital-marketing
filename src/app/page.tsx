@@ -30,7 +30,7 @@ export default function HomePage() {
                 </h2>
                 <Link
                   href="/vault"
-                  className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/30 hover:text-[#00008B] transition-colors uppercase"
+                  className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/50 hover:text-[#00008B] transition-colors duration-300 uppercase"
                 >
                   View All &rarr;
                 </Link>

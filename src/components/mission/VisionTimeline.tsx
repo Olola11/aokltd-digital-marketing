@@ -28,7 +28,7 @@ const NODES = [
   },
   {
     era: 'Tomorrow',
-    badge: 'Coming Soon',
+    badge: 'In Progress',
     badgeClass: 'bg-royal-50 text-royal-700 border-royal-200',
     dotClass: 'bg-royal-600',
     title: 'Documentaries & Publications',

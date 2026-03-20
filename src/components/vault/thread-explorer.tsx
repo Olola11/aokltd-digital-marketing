@@ -72,7 +72,7 @@ export function ThreadExplorer() {
             <Link
               key={thread.title}
               href={`/vault/${thread.articles[0].category}/${thread.articles[0].slug}`}
-              className="group block border border-[#00008B]/10 rounded-md p-5 hover:-translate-y-1 hover:shadow-sm transition-all duration-200"
+              className="group block border border-[#00008B]/10 rounded-md p-5 hover:-translate-y-1 hover:shadow-sm transition-all duration-300 ease-out"
             >
               <h3 className="font-sans text-sm font-semibold text-[#00008B] mb-2">
                 {thread.title}

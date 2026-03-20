@@ -26,7 +26,7 @@ function ThreadCard({
   return (
     <Link
       href={`/vault/${entry.category}/${entry.slug}`}
-      className="block bg-white border border-[#00008B]/10 rounded-md p-4 hover:-translate-y-1 transition-all duration-200 relative"
+      className="block bg-white border border-[#00008B]/10 rounded-md p-4 hover:-translate-y-1 transition-all duration-300 ease-out relative"
     >
       {isRead && (
         <div className="absolute top-3 right-3 w-4 h-4 rounded-full border border-quill-500/40 flex items-center justify-center">

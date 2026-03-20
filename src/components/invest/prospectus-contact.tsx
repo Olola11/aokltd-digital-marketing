@@ -143,7 +143,7 @@ export function ProspectusContact() {
           aria-live="polite"
           className={cn(
             'px-6 py-3 font-sans text-sm font-medium uppercase tracking-[0.1em]',
-            'transition-colors duration-200',
+            'transition-all duration-300 active:scale-[0.98]',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-quill-500 focus-visible:ring-offset-2',
             status === 'success'
               ? 'bg-royal-800/80 text-white cursor-default'

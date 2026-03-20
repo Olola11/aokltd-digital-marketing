@@ -122,8 +122,8 @@ export function Footer() {
               <span className="text-xs text-white/50">
                 Incorporated in Nigeria, 2022
               </span>
-              <span className="text-quill-400 text-xs font-sans uppercase tracking-wider">
-                The Modern Classic
+              <span className="text-white/30 text-xs font-sans uppercase tracking-wider">
+                Built in Lagos
               </span>
             </div>
           </div>

@@ -111,17 +111,6 @@ body {
   animation: liquid-ripple 0.4s ease-in-out;
 }
 
-/* ── Ink Fill Progress (for Manifesto scroll) ── */
-
-@keyframes ink-fill {
-  from {
-    background-size: 0% 100%;
-  }
-  to {
-    background-size: 100% 100%;
-  }
-}
-
 /* ── Brutalist Card Shadow ── */
 
 .brutalist-shadow {

@@ -102,10 +102,11 @@ export function ContactForm() {
       {/* Submit */}
       <button
         type="submit"
+        disabled={submitted}
         aria-live="polite"
-        className={`w-full py-3.5 rounded-md font-sans font-medium text-sm uppercase tracking-[0.1em] transition-colors ${
+        className={`w-full py-3.5 rounded-md font-sans font-medium text-sm uppercase tracking-[0.1em] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-quill-500 focus-visible:ring-offset-2 active:scale-[0.98] ${
           submitted
-            ? 'bg-[#00008B]/80 text-white'
+            ? 'bg-[#00008B]/80 text-white cursor-default'
             : 'bg-[#00008B] text-white hover:bg-[#00008B]/90'
         }`}
       >

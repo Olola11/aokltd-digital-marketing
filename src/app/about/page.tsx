@@ -85,7 +85,7 @@ export default function AboutPage() {
           <div className="prose prose-lg max-w-none">
             <p className="text-royal-800/70 leading-relaxed mb-6">
               We exist because we believe the internet has a content problem. Not a shortage
-              of content — an overabundance of shallow, sensational, and algorithmically-optimized
+              of content — an overabundance of shallow, sensational, and algorithmically-optimised
               noise that treats attention as a resource to be extracted rather than a trust to be honored.
             </p>
             <p className="text-royal-800/70 leading-relaxed">

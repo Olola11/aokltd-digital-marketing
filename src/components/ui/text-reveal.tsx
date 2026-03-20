@@ -16,7 +16,7 @@ export function TextReveal({ children, className, delay = 0 }: TextRevealProps) 
         initial={{ y: '100%' }}
         whileInView={{ y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       >
         {children}
       </motion.div>

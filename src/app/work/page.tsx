@@ -17,7 +17,7 @@ export default function WorkPage() {
         {/* Timestamp */}
         <div className="absolute top-6 right-6 md:right-12 lg:right-24">
           <span className="font-sans text-xs md:text-sm tracking-[0.2em] text-[#00008B]/30 uppercase">
-            Last Updated: Feb 2026
+            Last Updated: Mar 2026
           </span>
         </div>
 

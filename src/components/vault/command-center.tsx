@@ -99,6 +99,7 @@ export function CommandCenter({
       </div>
 
       {/* Category Filters */}
+      <div className="relative sm:contents">
       <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:overflow-visible">
         {CATEGORIES.map((cat) => {
           const isActive = activeCategory === cat.id;
@@ -135,6 +136,8 @@ export function CommandCenter({
             CLEAR
           </motion.button>
         )}
+      </div>
+      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none sm:hidden" />
       </div>
     </div>
   );

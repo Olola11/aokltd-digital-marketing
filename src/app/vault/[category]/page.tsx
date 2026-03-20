@@ -92,7 +92,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
               <Link
                 href={`/vault/${category}/${entry.slug}`}
-                className="relative block bg-white border-b border-quill-500/10 py-6 sm:py-8 first:pt-0 transition-all duration-300 ease-out md:group-hover:-translate-y-1"
+                className="relative block bg-white border-b border-quill-500/10 py-6 sm:py-8 first:pt-0 transition-all duration-300 ease-out md:group-hover:-translate-y-1 active:scale-[0.98]"
               >
                 <div className="flex items-start gap-3 sm:gap-6">
                   <span className="font-sans text-[13px] md:text-[15px] text-[#00008B]/20 pt-1.5 sm:pt-2 w-5 sm:w-6 shrink-0">

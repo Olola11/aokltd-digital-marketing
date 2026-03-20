@@ -140,11 +140,11 @@ export function ServiceGrid() {
             key={service.number}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: '-10%' }}
             transition={{
-              duration: 0.6,
-              delay: i * 0.1,
-              ease: [0.4, 0, 0.2, 1],
+              duration: 0.5,
+              delay: Math.min(i * 0.1, 0.5),
+              ease: [0.25, 0.1, 0.25, 1],
             }}
           >
             <div className="h-full transition-all duration-300 ease-out rounded-md hover:-translate-y-2 hover:shadow-brutalist">

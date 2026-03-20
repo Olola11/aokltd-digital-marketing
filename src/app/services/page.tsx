@@ -93,7 +93,7 @@ export default function ServicesPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block font-sans text-sm font-medium uppercase tracking-[0.1em] py-3.5 px-8 bg-[#00008B] text-white rounded-md hover:bg-[#00008B]/90 transition-colors"
+              className="inline-block font-sans text-sm font-medium uppercase tracking-[0.1em] py-3.5 px-8 bg-[#00008B] text-white rounded-md hover:bg-[#00008B]/90 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-quill-500 focus-visible:ring-offset-2 transition-all duration-300"
             >
               Get in Touch
             </Link>

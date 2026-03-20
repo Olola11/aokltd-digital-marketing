@@ -137,6 +137,13 @@ export function VaultSearch({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        onQueryChange('');
+        inputRef.current?.blur();
+        return;
+      }
+
       if (!showDropdown) return;
 
       if (e.key === 'ArrowDown') {
@@ -148,10 +155,6 @@ export function VaultSearch({
       } else if (e.key === 'Enter' && focusedIndex >= 0) {
         e.preventDefault();
         resultRefs.current[focusedIndex]?.click();
-      } else if (e.key === 'Escape') {
-        setIsOpen(false);
-        onQueryChange('');
-        inputRef.current?.blur();
       }
     },
     [showDropdown, results.length, focusedIndex, onQueryChange]
@@ -278,6 +281,7 @@ export function VaultSearch({
       </div>
 
       {/* Category Filters */}
+      <div className="relative sm:contents">
       <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:overflow-visible">
         {CATEGORIES.map((cat) => {
           const isActive = activeCategory === cat.id;
@@ -310,6 +314,8 @@ export function VaultSearch({
             CLEAR
           </button>
         )}
+      </div>
+      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none sm:hidden" />
       </div>
     </div>
   );

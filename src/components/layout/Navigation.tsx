@@ -28,6 +28,8 @@ export function Navigation() {
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
+  const navRef = useRef<HTMLElement>(null);
+
   // Close mobile menu on Escape key
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -41,6 +43,28 @@ export function Navigation() {
     return () => document.removeEventListener('keydown', handler);
   }, [mobileMenuOpen]);
 
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu on outside click
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [mobileMenuOpen]);
+
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     if (href === '/about') return pathname === '/about';
@@ -49,7 +73,7 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-royal-800/10">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav ref={navRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -116,7 +140,7 @@ export function Navigation() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    'text-lg font-sans font-medium py-2 transition-colors duration-200',
+                    'text-lg font-sans font-medium py-2 transition-colors duration-200 active:bg-gray-50 rounded-md px-2 -mx-2',
                     isActive(item.href)
                       ? 'text-royal-800'
                       : 'text-royal-800/60 hover:text-royal-800'
