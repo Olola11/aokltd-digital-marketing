@@ -22,21 +22,45 @@ import {
 const PRINCIPLES = [
   {
     number: '01',
-    title: 'Depth Over Virality',
+    title: 'Depth Hits Different',
     description:
-      'We would rather publish one rigorously researched piece than a hundred shallow takes. Quality is not negotiable.',
+      'Your feed is drowning in hot takes that expire in 24 hours. We\u2019re not playing that game. One piece that actually changes how you see the world beats a million posts designed to waste your time.',
   },
   {
     number: '02',
-    title: 'Curiosity as Virtue',
+    title: 'Curiosity Is the Flex',
     description:
-      'We believe curiosity is its own reward. The desire to understand — for its own sake — is one of the most human things we can cultivate.',
+      'Knowing things is cool again. Asking \u2018why\u2019 isn\u2019t childish \u2014 it\u2019s how every breakthrough in human history started. We\u2019re building a space where being genuinely interested isn\u2019t cringe. It\u2019s the point.',
   },
   {
     number: '03',
-    title: 'Built for Permanence',
+    title: 'Built to Last (Unlike Your Timeline)',
     description:
-      'We design for the long term. No engagement hacks, no dark patterns, no compromises that trade trust for metrics.',
+      'We don\u2019t do clickbait, rage-farming, and psychological tricks lifted from casino design. We create content meant to matter in ten years, not ten minutes. Gaining your trust is the mission.',
+  },
+  {
+    number: '04',
+    title: 'Reality Is Weirder Than Your Feed',
+    description:
+      'You\u2019ve been fed synthetic outrage for too long. We\u2019re serving genuine wonder. The true stories we cover are stranger than anything your algorithm is pushing. And we can prove every word.',
+  },
+  {
+    number: '05',
+    title: 'We\u2019ll Make You Uncomfortable',
+    description:
+      'If you only want content that confirms what you already believe, we\u2019re not for you. We chase facts into inconvenient corners. Intellectual honesty isn\u2019t negotiable here.',
+  },
+  {
+    number: '06',
+    title: 'Smart Isn\u2019t Scary',
+    description:
+      'We don\u2019t dumb it down. We don\u2019t apologise for depth. If you\u2019re here, you\u2019re capable of handling complexity \u2014 and we\u2019re going to treat you that way. Welcome to the grown-up table.',
+  },
+  {
+    number: '07',
+    title: 'The Stranger, The Better',
+    description:
+      'We chase the stories that make you pause mid-sentence and say \u2018wait \u2014 that can\u2019t be real.\u2019 The octopus with three hearts. The empire that vanished overnight. The scientist who drank cholera to prove a point. Reality is wilder than fiction.',
   },
 ];
 
@@ -191,7 +215,7 @@ function MobileStack() {
       >
         <div className="inline-flex items-center gap-2 text-xs font-sans text-royal-800/50 uppercase tracking-wider">
           <div className="w-6 h-px bg-royal-800/20" />
-          <span>Three Principles</span>
+          <span>Seven Principles</span>
           <div className="w-6 h-px bg-royal-800/20" />
         </div>
       </motion.div>

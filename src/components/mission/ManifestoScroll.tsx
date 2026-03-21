@@ -286,33 +286,6 @@ export function ManifestoScroll() {
             <div className="max-w-lg">
               <InkFillHeadline progress={inkFillProgress} />
 
-              {/* Decorative quill mark */}
-              <div className="mt-12 flex items-center gap-3">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="text-quill-500"
-                >
-                  <path
-                    d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M16 8L2 22"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span className="text-xs font-sans text-royal-800/50 uppercase tracking-wider">
-                  Scroll to reveal
-                </span>
-              </div>
             </div>
           </div>
 
