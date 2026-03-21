@@ -14,6 +14,23 @@ export function getReadArticles(): string[] {
   }
 }
 
+// Stable references for useSyncExternalStore — React compares snapshots by reference,
+// so returning new arrays/objects each call causes infinite re-render loops.
+export const EMPTY_ARTICLES: string[] = [];
+let cachedArticles: string[] = EMPTY_ARTICLES;
+let cachedCookieValue = '';
+
+export function getReadArticlesStable(): string[] {
+  const currentCookie = typeof document !== 'undefined' ? document.cookie : '';
+  if (currentCookie !== cachedCookieValue) {
+    cachedCookieValue = currentCookie;
+    cachedArticles = getReadArticles();
+  }
+  return cachedArticles;
+}
+
+export const emptySubscribe = () => () => {};
+
 export function markAsRead(slug: string): void {
   if (typeof document === 'undefined') return;
   const read = getReadArticles();

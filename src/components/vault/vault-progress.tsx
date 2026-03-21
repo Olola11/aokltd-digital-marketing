@@ -1,32 +1,18 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import { getReadArticles, getCategoryReadCount } from '@/lib/reading-progress';
-
-// Reading progress is cookie-based. We use useSyncExternalStore with a no-op subscribe
-// since cookies don't change during a single page view (reads happen on navigation).
-const emptySubscribe = () => () => {};
-
-// Stable references for useSyncExternalStore — React compares snapshots by reference,
-// so returning new arrays/objects each call causes infinite re-render loops.
-const EMPTY_ARRAY: string[] = [];
-let cachedArticles: string[] = EMPTY_ARRAY;
-let cachedCookieValue = '';
-
-function getReadArticlesStable(): string[] {
-  const currentCookie = typeof document !== 'undefined' ? document.cookie : '';
-  if (currentCookie !== cachedCookieValue) {
-    cachedCookieValue = currentCookie;
-    cachedArticles = getReadArticles();
-  }
-  return cachedArticles;
-}
+import {
+  getCategoryReadCount,
+  EMPTY_ARTICLES,
+  getReadArticlesStable,
+  emptySubscribe,
+} from '@/lib/reading-progress';
 
 function useReadArticles(): string[] {
   return useSyncExternalStore(
     emptySubscribe,
     getReadArticlesStable,
-    () => EMPTY_ARRAY
+    () => EMPTY_ARTICLES
   );
 }
 

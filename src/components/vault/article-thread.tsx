@@ -3,9 +3,11 @@
 import { useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { VAULT_DATA, CATEGORY_LABELS } from '@/lib/vault-data';
-import { getReadArticles } from '@/lib/reading-progress';
-
-const emptySubscribe = () => () => {};
+import {
+  EMPTY_ARTICLES,
+  getReadArticlesStable,
+  emptySubscribe,
+} from '@/lib/reading-progress';
 
 import type { RelatedArticle } from '@/types';
 
@@ -54,8 +56,8 @@ function ThreadCard({
 export function ArticleThread({ relatedArticles }: ArticleThreadProps) {
   const readSlugs = useSyncExternalStore(
     emptySubscribe,
-    () => getReadArticles(),
-    () => [] as string[]
+    getReadArticlesStable,
+    () => EMPTY_ARTICLES
   );
 
   // Filter out articles that don't exist in VAULT_DATA
