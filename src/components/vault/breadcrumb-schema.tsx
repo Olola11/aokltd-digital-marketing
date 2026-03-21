@@ -1,3 +1,5 @@
+import { SITE_URL } from '@/lib/constants';
+
 interface BreadcrumbSchemaProps {
   items: { name: string; url: string }[];
 }
@@ -10,7 +12,7 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `https://aokltd.org${item.url}`,
+      item: `${SITE_URL}${item.url}`,
     })),
   };
 

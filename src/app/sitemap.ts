@@ -1,8 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { VAULT_DATA, VALID_CATEGORIES } from '@/lib/vault-data';
+import { SITE_URL } from '@/lib/constants';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://aokltd.org';
+  const baseUrl = SITE_URL;
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },

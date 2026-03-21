@@ -2,15 +2,49 @@
 
 import { useState } from 'react';
 
-// TODO: Connect to backend — API route, email service (e.g., Resend, SendGrid), or form provider (e.g., Formspree)
+type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [formState, setFormState] = useState<FormState>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setFormState('submitting');
+    setErrorMessage('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setFormState('error');
+        setErrorMessage(data.error || 'Something went wrong. Please try again.');
+        return;
+      }
+
+      setFormState('success');
+      form.reset();
+      setTimeout(() => setFormState('idle'), 4000);
+    } catch {
+      setFormState('error');
+      setErrorMessage('Could not reach the server. Please check your connection and try again.');
+    }
   }
 
   return (
@@ -99,18 +133,27 @@ export function ContactForm() {
         />
       </div>
 
+      {/* Error message */}
+      {formState === 'error' && (
+        <p role="alert" className="font-sans text-sm text-red-600">
+          {errorMessage}
+        </p>
+      )}
+
       {/* Submit */}
       <button
         type="submit"
-        disabled={submitted}
+        disabled={formState === 'submitting' || formState === 'success'}
         aria-live="polite"
         className={`w-full py-3.5 rounded-md font-sans font-medium text-sm uppercase tracking-[0.1em] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-quill-500 focus-visible:ring-offset-2 active:scale-[0.98] ${
-          submitted
+          formState === 'success'
             ? 'bg-[#00008B]/80 text-white cursor-default'
-            : 'bg-[#00008B] text-white hover:bg-[#00008B]/90'
+            : formState === 'submitting'
+              ? 'bg-[#00008B]/60 text-white/70 cursor-wait'
+              : 'bg-[#00008B] text-white hover:bg-[#00008B]/90'
         }`}
       >
-        {submitted ? (
+        {formState === 'success' ? (
           <span className="inline-flex items-center gap-2">
             <svg
               width="16"
@@ -126,6 +169,8 @@ export function ContactForm() {
             </svg>
             Message Sent
           </span>
+        ) : formState === 'submitting' ? (
+          'Sending...'
         ) : (
           'Send Message'
         )}

@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { SITE_URL } from '@/lib/constants';
 
 // In-memory rate limiting (resets on cold start — sufficient for basic abuse prevention)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -114,7 +115,7 @@ export async function POST(request: NextRequest) {
               <h1 style="color: #00008B; font-size: 24px; margin-bottom: 16px;">Apotheosis of Knowledge</h1>
               <p style="color: #333; font-size: 16px; line-height: 1.7;">Thank you for your interest in our strategic vision.</p>
               <p style="color: #333; font-size: 16px; line-height: 1.7;">You can download the full prospectus using the link below:</p>
-              <a href="https://aokltd.org/documents/prospectus.pdf"
+              <a href="${SITE_URL}/documents/prospectus.pdf"
                  style="display: inline-block; background: #00008B; color: white; padding: 14px 28px; text-decoration: none; font-size: 14px; letter-spacing: 1px; margin: 24px 0;">
                 DOWNLOAD PROSPECTUS
               </a>

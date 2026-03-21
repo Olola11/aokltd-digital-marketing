@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Source_Serif_4, Space_Grotesk } from 'next/font/google';
 import { Navigation, Footer } from '@/components/layout';
+import { SITE_URL } from '@/lib/constants';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -17,7 +18,7 @@ const sourceSerif = Source_Serif_4({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aokltd.org'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Apotheosis of Knowledge — Elevating curiosity. Countering noise.',
     template: '%s — Apotheosis of Knowledge',
@@ -45,13 +46,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NG',
-    url: 'https://aokltd.org',
+    url: SITE_URL,
     siteName: 'Apotheosis of Knowledge',
     title: 'Apotheosis of Knowledge — Elevating curiosity. Countering noise.',
     description: 'A Nigerian knowledge initiative producing research-driven content for the endlessly curious.',
     images: [
       {
-        // TODO: Create /public/og/default.png (1200x630px) — see public/og/README.md
         url: '/og/default.png',
         width: 1200,
         height: 630,
@@ -100,8 +100,8 @@ export default function RootLayout({
               '@type': 'Organization',
               name: 'Apotheosis of Knowledge Limited',
               alternateName: 'AOK',
-              url: 'https://aokltd.org',
-              logo: 'https://aokltd.org/images/logo/Apotheosis of Knowledge LOGO PNG-15.png',
+              url: SITE_URL,
+              logo: `${SITE_URL}/images/logo/Apotheosis of Knowledge LOGO PNG-15.png`,
               description: 'A Nigerian knowledge initiative producing research-driven content for the endlessly curious.',
               foundingDate: '2022-07-27',
               address: {
@@ -130,12 +130,12 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Apotheosis of Knowledge',
-              url: 'https://aokltd.org',
+              url: SITE_URL,
               potentialAction: {
                 '@type': 'SearchAction',
                 target: {
                   '@type': 'EntryPoint',
-                  urlTemplate: 'https://aokltd.org/vault?q={search_term_string}',
+                  urlTemplate: `${SITE_URL}/vault?q={search_term_string}`,
                 },
                 'query-input': 'required name=search_term_string',
               },

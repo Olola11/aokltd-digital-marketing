@@ -4,6 +4,7 @@ import { FadeIn } from '@/components/ui/fade-in';
 import { TextReveal } from '@/components/ui/text-reveal';
 import { ServiceGrid } from '@/components/services/service-grid';
 import { ProcessTimeline } from '@/components/services/process-timeline';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -24,7 +25,7 @@ export default function ServicesPage() {
             provider: {
               '@type': 'Organization',
               name: 'Apotheosis of Knowledge Limited',
-              url: 'https://aokltd.org',
+              url: SITE_URL,
             },
             areaServed: {
               '@type': 'Country',
