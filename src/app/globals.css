@@ -13,6 +13,40 @@ html {
 body {
   background-color: #ffffff;
   color: #00008B;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow selection in form inputs and textareas */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Prevent images from being dragged or saved easily */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+/* Re-enable pointer events on images inside interactive elements (links, buttons) */
+a img, button img {
+  pointer-events: auto;
+}
+
+/* Disable print to prevent PDF-based copying */
+@media print {
+  body {
+    display: none !important;
+  }
 }
 
 /* Smooth scroll only on desktop - can cause issues on mobile */
@@ -22,6 +56,7 @@ body {
   }
 }
 
+/* Selection styling — visible but content won't copy */
 ::selection {
   background-color: rgba(74, 144, 226, 0.25);
   color: #00008B;
