@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
       await kv.sadd('prospectus:all_emails', normalizedEmail);
     } catch {
       kvAvailable = false;
-      console.warn('Vercel KV not available. Email accepted without persistence:', normalizedEmail);
+      console.warn('Vercel KV not available. Email accepted without persistence.');
     }
 
     // Check if prospectus file exists

@@ -105,7 +105,7 @@ function StackingVaultCard({
             <span className="font-sans text-xs text-quill-500 tracking-wider uppercase">
               {CATEGORY_LABELS[entry.category]}
             </span>
-            <span className="font-sans text-xs text-[#00008B]/20">
+            <span className="font-sans text-xs text-[#00008B]/40">
               {String(index + 1).padStart(2, '0')}
             </span>
           </div>
@@ -171,12 +171,12 @@ export function MobileVaultStack() {
     <section className="md:hidden bg-white pt-6 pb-4">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6 px-4 sm:px-6">
-        <h2 className="font-sans text-[10px] sm:text-xs tracking-[0.3em] text-[#00008B]/30 uppercase">
+        <h2 className="font-sans text-[10px] sm:text-xs tracking-[0.3em] text-[#00008B]/50 uppercase">
           Latest from the Vault
         </h2>
         <Link
           href="/vault"
-          className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/30 hover:text-[#00008B] transition-colors uppercase"
+          className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/50 hover:text-[#00008B] transition-colors uppercase"
         >
           View All &rarr;
         </Link>

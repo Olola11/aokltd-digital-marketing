@@ -117,9 +117,18 @@ export function ArtifactShowcase() {
       {/* 3D Certificate Card */}
       <motion.div
         ref={containerRef}
+        role="button"
+        tabIndex={0}
+        aria-label="View certificate of incorporation"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={() => setIsExpanded(true)}
+        onKeyDown={(e: React.KeyboardEvent) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setIsExpanded(true);
+          }
+        }}
         className="relative cursor-pointer group"
         style={{
           perspective: '1200px',
