@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/work`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/invest`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: VAULT_URL, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: VAULT_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.6 },
   ];
 

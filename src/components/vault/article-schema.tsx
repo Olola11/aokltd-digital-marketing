@@ -5,11 +5,15 @@ interface ArticleSchemaProps {
   excerpt: string;
   category: string;
   publishedAt: string;
+  updatedAt?: string;
   readingTime: number;
   slug: string;
   categorySlug: string;
   featuredImage?: string;
   sourceCount?: number;
+  tags?: string[];
+  wordCount?: number;
+  content?: string;
 }
 
 export function ArticleSchema({
@@ -17,16 +21,24 @@ export function ArticleSchema({
   excerpt,
   category,
   publishedAt,
+  updatedAt,
+  readingTime,
   slug,
   categorySlug,
   featuredImage,
   sourceCount,
+  tags,
+  wordCount,
+  content,
 }: ArticleSchemaProps) {
+  const articleUrl = `${VAULT_URL}/${categorySlug}/${slug}`;
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description: excerpt.slice(0, 155),
+    url: articleUrl,
     author: {
       '@type': 'Organization',
       name: 'Apotheosis of Knowledge',
@@ -42,11 +54,17 @@ export function ArticleSchema({
       },
     },
     datePublished: publishedAt,
+    ...(updatedAt && { dateModified: updatedAt }),
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${VAULT_URL}/${categorySlug}/${slug}`,
+      '@id': articleUrl,
     },
     articleSection: category,
+    ...(tags && tags.length > 0 && { keywords: tags.join(', ') }),
+    ...(wordCount && { wordCount }),
+    ...(readingTime && {
+      timeRequired: `PT${readingTime}M`,
+    }),
     ...(featuredImage && {
       image: {
         '@type': 'ImageObject',
@@ -56,6 +74,10 @@ export function ArticleSchema({
     ...(sourceCount && {
       citation: `${sourceCount} sources cited`,
     }),
+    ...(content && {
+      articleBody: content.replace(/\[IMAGE:[^\]]+\]/g, '').slice(0, 500),
+    }),
+    inLanguage: 'en',
   };
 
   return (

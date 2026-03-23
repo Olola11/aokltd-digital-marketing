@@ -44,7 +44,7 @@ The training regimen itself was geometric. Recruits practiced formations using p
 What makes this case historically significant is not merely that it challenges Western-centric narratives of mathematical innovation. It demonstrates that formal mathematical reasoning can emerge from practical necessity without the apparatus of academic notation. The Mino did not need equations to practice game theory. They needed to win.`,
     publishedAt: '2024-01-10',
     readingTime: 9,
-    tags: ['military', 'mathematics', 'West Africa', 'Dahomey'],
+    tags: ['military', 'mathematics', 'West Africa', 'Dahomey', 'game theory', 'pre-colonial Africa'],
     featuredImage: {
       src: '/images/content/geometry-of-dahomey-hero.jpg',
       alt: 'Engraving of Dahomey Amazon (Mino) warriors in ceremonial dress, 19th century',
@@ -73,7 +73,7 @@ The collapse came in stages. The Moroccan invasion of 1591 scattered the scholar
 The recovery effort, which accelerated in the 1990s through organizations like the Tomas Foundation and the Ahmed Baba Institute, has now catalogued over 300,000 surviving manuscripts. Each one that surfaces revises the historical record slightly further. The lesson is not simply that Africa had libraries. It is that the absence of those libraries from standard historical narratives tells us more about the narrators than about Africa.`,
     publishedAt: '2024-02-08',
     readingTime: 10,
-    tags: ['education', 'Islam', 'Mali', 'manuscripts'],
+    tags: ['education', 'Islam', 'Mali', 'manuscripts', 'Timbuktu', 'African scholarship'],
     featuredImage: {
       src: '/images/content/songhai-libraries-hero.jpg',
       alt: 'A 15th-century Timbuktu manuscript showing Arabic calligraphy with geometric marginalia',
@@ -102,7 +102,7 @@ What makes this episode more than an anecdote about excess is what it reveals ab
 The Catalan Atlas of 1375, one of the most important maps of the medieval period, depicts Musa seated on a throne holding a gold nugget, presiding over a West Africa drawn larger and more detailed than most European kingdoms. The image is not flattery; it is commercial intelligence. European powers would spend the next two centuries trying to reach Mali's goldfields directly—an ambition that would eventually drive the Age of Exploration southward along the African coast. Musa's pilgrimage, an act of devotion, inadvertently redrew the economic geography of the known world.`,
     publishedAt: '2024-03-08',
     readingTime: 8,
-    tags: ['economics', 'Mali', 'wealth', 'medieval'],
+    tags: ['economics', 'Mali', 'wealth', 'medieval', 'Mansa Musa', 'gold trade'],
     featuredImage: {
       src: '/images/content/mansa-musa-inflation-hero.jpg',
       alt: 'Mansa Musa depicted in the Catalan Atlas of 1375, seated on a golden throne holding a gold nugget',
@@ -131,7 +131,7 @@ It was not until the rigorous stratigraphic work of Peter Garlake and others in 
 The episode illustrates a broader pattern in the history of knowledge: when evidence contradicts a prevailing ideology, the first casualty is not the ideology but the evidence. Great Zimbabwe was never lost. It was denied.`,
     publishedAt: '2024-04-12',
     readingTime: 10,
-    tags: ['archaeology', 'Zimbabwe', 'architecture', 'colonialism'],
+    tags: ['archaeology', 'Zimbabwe', 'architecture', 'colonialism', 'stone ruins', 'southern Africa'],
     featuredImage: {
       src: '/images/content/walls-of-great-zimbabwe-hero.jpg',
       alt: 'The iconic chevron-patterned outer wall of the Great Enclosure at Great Zimbabwe',
@@ -160,7 +160,7 @@ The cognitive science is what makes this most remarkable. Western navigation ext
 The tradition nearly vanished in the twentieth century under the pressures of colonialism and motorized shipping. Its survival owes much to Mau Piailug, a master navigator from the Micronesian atoll of Satawal, who in 1976 guided the Hawaiian voyaging canoe Hokule'a from Hawaii to Tahiti using traditional methods—proving that the ancient techniques were not legends but living science.`,
     publishedAt: '2024-05-20',
     readingTime: 12,
-    tags: ['navigation', 'Polynesia', 'Pacific', 'cognitive science'],
+    tags: ['navigation', 'Polynesia', 'Pacific', 'cognitive science', 'wayfinding', 'indigenous knowledge'],
     featuredImage: {
       src: '/images/content/navigators-of-te-moana-nui-hero.jpg',
       alt: 'The voyaging canoe Hokule\'a sailing on the Pacific Ocean, demonstrating traditional Polynesian navigation',
@@ -194,7 +194,7 @@ The repatriation effort has accelerated since 2020. Germany returned over 1,100 
 The legal and ethical arguments are complex, but the foundational question is simple: who has the right to hold a civilization's memory? The Bronzes were not made for display in glass cases under artificial light. They were made for a palace, for a purpose, for a people. The effort to bring them back is not nostalgia. It is an act of institutional restoration.`,
     publishedAt: '2024-01-18',
     readingTime: 12,
-    tags: ['art', 'colonialism', 'Nigeria', 'repatriation'],
+    tags: ['art', 'colonialism', 'Nigeria', 'repatriation', 'Benin Bronzes', 'museums'],
     featuredImage: {
       src: '/images/content/lost-benin-bronzes-hero.jpg',
       alt: 'Benin bronze plaque showing the Oba of Benin in ceremonial regalia, flanked by attendants — cast brass, 16th century',
@@ -225,7 +225,7 @@ What makes this cultural survival historically significant is its mechanism. The
 Today, orisha-based traditions claim an estimated 100 million practitioners worldwide. Their persistence is not a curiosity of religious history. It is evidence that certain forms of knowledge possess structural properties that make them resistant to even the most systematic attempts at destruction.`,
     publishedAt: '2024-02-15',
     readingTime: 13,
-    tags: ['religion', 'diaspora', 'Nigeria', 'Caribbean'],
+    tags: ['religion', 'diaspora', 'Nigeria', 'Caribbean', 'Yoruba', 'syncretism'],
     featuredImage: {
       src: '/images/content/yoruba-cosmology-hero.jpg',
       alt: 'Yoruba Ifa divination tray (opon Ifa) with carved faces of Eshu around the rim — used in traditional divination ceremonies',
@@ -256,7 +256,7 @@ The significance of Igbo-Ukwu extends beyond its artifacts. It demonstrates that
 The bronzes now reside in the National Museum in Lagos. They remain among the most technically accomplished metal castings produced anywhere in the world before the twelfth century.`,
     publishedAt: '2024-03-15',
     readingTime: 10,
-    tags: ['archaeology', 'Nigeria', 'bronze', 'technology'],
+    tags: ['archaeology', 'Nigeria', 'bronze', 'technology', 'Igbo-Ukwu', 'metallurgy'],
     featuredImage: {
       src: '/images/content/igbo-ukwu-metallurgy-hero.jpg',
       alt: 'The Igbo-Ukwu bronze roped pot on a stand — intricate 9th-century cast bronze featuring rope-work detailing',
@@ -287,7 +287,7 @@ The tradition faces significant pressures in the twenty-first century. Urbanizat
 What the griot tradition demonstrates is that orality is not a deficiency—not a preliterate stage on the way to "real" record-keeping. It is a fully developed information technology with its own protocols, error-correction mechanisms, and institutional supports. Its products are different from those of literacy, but they are not lesser. They are simply organized according to different principles—principles that, in some domains, may prove more durable than the written word.`,
     publishedAt: '2024-05-02',
     readingTime: 11,
-    tags: ['oral tradition', 'Mali', 'music', 'memory'],
+    tags: ['oral tradition', 'Mali', 'music', 'memory', 'griots', 'West Africa'],
     featuredImage: {
       src: '/images/content/griots-memory-palace-hero.jpg',
       alt: 'A griot performing with a kora — the 21-string West African harp-lute central to the oral tradition of the Mande people',
@@ -318,7 +318,7 @@ The production of Adinkra cloth itself involves a chemical process of considerab
 The Adinkra system challenges the persistent assumption that writing is the only legitimate form of graphic knowledge encoding. What the Akan developed is not writing in the alphabetic sense, but it is a graphic system with semantic precision, compositional rules, and cultural authority. The distinction between "writing" and "not writing" may tell us less about the systems in question than about the narrowness of the category.`,
     publishedAt: '2024-06-14',
     readingTime: 11,
-    tags: ['Ghana', 'symbols', 'mathematics', 'textiles'],
+    tags: ['Ghana', 'symbols', 'mathematics', 'textiles', 'Adinkra', 'Akan culture'],
     featuredImage: {
       src: '/images/content/adinkra-lexicon-in-cloth-hero.jpg',
       alt: 'Close-up of Adinkra cloth showing the Gye Nyame symbol stamped in black dye on ochre fabric — Akan, Ghana',
@@ -351,7 +351,7 @@ Deontological approaches fare somewhat better. A Kantian might argue that the mo
 These are not merely academic puzzles. As quantum technologies move from laboratory curiosities to practical applications—quantum computing, quantum cryptography, quantum sensing—the question of how moral reasoning applies to systems whose behavior is fundamentally probabilistic will become increasingly urgent. We are building machines whose operations cannot be described in the deterministic language that our ethical frameworks presuppose. The question is whether our ethics can adapt as rapidly as our engineering.`,
     publishedAt: '2024-01-25',
     readingTime: 8,
-    tags: ['philosophy', 'physics', 'consciousness'],
+    tags: ['philosophy', 'physics', 'consciousness', 'quantum mechanics', 'thought experiments'],
     featuredImage: {
       src: '/images/content/quantum-ethics-hero.jpg',
       alt: 'Illustration of Schrödinger\'s cat thought experiment — a cat in superposition of alive and dead states inside a sealed box',
@@ -382,7 +382,7 @@ The third and most compelling theory, advanced by historian John Waller, integra
 The Strasbourg dancing plague remains one of the most thoroughly documented instances of mass psychogenic illness in the pre-modern record. It is not an amusing historical curiosity. It is evidence that the boundary between mind and body, between belief and biology, is more permeable than modern medical practice typically acknowledges.`,
     publishedAt: '2024-02-22',
     readingTime: 9,
-    tags: ['medieval', 'medicine', 'psychology'],
+    tags: ['medieval', 'medicine', 'psychology', 'dancing plague', 'mass hysteria', 'Strasbourg'],
     featuredImage: {
       src: '/images/content/dancing-plague-hero.jpg',
       alt: 'The Pilgrimage of the Epileptics to the Church at Molenbeek by Pieter Brueghel the Younger — showing compulsive group dancing',
@@ -510,7 +510,7 @@ What the Z340 decryption revealed about the Zodiac was less about his identity t
 The Zodiac Killer has never been conclusively identified. The case remains open with the FBI and multiple California law enforcement agencies. The Z340 decryption stands as a reminder that some puzzles are solved not by greater computational power but by a shift in assumptions—and that the most important question about a cipher is not always what it says, but what its construction reveals about the person who made it.`,
     publishedAt: '2024-02-01',
     readingTime: 11,
-    tags: ['cryptography', 'serial killer', 'California'],
+    tags: ['cryptography', 'serial killer', 'California', 'codebreaking', 'unsolved cases', 'FBI'],
     featuredImage: {
       src: '/images/content/cipher-of-zodiac-hero.jpg',
       alt: 'The FBI composite sketch of the Zodiac Killer, based on witness descriptions from the October 1969 Presidio Heights attack',
@@ -636,7 +636,7 @@ The case has attracted renewed scholarly attention for several reasons. First, t
 Some researchers have noted temporal and methodological parallels between the Austin murders and the Whitechapel killings that began in London in 1888, leading to speculation that the same individual may have been responsible for both. This theory, while not disprovable, rests on circumstantial connections rather than evidence. What is established is that Austin in 1885 confronted a phenomenon for which it had no name, no investigative framework, and no adequate response. The term "serial killer" would not enter the criminological lexicon for another century. The Servant Girl Annihilator operated in a world that could not yet conceptualize what he was.`,
     publishedAt: '2024-07-19',
     readingTime: 12,
-    tags: ['Texas', 'serial killer', '19th century', 'forensics'],
+    tags: ['Texas', 'serial killer', '19th century', 'forensics', 'Austin', 'racial justice'],
     // TODO: Replace placeholder with real editorial image
     featuredImage: {
       src: '/images/content/servant-girl-annihilator-hero.jpg',
@@ -655,4 +655,17 @@ export function getVaultEntriesByCategory(category: string): VaultEntry[] {
 
 export function isValidCategory(category: string): category is VaultCategory {
   return VALID_CATEGORIES.includes(category as VaultCategory);
+}
+
+export function getLatestArticles(count: number = 5): VaultEntry[] {
+  return [...VAULT_DATA]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, count);
+}
+
+export function getWordCount(content: string): number {
+  return content
+    .replace(/\[IMAGE:[^\]]+\]/g, '')
+    .split(/\s+/)
+    .filter(Boolean).length;
 }

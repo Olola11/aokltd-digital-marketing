@@ -8,7 +8,9 @@ import {
   getVaultEntry,
   getVaultEntriesByCategory,
   isValidCategory,
+  getWordCount,
 } from '@/lib/vault-data';
+import { VAULT_URL } from '@/lib/constants';
 import { formatDate } from '@/lib/utils';
 import type { VaultCategory } from '@/types';
 import { ReadTracker } from '@/components/vault/read-tracker';
@@ -16,6 +18,9 @@ import { ArticleSourceDisplay } from '@/components/vault/source-badge';
 import { ArticleThread } from '@/components/vault/article-thread';
 import { ArticleSchema } from '@/components/vault/article-schema';
 import { BreadcrumbSchema } from '@/components/vault/breadcrumb-schema';
+import { SocialShare } from '@/components/vault/social-share';
+import { ArticleProgressBar } from '@/components/vault/article-progress-bar';
+import { TableOfContents } from '@/components/vault/table-of-contents';
 
 interface ArticlePageProps {
   params: Promise<{ category: string; slug: string }>;
@@ -37,29 +42,45 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     ? entry.excerpt.slice(0, 155) + '...'
     : entry.excerpt;
 
+  const articleUrl = `${VAULT_URL}/${category}/${slug}`;
+
   return {
     title: entry.title,
     description,
+    keywords: entry.tags,
+    authors: [{ name: 'Apotheosis of Knowledge' }],
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large' as const,
+      'max-snippet': -1,
+    },
     alternates: {
-      canonical: `https://vault.aokltd.org/${category}/${slug}`,
+      canonical: articleUrl,
     },
     openGraph: {
       title: entry.title,
       description,
+      url: articleUrl,
+      siteName: 'Apotheosis of Knowledge',
       type: 'article',
       publishedTime: entry.publishedAt,
+      ...(entry.updatedAt && { modifiedTime: entry.updatedAt }),
       authors: ['Apotheosis of Knowledge'],
+      section: CATEGORY_LABELS[category as VaultCategory] || category,
       tags: entry.tags,
       ...(entry.featuredImage && {
-        images: [{ url: entry.featuredImage.src, width: 1200, height: 630 }],
+        images: [{ url: entry.featuredImage.src, width: 1200, height: 630, alt: entry.featuredImage.alt }],
       }),
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@aaborishade',
+      creator: '@aaborishade',
       title: entry.title,
       description,
       ...(entry.featuredImage && {
-        images: [entry.featuredImage.src],
+        images: [{ url: entry.featuredImage.src, alt: entry.featuredImage.alt }],
       }),
     },
   };
@@ -78,6 +99,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const categoryLabel = CATEGORY_LABELS[category as VaultCategory];
+  const articleUrl = `${VAULT_URL}/${category}/${slug}`;
+  const wordCount = getWordCount(entry.content);
 
   // Get related entries from same category (excluding current)
   const related = getVaultEntriesByCategory(category)
@@ -105,6 +128,27 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       return { type: 'paragraph' as const, text: block };
     });
 
+  // Extract headings for table of contents (from paragraph text that starts with heading markers)
+  // For now, generate TOC from content sections — articles use paragraphs, not markdown headings,
+  // so we derive sections from the first sentence of each major paragraph block
+  const tocItems = contentBlocks
+    .filter((b): b is { type: 'paragraph'; text: string } => b.type === 'paragraph')
+    .reduce<{ id: string; text: string; level: number }[]>((acc, block, index) => {
+      // Use every 3rd paragraph as a section marker to create meaningful TOC entries
+      if (index > 0 && index % 3 === 0) {
+        const firstSentence = block.text.split(/\.\s/)[0];
+        const truncated = firstSentence.length > 60
+          ? firstSentence.slice(0, 57) + '...'
+          : firstSentence;
+        acc.push({
+          id: `section-${index}`,
+          text: truncated,
+          level: 2,
+        });
+      }
+      return acc;
+    }, []);
+
   return (
     <>
     <ArticleSchema
@@ -112,11 +156,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       excerpt={entry.excerpt}
       category={categoryLabel}
       publishedAt={entry.publishedAt}
+      updatedAt={entry.updatedAt}
       readingTime={entry.readingTime}
       slug={slug}
       categorySlug={category}
       featuredImage={entry.featuredImage?.src}
       sourceCount={entry.sourceCount}
+      tags={entry.tags}
+      wordCount={wordCount}
+      content={entry.content}
     />
     <BreadcrumbSchema items={[
       { name: 'Home', url: '/' },
@@ -124,6 +172,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       { name: categoryLabel, url: `/vault/${category}` },
       { name: entry.title, url: `/vault/${category}/${slug}` },
     ]} />
+    <ArticleProgressBar />
     <div className="min-h-screen bg-white">
       <ReadTracker slug={slug} />
 
@@ -159,8 +208,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Meta */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-sans text-[10px] text-[#00008B]/40 uppercase tracking-wider">
-            <span>{formatDate(entry.publishedAt)}</span>
+            <time dateTime={entry.publishedAt}>Published {formatDate(entry.publishedAt)}</time>
+            {entry.updatedAt && (
+              <time dateTime={entry.updatedAt}>Updated {formatDate(entry.updatedAt)}</time>
+            )}
             <span>{entry.readingTime} MIN READ</span>
+            <span>{wordCount.toLocaleString()} WORDS</span>
           </div>
 
           {/* Source count */}
@@ -195,6 +248,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       {/* Article Body */}
       <main className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+        {/* Table of Contents */}
+        <TableOfContents items={tocItems} />
+
         <article className="prose-aok">
           {contentBlocks.map((block, index) => {
             if (block.type === 'image') {
@@ -217,9 +273,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </figure>
               );
             }
+
+            // Check if this paragraph is a TOC anchor point
+            const paragraphIndex = contentBlocks
+              .filter((b): b is { type: 'paragraph'; text: string } => b.type === 'paragraph')
+              .indexOf(block as { type: 'paragraph'; text: string });
+            const sectionId = paragraphIndex > 0 && paragraphIndex % 3 === 0
+              ? `section-${paragraphIndex}`
+              : undefined;
+
             return (
               <p
                 key={index}
+                id={sectionId}
                 className="font-serif text-[15px] sm:text-base md:text-[17px] text-[#00008B]/80 leading-[1.75] sm:leading-[1.85] mb-5 sm:mb-6 last:mb-0"
                 style={{ overflowWrap: 'anywhere' }}
               >
@@ -242,6 +308,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             ))}
           </div>
         </div>
+
+        {/* Social Share */}
+        <SocialShare
+          title={entry.title}
+          url={articleUrl}
+          excerpt={entry.excerpt}
+        />
       </main>
 
       {/* Related Entries */}
