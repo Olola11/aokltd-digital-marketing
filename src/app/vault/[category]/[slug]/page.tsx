@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { VaultLink } from '@/components/vault/vault-link';
 import {
   VAULT_DATA,
   CATEGORY_LABELS,
@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   return {
     title: entry.title,
     description,
+    alternates: {
+      canonical: `https://vault.aokltd.org/${category}/${slug}`,
+    },
     openGraph: {
       title: entry.title,
       description,
@@ -129,19 +132,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#00008B]/30 mb-6 sm:mb-8">
-            <Link
+            <VaultLink
               href="/vault"
               className="hover:text-[#00008B]/60 transition-colors py-1"
             >
               Vault
-            </Link>
+            </VaultLink>
             <span aria-hidden="true">/</span>
-            <Link
+            <VaultLink
               href={`/vault/${category}`}
               className="hover:text-[#00008B]/60 transition-colors py-1"
             >
               {categoryLabel}
-            </Link>
+            </VaultLink>
           </nav>
 
           {/* Title */}
@@ -250,7 +253,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </h2>
             <div className="space-y-0">
               {related.map((rel) => (
-                <Link
+                <VaultLink
                   key={rel.slug}
                   href={`/vault/${rel.category}/${rel.slug}`}
                   className="group block border-b border-quill-500/10 py-5 sm:py-6 first:pt-0 last:border-b-0"
@@ -261,7 +264,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   <p className="font-serif text-sm text-[#00008B]/40 line-clamp-2 sm:line-clamp-1">
                     {rel.excerpt}
                   </p>
-                </Link>
+                </VaultLink>
               ))}
             </div>
           </div>
@@ -276,12 +279,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Back to Vault */}
       <div className="border-t border-quill-500/10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-          <Link
+          <VaultLink
             href="/vault"
             className="inline-flex items-center gap-2 font-sans text-xs text-[#00008B]/40 hover:text-[#00008B] transition-colors tracking-wider py-2"
           >
             <span aria-hidden="true">&larr;</span> BACK TO VAULT
-          </Link>
+          </VaultLink>
         </div>
       </div>
 

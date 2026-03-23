@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { VAULT_DATA, CATEGORY_LABELS } from '@/lib/vault-data';
 
@@ -17,20 +16,20 @@ export function LatestDeck() {
         <h2 className="font-sans text-[10px] sm:text-xs tracking-[0.3em] text-[#00008B]/30 uppercase">
           Latest from the Vault
         </h2>
-        <Link
-          href="/vault"
+        <a
+          href="https://vault.aokltd.org"
           className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/30 hover:text-[#00008B] transition-colors uppercase"
         >
           View All &rarr;
-        </Link>
+        </a>
       </div>
 
       {/* Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
         {latest.map((entry, index) => (
-          <Link
+          <a
             key={entry.slug}
-            href={`/vault/${entry.category}/${entry.slug}`}
+            href={`https://vault.aokltd.org/${entry.category}/${entry.slug}`}
             className="group block relative"
           >
             {/* Image "shadow" — revealed on desktop hover behind the card */}
@@ -99,7 +98,7 @@ export function LatestDeck() {
                 ) : null}
               </div>
             </article>
-          </Link>
+          </a>
         ))}
       </div>
     </div>

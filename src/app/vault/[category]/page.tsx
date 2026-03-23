@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { VaultLink } from '@/components/vault/vault-link';
 import {
   VALID_CATEGORIES,
   CATEGORY_LABELS,
@@ -36,6 +36,9 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   return {
     title: `${label} — The Vault`,
     description: categoryDescriptions[category] || `Explore ${label} articles in the Apotheosis of Knowledge vault.`,
+    alternates: {
+      canonical: `https://vault.aokltd.org/${category}`,
+    },
   };
 }
 
@@ -60,12 +63,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {/* Header */}
       <header className="relative border-b border-quill-500/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-28">
-          <Link
+          <VaultLink
             href="/vault"
             className="inline-flex items-center gap-2 font-sans text-xs md:text-sm uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[#00008B]/30 mb-4 hover:text-[#00008B]/60 transition-colors py-1"
           >
             <span aria-hidden="true">&larr;</span> The Vault
-          </Link>
+          </VaultLink>
           <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00008B] tracking-tight mb-3 sm:mb-4">
             {label}
           </h1>
@@ -104,7 +107,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 />
               )}
 
-              <Link
+              <VaultLink
                 href={`/vault/${category}/${entry.slug}`}
                 className="relative block bg-white border-b border-quill-500/10 py-6 sm:py-8 first:pt-0 transition-all duration-300 ease-out md:group-hover:-translate-y-1 active:scale-[0.98]"
               >
@@ -127,7 +130,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </VaultLink>
             </div>
           ))}
         </div>

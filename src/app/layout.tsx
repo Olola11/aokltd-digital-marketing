@@ -143,7 +143,7 @@ export default function RootLayout({
           }}
         />
         <Navigation />
-        <div className="pt-16 flex flex-col min-h-screen">
+        <div id="site-chrome" className="pt-16 flex flex-col min-h-screen">
           <main id="main-content" className="flex-grow">
             {children}
           </main>

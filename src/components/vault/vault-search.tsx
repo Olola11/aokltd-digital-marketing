@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useEffect, useState, useCallback, useMemo, type ReactNode } from 'react';
-import Link from 'next/link';
 import { Search, X } from 'lucide-react';
+import { VaultLink } from './vault-link';
 import { cn } from '@/lib/utils';
 import { VAULT_DATA, CATEGORY_LABELS } from '@/lib/vault-data';
 import type { VaultEntry, VaultCategory } from '@/types';
@@ -234,7 +234,7 @@ export function VaultSearch({
             {results.length > 0 ? (
               <>
                 {results.map((result, i) => (
-                  <Link
+                  <VaultLink
                     key={result.entry.slug}
                     ref={(el) => { resultRefs.current[i] = el; }}
                     href={`/vault/${result.entry.category}/${result.entry.slug}`}
@@ -258,7 +258,7 @@ export function VaultSearch({
                     <p className="font-serif text-xs text-[#00008B]/50 line-clamp-2">
                       {highlightMatch(result.entry.excerpt, debouncedQuery)}
                     </p>
-                  </Link>
+                  </VaultLink>
                 ))}
                 <div className="px-4 py-2 border-t border-gray-100">
                   <span className="font-sans text-[10px] text-gray-500">

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import { VaultLink } from './vault-link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import type { VaultEntry } from '@/types';
@@ -36,7 +36,7 @@ function VaultCard({
   const isDimmed = isAnyHovered && !isHovered;
 
   return (
-    <Link href={`/vault/${entry.category}/${entry.slug}`} className="block relative">
+    <VaultLink href={`/vault/${entry.category}/${entry.slug}`} className="block relative">
       {/* Image shadow — revealed on hover behind the card */}
       {entry.featuredImage ? (
         <motion.div
@@ -143,7 +143,7 @@ function VaultCard({
           transition={{ duration: 0.3, ease: 'easeOut' }}
         />
       </motion.article>
-    </Link>
+    </VaultLink>
   );
 }
 

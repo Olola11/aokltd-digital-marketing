@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import { VaultLink } from './vault-link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -102,7 +102,7 @@ function EntryRow({ entry, index }: { entry: VaultEntry; index: number }) {
   const [isPressed, setIsPressed] = useState(false);
 
   return (
-    <Link href={`/vault/${entry.category}/${entry.slug}`} className="block">
+    <VaultLink href={`/vault/${entry.category}/${entry.slug}`} className="block">
     <motion.article
       initial={{ borderLeftColor: 'rgba(0, 0, 139, 0)' }}
       whileInView={{ borderLeftColor: 'rgba(0, 0, 139, 0.15)' }}
@@ -149,7 +149,7 @@ function EntryRow({ entry, index }: { entry: VaultEntry; index: number }) {
         <ChevronRight className="w-4 h-4 text-[#00008B]/20 flex-shrink-0 mt-1" />
       </div>
     </motion.article>
-    </Link>
+    </VaultLink>
   );
 }
 

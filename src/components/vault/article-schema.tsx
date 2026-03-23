@@ -1,4 +1,4 @@
-import { SITE_URL } from '@/lib/constants';
+import { SITE_URL, VAULT_URL } from '@/lib/constants';
 
 interface ArticleSchemaProps {
   title: string;
@@ -44,7 +44,7 @@ export function ArticleSchema({
     datePublished: publishedAt,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/vault/${categorySlug}/${slug}`,
+      '@id': `${VAULT_URL}/${categorySlug}/${slug}`,
     },
     articleSection: category,
     ...(featuredImage && {

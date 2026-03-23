@@ -1,8 +1,8 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import Link from 'next/link';
 import { VAULT_DATA, CATEGORY_LABELS } from '@/lib/vault-data';
+import { VaultLink } from './vault-link';
 import {
   EMPTY_ARTICLES,
   getReadArticlesStable,
@@ -26,7 +26,7 @@ function ThreadCard({
   const isRead = readSlugs.includes(slug);
 
   return (
-    <Link
+    <VaultLink
       href={`/vault/${entry.category}/${entry.slug}`}
       className="block bg-white border border-[#00008B]/10 rounded-md p-4 hover:-translate-y-1 transition-all duration-300 ease-out relative"
     >
@@ -49,7 +49,7 @@ function ThreadCard({
       <span className="font-sans text-[9px] text-[#00008B]/40 uppercase tracking-wider">
         {entry.readingTime} min read
       </span>
-    </Link>
+    </VaultLink>
   );
 }
 

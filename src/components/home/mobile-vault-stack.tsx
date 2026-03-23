@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import {
   motion,
@@ -72,8 +71,8 @@ function StackingVaultCard({
       className="sticky will-change-transform"
       style={{ top: stickyTop, zIndex, scale }}
     >
-      <Link
-        href={`/vault/${entry.category}/${entry.slug}`}
+      <a
+        href={`https://vault.aokltd.org/${entry.category}/${entry.slug}`}
         className="block relative mx-4"
       >
         {/* Image shadow — always visible on mobile, reduced opacity */}
@@ -150,7 +149,7 @@ function StackingVaultCard({
             ))}
           </div>
         </article>
-      </Link>
+      </a>
     </motion.div>
   );
 }
@@ -174,12 +173,12 @@ export function MobileVaultStack() {
         <h2 className="font-sans text-[10px] sm:text-xs tracking-[0.3em] text-[#00008B]/50 uppercase">
           Latest from the Vault
         </h2>
-        <Link
-          href="/vault"
+        <a
+          href="https://vault.aokltd.org"
           className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/50 hover:text-[#00008B] transition-colors uppercase"
         >
           View All &rarr;
-        </Link>
+        </a>
       </div>
 
       {/* Stacking container */}

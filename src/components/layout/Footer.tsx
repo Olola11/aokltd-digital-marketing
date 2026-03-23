@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const footerLinks = {
   explore: [
-    { label: 'Vault', href: '/vault' },
+    { label: 'Vault', href: 'https://vault.aokltd.org' },
     { label: 'Work', href: '/work' },
   ],
   about: [
@@ -30,7 +30,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-royal-800 border-t border-royal-700">
+    <footer id="site-footer" className="bg-royal-800 border-t border-royal-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand Column */}
@@ -60,12 +60,21 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.explore.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.href.startsWith('http') ? (
+                    <a
+                      href={link.href}
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

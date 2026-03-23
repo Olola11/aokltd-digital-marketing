@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { VAULT_DATA } from '@/lib/vault-data';
+import { VaultLink } from './vault-link';
 import type { VaultEntry } from '@/types';
 
 interface Thread {
@@ -69,7 +69,7 @@ export function ThreadExplorer() {
         {/* Desktop: horizontal chains */}
         <div className="hidden md:grid md:grid-cols-3 gap-6">
           {threads.map((thread) => (
-            <Link
+            <VaultLink
               key={thread.title}
               href={`/vault/${thread.articles[0].category}/${thread.articles[0].slug}`}
               className="group block border border-[#00008B]/10 rounded-md p-5 hover:-translate-y-1 hover:shadow-sm transition-all duration-300 ease-out"
@@ -95,14 +95,14 @@ export function ThreadExplorer() {
               <span className="font-sans text-[10px] text-quill-500 uppercase tracking-wider mt-3 block group-hover:translate-x-1 transition-transform">
                 {thread.articles.length} articles &rarr;
               </span>
-            </Link>
+            </VaultLink>
           ))}
         </div>
 
         {/* Mobile: compact cards */}
         <div className="md:hidden space-y-3">
           {threads.map((thread) => (
-            <Link
+            <VaultLink
               key={thread.title}
               href={`/vault/${thread.articles[0].category}/${thread.articles[0].slug}`}
               className="flex items-center justify-between border border-[#00008B]/10 rounded-md p-4"
@@ -116,7 +116,7 @@ export function ThreadExplorer() {
                 </p>
               </div>
               <span className="text-[#00008B]/20 text-lg flex-shrink-0 ml-3">&rarr;</span>
-            </Link>
+            </VaultLink>
           ))}
         </div>
       </div>

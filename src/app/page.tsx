@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: {
@@ -30,12 +29,12 @@ export default function HomePage() {
                 <h2 className="font-sans text-[10px] sm:text-xs tracking-[0.3em] text-[#00008B]/30 uppercase">
                   Latest from the Vault
                 </h2>
-                <Link
-                  href="/vault"
+                <a
+                  href="https://vault.aokltd.org"
                   className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/50 hover:text-[#00008B] transition-colors duration-300 uppercase"
                 >
                   View All &rarr;
-                </Link>
+                </a>
               </div>
               <p className="font-serif text-sm text-[#00008B]/25 text-center mt-2" aria-hidden="true">
                 Scroll to explore
