@@ -13,7 +13,7 @@ const navItems = [
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
   { label: 'Invest', href: '/invest' },
-  { label: 'Vault', href: '/vault' },
+  { label: 'Vault', href: 'https://vault.aokltd.org' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -97,24 +97,31 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'text-[15px] font-sans font-medium transition-colors duration-200 relative',
-                  isActive(item.href)
-                    ? 'text-royal-800'
-                    : 'text-royal-800/60 hover:text-royal-800'
-                )}
-              >
-                {item.label}
-                {/* Active indicator */}
-                {isActive(item.href) && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-quill-500" />
-                )}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const linkClass = cn(
+                'text-[15px] font-sans font-medium transition-colors duration-200 relative',
+                isActive(item.href)
+                  ? 'text-royal-800'
+                  : 'text-royal-800/60 hover:text-royal-800'
+              );
+
+              if (item.href.startsWith('http')) {
+                return (
+                  <a key={item.href} href={item.href} className={linkClass}>
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <Link key={item.href} href={item.href} className={linkClass}>
+                  {item.label}
+                  {isActive(item.href) && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-quill-500" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -134,21 +141,38 @@ export function Navigation() {
         {mobileMenuOpen && (
           <div id="mobile-nav" className="md:hidden py-4 border-t border-royal-800/10">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={cn(
-                    'text-lg font-sans font-medium py-2 transition-colors duration-200 active:bg-gray-50 rounded-md px-2 -mx-2',
-                    isActive(item.href)
-                      ? 'text-royal-800'
-                      : 'text-royal-800/60 hover:text-royal-800'
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const mobileClass = cn(
+                  'text-lg font-sans font-medium py-2 transition-colors duration-200 active:bg-gray-50 rounded-md px-2 -mx-2',
+                  isActive(item.href)
+                    ? 'text-royal-800'
+                    : 'text-royal-800/60 hover:text-royal-800'
+                );
+
+                if (item.href.startsWith('http')) {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={mobileClass}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={mobileClass}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}
