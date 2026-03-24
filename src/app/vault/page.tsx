@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { PrecisionGrid, MobileIndex } from '@/components/vault';
+import { PrecisionGrid, MobileIndex, RandomFact } from '@/components/vault';
 import { VaultSearch } from '@/components/vault/vault-search';
 import { VaultProgressBar } from '@/components/vault/vault-progress';
 import { ThreadExplorer } from '@/components/vault/thread-explorer';
@@ -69,6 +69,9 @@ export default function VaultPage() {
 
       {/* Thread Explorer */}
       <ThreadExplorer />
+
+      {/* Random Nigerian Fact */}
+      <RandomFact />
 
       {/* Main Content */}
       <main className="relative">

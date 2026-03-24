@@ -7,3 +7,4 @@ export { SourceBadge, DepthIndicator, ArticleSourceDisplay } from './source-badg
 export { ArticleThread } from './article-thread';
 export { ThreadExplorer } from './thread-explorer';
 export { VaultSearch } from './vault-search';
+export { RandomFact } from './random-fact';
