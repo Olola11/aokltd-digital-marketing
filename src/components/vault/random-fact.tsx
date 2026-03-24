@@ -99,7 +99,7 @@ export function RandomFact() {
       const tag = document.activeElement?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
-      if (e.key === 'n' || e.key === 'N') {
+      if (e.key === 'n' || e.key === 'N' || e.key === ' ') {
         // Check if section is in viewport
         if (sectionRef.current) {
           const rect = sectionRef.current.getBoundingClientRect();
