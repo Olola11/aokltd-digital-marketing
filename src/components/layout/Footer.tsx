@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const footerLinks = {
   explore: [
-    { label: 'Vault', href: 'https://vault.aokltd.org' },
+    { label: 'Vault', href: '/vault' },
     { label: 'Work', href: '/work' },
   ],
   about: [

@@ -38,11 +38,14 @@ export function middleware(request: NextRequest) {
   }
 
   // Handle redirects from aokltd.org/vault to vault.aokltd.org
+  // Only redirect on production domains — NEVER on localhost or local network IPs
   if (
-    (hostname === 'aokltd.org' ||
-      hostname === 'www.aokltd.org' ||
-      hostname === 'localhost:3000') &&
-    pathname.startsWith('/vault')
+    pathname.startsWith('/vault') &&
+    (hostname === 'aokltd.org' || hostname === 'www.aokltd.org') &&
+    !hostname.includes('localhost') &&
+    !hostname.includes('127.0.0.1') &&
+    !hostname.includes('10.') &&
+    !hostname.includes('192.168.')
   ) {
     const vaultPath = pathname.replace('/vault', '') || '/';
     const url = new URL(`https://vault.aokltd.org${vaultPath}`);

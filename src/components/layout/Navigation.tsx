@@ -13,7 +13,7 @@ const navItems = [
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
   { label: 'Invest', href: '/invest' },
-  { label: 'Vault', href: 'https://vault.aokltd.org' },
+  { label: 'Vault', href: '/vault' },
   { label: 'Contact', href: '/contact' },
 ];
 

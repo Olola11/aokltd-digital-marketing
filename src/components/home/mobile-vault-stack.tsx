@@ -72,7 +72,7 @@ function StackingVaultCard({
       style={{ top: stickyTop, zIndex, scale }}
     >
       <a
-        href={`https://vault.aokltd.org/${entry.category}/${entry.slug}`}
+        href={`/vault/${entry.category}/${entry.slug}`}
         className="block relative mx-4"
       >
         {/* Image shadow — always visible on mobile, reduced opacity */}
@@ -174,7 +174,7 @@ export function MobileVaultStack() {
           Latest from the Vault
         </h2>
         <a
-          href="https://vault.aokltd.org"
+          href="/vault"
           className="font-sans text-[10px] sm:text-xs tracking-[0.2em] text-[#00008B]/50 hover:text-[#00008B] transition-colors uppercase"
         >
           View All &rarr;

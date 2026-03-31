@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     title: `${label} — The Vault`,
     description: categoryDescriptions[category] || `Explore ${label} articles in the Apotheosis of Knowledge vault.`,
     alternates: {
-      canonical: `https://vault.aokltd.org/${category}`,
+      canonical: `/vault/${category}`,
     },
   };
 }
