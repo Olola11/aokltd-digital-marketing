@@ -32,19 +32,6 @@ const SERVICES = [
   },
   {
     number: '03',
-    label: 'Writing & Editing',
-    title: 'Blog Articles & Content Scripts',
-    description:
-      'Long-form writing that ranks, reads well, and builds authority. From SEO-optimised blog posts to YouTube scripts and podcast outlines — we write content that makes your audience smarter.',
-    includes: [
-      'SEO blog articles and thought leadership pieces',
-      'YouTube and documentary script writing',
-      'Podcast show notes and episode outlines',
-      'Content editing, fact-checking, and proofreading',
-    ],
-  },
-  {
-    number: '04',
     label: 'Meta Ads',
     title: 'Meta Advertising',
     description:
@@ -57,7 +44,7 @@ const SERVICES = [
     ],
   },
   {
-    number: '05',
+    number: '04',
     label: 'Data & Analytics',
     title: 'Data Analysis & Interpretation',
     description:
@@ -70,7 +57,7 @@ const SERVICES = [
     ],
   },
   {
-    number: '06',
+    number: '05',
     label: 'Content Strategy',
     title: 'Content Strategy & Planning',
     description:
@@ -156,7 +143,7 @@ export function ServiceGrid() {
 
       {/* Mobile: sticky card stack */}
       <div className="md:hidden">
-        <MobileCardStack label="Six Capabilities" itemHeight={480}>
+        <MobileCardStack label="Five Capabilities" itemHeight={480}>
           {SERVICES.map((service) => (
             <ServiceCard key={service.number} service={service} />
           ))}

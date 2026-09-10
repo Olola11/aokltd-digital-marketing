@@ -4,6 +4,21 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
+  // studio.aokltd.org is a short link: the studio lives at aokltd.org/studio
+  // so it inherits the main domain's search authority.
+  if (hostname === 'studio.aokltd.org' || hostname.startsWith('studio.localhost')) {
+    const url = request.nextUrl.clone();
+    if (hostname === 'studio.aokltd.org') {
+      url.protocol = 'https:';
+      url.host = 'aokltd.org';
+      url.port = '';
+    } else {
+      url.hostname = 'localhost';
+    }
+    url.pathname = pathname === '/' ? '/studio' : `/studio${pathname}`;
+    return NextResponse.redirect(url, 301);
+  }
+
   // Handle vault.aokltd.org subdomain
   if (hostname === 'vault.aokltd.org' || hostname.startsWith('vault.localhost')) {
     // Don't rewrite API routes, static files, or Next.js internals

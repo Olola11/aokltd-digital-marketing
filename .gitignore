@@ -44,3 +44,6 @@ next-env.d.ts
 # claude code
 .claude/
 public/.claude/
+
+# Design reference recording (large, not part of the site)
+Omoi Website Design Sample.webm

@@ -9,7 +9,7 @@ import { SITE_URL } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Services',
   description:
-    'Digital marketing services from Apotheosis of Knowledge — AI strategy, viral content, writing, Meta ads, analytics, and content planning.',
+    'Digital marketing services from Apotheosis of Knowledge — AI strategy, viral content, Meta ads, analytics, and content planning.',
 };
 
 export default function ServicesPage() {
@@ -37,7 +37,6 @@ export default function ServicesPage() {
               itemListElement: [
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Marketing Strategy' } },
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Viral Content Engineering' } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Blog Articles & Content Scripts' } },
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meta Advertising' } },
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data Analysis & Interpretation' } },
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Content Strategy & Planning' } },
@@ -91,6 +90,29 @@ export default function ServicesPage() {
       {/* § 3 — Service Grid */}
       <section className="px-6 md:px-12 lg:px-24 pt-10 md:pt-24 pb-6 md:pb-32">
         <ServiceGrid />
+      </section>
+
+      {/* § 3b — Studio cross-link: creative and writing services live at /studio */}
+      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-24">
+        <div className="max-w-5xl mx-auto border-t border-[#00008B]/10 pt-10 md:pt-14 grid gap-6 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <span className="font-sans text-xs sm:text-sm font-medium text-quill-500 uppercase tracking-[0.25em]">
+              AOK Studio
+            </span>
+          </div>
+          <div className="md:col-span-8">
+            <p className="font-serif text-lg md:text-xl text-[#00008B]/70 leading-relaxed">
+              Looking for a website, a brand identity, motion graphics, copywriting or a ghostwriter? That work
+              lives with AOK Studio, our design and writing practice.
+            </p>
+            <Link
+              href="/studio"
+              className="mt-6 inline-block font-sans text-sm font-medium uppercase tracking-[0.1em] text-[#00008B] underline underline-offset-4 hover:text-quill-600 transition-colors"
+            >
+              Visit AOK Studio
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* § 4 — Process Timeline */}

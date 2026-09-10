@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   AOK STUDIO — client showcase tokens
+   Cool paper canvas, one ink, one accent. The accent is reserved for the
+   things a visitor can act on (starting a brief) and for measured data.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* .studio-tokens carries the variables without painting a background, for
+   content rendered in portals (the brief sheet). */
+.studio,
+.studio-tokens {
+  --studio-canvas: #f5f6f8;
+  --studio-card: #e9ecf2;
+  --studio-card-strong: #dde2ea;
+  --studio-ink: #00008b;
+  --studio-ink-soft: rgba(0, 0, 139, 0.72);
+  --studio-ink-faint: rgba(0, 0, 139, 0.14);
+  --studio-accent: #4a90e2;
+  --studio-accent-soft: #dcebfb;
+  --studio-screen: #0b1033;
+  --studio-radius: 20px;
+}
+
+.studio {
+  background-color: var(--studio-canvas);
+  color: var(--studio-ink);
+}
+
+/* The site-wide heading rule sets weight 700; the studio uses semibold,
+   per the typography system. */
+:is(.studio, .studio-tokens) :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+}
+
+/* Lenis owns scrolling; the site-wide smooth behaviour would fight it. */
+html.lenis,
+html.lenis body {
+  scroll-behavior: auto;
+}
+
+/* Labels on cards: the small outlined pill */
+.studio-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  padding: 0.25rem 0.85rem;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+@media (min-width: 1024px) {
+  .studio-pill {
+    font-size: 0.875rem;
+  }
+}
+
+/* Caret for the scroll-typed services word */
+.studio-caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  margin-left: 0.06em;
+  vertical-align: -0.06em;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+/* Native <details> FAQ disclosure */
+.studio-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.studio-faq summary {
+  list-style: none;
+}
+
+.studio-faq[open] .studio-faq-icon {
+  transform: rotate(45deg);
+}

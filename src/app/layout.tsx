@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Source_Serif_4, Space_Grotesk } from 'next/font/google';
 import { Navigation, Footer } from '@/components/layout';
 import { ContentProtection } from '@/components/layout/content-protection';
+import { SiteChrome } from '@/components/layout/site-chrome';
 import { SITE_URL } from '@/lib/constants';
 import './globals.css';
 
@@ -144,13 +145,9 @@ export default function RootLayout({
           }}
         />
         <ContentProtection />
-        <Navigation />
-        <div id="site-chrome" className="pt-16 flex flex-col min-h-screen">
-          <main id="main-content" className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <SiteChrome navigation={<Navigation />} footer={<Footer />}>
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );

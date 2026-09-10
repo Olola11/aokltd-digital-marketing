@@ -4,6 +4,7 @@ import Image from 'next/image';
 const footerLinks = {
   explore: [
     { label: 'Vault', href: '/vault' },
+    { label: 'Studio', href: '/studio' },
     { label: 'Work', href: '/work' },
   ],
   about: [
