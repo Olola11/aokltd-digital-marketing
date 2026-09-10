@@ -1,61 +1,121 @@
-import type { Metadata } from 'next';
-import { FadeIn } from '@/components/ui/fade-in';
-import { TextReveal } from '@/components/ui/text-reveal';
-import { SocialMonitor } from '@/components/work/social-monitor';
-import { ProjectTimeline } from '@/components/work/project-timeline';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'What We Are Building',
-  description: 'A transparent record of active platforms, ongoing projects, and the infrastructure Apotheosis of Knowledge is constructing for long-form knowledge work.',
-};
+import { useState } from 'react';
+import { ShowcaseHeader } from '@/components/showcase/showcase-header';
+import { ElevationHero } from '@/components/showcase/elevation-hero';
+import { ServicesSpotlight } from '@/components/showcase/services-spotlight';
+import { WorkReel } from '@/components/showcase/work-reel';
+import { EditorialWall } from '@/components/showcase/editorial-wall';
+import { ApproachSection } from '@/components/showcase/approach-section';
+import { ShowcaseFooter } from '@/components/showcase/showcase-footer';
+import { ProjectModal } from '@/components/showcase/project-modal';
+import { ProjectEnquiryModal } from '@/components/showcase/project-enquiry-modal';
+import { SHOWCASE_PROJECTS, SHOWCASE_SERVICES, Project } from '@/data/showcase-data';
+import '@/styles/showcase.css';
 
-export default function WorkPage() {
+export default function WorkShowcasePage() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [preselectedService, setPreselectedService] = useState<string | undefined>(undefined);
+
+  const handleOpenEnquiry = (serviceName?: string) => {
+    setPreselectedService(serviceName);
+    setIsEnquiryOpen(true);
+  };
+
+  const handleScrollToReel = () => {
+    const el = document.getElementById('the-reel');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <main className="bg-white min-h-screen">
-      {/* ═══ Section A: The Opening ═══ */}
-      <section className="relative px-6 md:px-12 lg:px-24 pt-12 md:pt-32 pb-10 md:pb-24">
-        {/* Timestamp */}
-        <div className="absolute top-6 right-6 md:right-12 lg:right-24">
-          <span className="font-sans text-xs md:text-sm tracking-[0.2em] text-[#00008B]/30 uppercase">
-            Last Updated: Mar 2026
-          </span>
-        </div>
+    <div className="relative w-full min-h-screen bg-white text-[#00008A]">
+      {/* 1. Minimal Floating Header */}
+      <ShowcaseHeader onOpenEnquiry={() => handleOpenEnquiry()} />
 
-        <TextReveal className="mb-8">
-          <h1 className="font-sans text-5xl md:text-7xl text-[#00008B] leading-[1.1]">
-            What we are building.
-          </h1>
-        </TextReveal>
+      {/* Main Exhibition Sequence */}
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
+        {/* 2. Hero / Positioning Statement */}
+        <ElevationHero
+          onOpenEnquiry={() => handleOpenEnquiry()}
+          onExploreWork={handleScrollToReel}
+        />
 
-        <FadeIn delay={0.15}>
-          <p className="font-serif text-base md:text-lg text-[#00008B]/60 max-w-prose leading-relaxed">
-            This page is our operations log — a transparent record of active platforms,
-            ongoing projects, and the infrastructure we are constructing for long-form
-            knowledge work.
-          </p>
-        </FadeIn>
-      </section>
+        {/* 3. Services — Interactive Index & Spotlight */}
+        <ServicesSpotlight
+          onSelectServiceToEnquire={(serviceName) => handleOpenEnquiry(serviceName)}
+        />
 
-      {/* ═══ Section B: The Operations Board ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
-        <FadeIn delay={0.1}>
-          <SocialMonitor />
-        </FadeIn>
-      </section>
+        {/* 4. The Work — Cinematic Film Reel Showcase */}
+        <WorkReel
+          onOpenProjectModal={(project) => setSelectedProject(project)}
+          onOpenEnquiry={(serviceName) => handleOpenEnquiry(serviceName)}
+        />
 
-      {/* ═══ Section C: Future Projects ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
-        <ProjectTimeline />
-      </section>
+        {/* 4b. The Work — Editorial Project Wall (Reference layout principles) */}
+        <EditorialWall
+          onOpenProjectModal={(project) => setSelectedProject(project)}
+        />
 
-      {/* ═══ Section D: The Quiet Close ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-8 md:pb-32">
-        <FadeIn>
-          <p className="text-center text-sm font-serif italic text-[#00008B]/40 max-w-xl mx-auto">
-            This is a long-term institutional project. We build slowly and deliberately.
-          </p>
-        </FadeIn>
-      </section>
-    </main>
+        {/* 5. Approach — The 4 Pillars */}
+        <ApproachSection />
+      </main>
+
+      {/* 6. Closing CTA / Footer */}
+      <ShowcaseFooter onOpenEnquiry={() => handleOpenEnquiry()} />
+
+      {/* Same-Page Project Details Modal / Drawer */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+        onOpenEnquiry={(serviceName) => handleOpenEnquiry(serviceName)}
+      />
+
+      {/* Enquiry Conversion Modal ("Start a Project" / "Let's Talk") */}
+      <ProjectEnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+        preselectedService={preselectedService}
+      />
+
+      {/* Crawlable Semantic SEO & Screen Reader Index */}
+      <div className="sr-only" aria-hidden="false">
+        <section aria-labelledby="seo-projects-index">
+          <h2 id="seo-projects-index">AOK Ltd Portfolio &amp; Case Studies Index</h2>
+          {SHOWCASE_PROJECTS.map((proj) => (
+            <article key={proj.slug}>
+              <h3>{proj.name}</h3>
+              <p>{proj.category} &middot; {proj.year}</p>
+              <p>{proj.description}</p>
+              <p>{proj.challenge}</p>
+              <p>{proj.solution}</p>
+              <ul>
+                {proj.deliverables.map((del, i) => (
+                  <li key={i}>{del}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        <section aria-labelledby="seo-services-index">
+          <h2 id="seo-services-index">AOK Ltd Creative Services Index</h2>
+          {SHOWCASE_SERVICES.map((serv) => (
+            <article key={serv.id}>
+              <h3>{serv.name} ({serv.cluster})</h3>
+              <p>{serv.tagline}</p>
+              <p>{serv.description}</p>
+              <ul>
+                {serv.deliverables.map((del, i) => (
+                  <li key={i}>{del}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+      </div>
+    </div>
   );
 }
