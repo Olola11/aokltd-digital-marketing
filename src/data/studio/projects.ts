@@ -73,8 +73,8 @@ export const STUDIO_PROJECTS: StudioProject[] = [
       source: 'gorilleandco.com',
       mp4: '/studio/work/gorille-and-co/preview.mp4',
       poster: '/studio/work/gorille-and-co/poster.jpg',
-      width: 1280,
-      height: 800,
+      width: 3840,
+      height: 2400,
     },
     measured: {
       tool: 'Lighthouse 12.8',
@@ -114,8 +114,8 @@ export const STUDIO_PROJECTS: StudioProject[] = [
       source: 'vault.aokltd.org',
       mp4: '/studio/work/aokltd/preview.mp4',
       poster: '/studio/work/aokltd/poster.jpg',
-      width: 1280,
-      height: 800,
+      width: 3840,
+      height: 2400,
     },
     measured: {
       tool: 'Lighthouse 12.8',
