@@ -177,6 +177,11 @@ export function MeasuredCard() {
         };
         const timeline = gsap.timeline({ paused: true, onUpdate: redraw });
         timeline
+          // A re-run starts from nothing: the number drops to 0 with the ring.
+          .call(() => {
+            count.value = 0;
+            counter.textContent = '0';
+          }, undefined, 0)
           .fromTo(state, { drift: 0 }, { drift: 2.6, duration: 2.6, ease: 'none' }, 0)
           .fromTo(state, { settle: 0 }, { settle: 1, duration: 1.3, ease: 'power3.inOut' }, 0.5)
           .fromTo(state, { fill: 0 }, { fill: gauge.score / 100, duration: 1.1, ease: 'power2.out' }, 1.5)
