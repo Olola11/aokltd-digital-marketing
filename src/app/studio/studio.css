@@ -56,17 +56,6 @@ html.lenis body {
   }
 }
 
-/* Caret for the scroll-typed services word */
-.studio-caret {
-  display: inline-block;
-  width: 3px;
-  height: 0.85em;
-  margin-left: 0.06em;
-  vertical-align: -0.06em;
-  background-color: currentColor;
-  opacity: 0.5;
-}
-
 /* Native <details> FAQ disclosure */
 .studio-faq summary::-webkit-details-marker {
   display: none;

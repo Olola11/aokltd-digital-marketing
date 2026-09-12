@@ -22,22 +22,6 @@ export function StatementCard() {
   );
 }
 
-export function CredentialCard() {
-  return (
-    <StudioCard label="Registered">
-      <div className="flex flex-1 flex-col items-center justify-center py-8 text-center">
-        <p className={`${display} tabular-nums`}>RC 1956161</p>
-        <p className={`mt-3 max-w-[30ch] ${soft}`}>
-          Apotheosis of Knowledge Limited, incorporated in Nigeria on 27 July 2022.
-        </p>
-        <Link href="/about/registration" className="mt-5 font-sans text-sm underline underline-offset-4 lg:text-[15px]">
-          Verify our registration
-        </Link>
-      </div>
-    </StudioCard>
-  );
-}
-
 const COUNT_WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
 
 export function ClientsCard() {
