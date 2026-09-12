@@ -5,7 +5,6 @@ import { AboutSection } from '@/components/studio/hub/about-section';
 import { WorkCard } from '@/components/studio/cards/work-card';
 import { ServicesCard } from '@/components/studio/cards/services-card';
 import { MeasuredCard } from '@/components/studio/cards/measured-card';
-import { ClockCard } from '@/components/studio/cards/clock-card';
 import { BriefCard, ClientsCard, MethodCard, StatementCard } from '@/components/studio/cards/simple-cards';
 import { JsonLd } from '@/components/studio/json-ld';
 import { studioSchema } from '@/lib/studio/structured-data';
@@ -52,7 +51,7 @@ export default function StudioPage() {
     [
       { id: 'statement', node: <StatementCard />, mobileOrder: 1 },
       ...(work[0] ? [{ ...work[0], mobileOrder: 2 }] : []),
-      { id: 'clock', node: <ClockCard />, mobileOrder: 9 },
+      { id: 'method', node: <MethodCard />, mobileOrder: 7 },
     ],
     [
       { id: 'services', node: <ServicesCard />, mobileOrder: 4 },
@@ -61,7 +60,6 @@ export default function StudioPage() {
     ],
     [
       { id: 'measured', node: <MeasuredCard />, mobileOrder: 5 },
-      { id: 'method', node: <MethodCard />, mobileOrder: 7 },
       { id: 'brief', node: <BriefCard />, mobileOrder: 6 },
     ],
   ];
