@@ -74,7 +74,6 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     scope: ['Information architecture', 'Website design', 'WordPress build', 'Case study templates', 'Insights section'],
     preview: {
       source: 'gorilleandco.com',
-      source: 'gorilleandco.com',
       mp4: '/studio/work/gorille-and-co/preview.mp4',
       mp4Uhd: '/studio/work/gorille-and-co/preview-uhd.mp4',
       poster: '/studio/work/gorille-and-co/poster.jpg',
