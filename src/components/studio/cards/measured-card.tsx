@@ -130,7 +130,9 @@ export function MeasuredCard() {
     let trigger: ScrollTrigger | undefined;
 
     // p5 is large, so it loads only on the client, once this card mounts.
-    import('p5').then(({ default: p5 }) => {
+    // If it fails to load, the scores are already in the HTML: nothing is lost.
+    import('p5')
+      .then(({ default: p5 }) => {
       if (cancelled) return;
       const P5 = p5 as unknown as P5Constructor;
 
@@ -206,7 +208,14 @@ export function MeasuredCard() {
           timelines.forEach((timeline, i) => gsap.delayedCall(i * 0.12, () => timeline.play()));
         },
       });
-    });
+      })
+      .catch((error) => {
+        console.error('MeasuredCard: p5 failed to load', error);
+        counters.current.forEach((counter, id) => {
+          const gauge = GAUGES.find((g) => g.id === id);
+          if (gauge) counter.textContent = String(gauge.score);
+        });
+      });
 
     return () => {
       cancelled = true;
