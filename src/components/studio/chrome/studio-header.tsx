@@ -18,13 +18,16 @@ const NAV = [
 const item =
   'relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-sans text-sm focus-visible:outline-none lg:px-5 lg:text-[15px]';
 
-/** The pill glides between links: one layoutId, so Motion morphs it from item to item. */
+/**
+ * The pill glides between links: one layoutId, so Motion morphs it from item
+ * to item. Brand navy, with the label it sits behind turning white.
+ */
 function NavPill() {
   return (
     <motion.span
       layoutId="studio-nav-pill"
       aria-hidden="true"
-      className="absolute inset-0 rounded-full bg-[var(--studio-card)]"
+      className="absolute inset-0 rounded-full bg-[var(--studio-ink)]"
       initial={{ opacity: 0, scale: 0.88 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.88 }}
@@ -65,7 +68,7 @@ export function StudioHeader() {
                 href={link.href}
                 {...track(link.id)}
                 onClick={() => setPressed(link.id)}
-                className={cn(item, 'hidden md:inline-flex')}
+                className={cn(item, 'hidden transition-colors duration-200 md:inline-flex', highlight === link.id && 'text-white')}
               >
                 <AnimatePresence>{highlight === link.id && <NavPill />}</AnimatePresence>
                 <span className="relative">{link.label}</span>
@@ -81,7 +84,7 @@ export function StudioHeader() {
                 }}
                 aria-pressed={paused}
                 aria-label={motionLabel}
-                className={cn(item, 'px-3 lg:px-4')}
+                className={cn(item, 'px-3 transition-colors duration-200 lg:px-4', highlight === 'motion' && 'text-white')}
               >
                 <AnimatePresence>{highlight === 'motion' && <NavPill />}</AnimatePresence>
                 {paused ? (

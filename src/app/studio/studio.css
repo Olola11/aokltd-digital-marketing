@@ -16,7 +16,8 @@
   --studio-ink-faint: rgba(0, 0, 139, 0.14);
   --studio-accent: #4a90e2;
   --studio-accent-soft: #dcebfb;
-  --studio-screen: #0b1033;
+  /* Work cards and video frames: the brand navy, same as the ink */
+  --studio-screen: #00008b;
   --studio-radius: 20px;
 }
 
