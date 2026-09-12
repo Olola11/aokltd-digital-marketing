@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -19,7 +18,8 @@ const INTRO_DELAY = 0.9;
 const INTRO_HOLD = 1.8;
 
 /**
- * StudioBrand — the mark and a wordmark that explains itself.
+ * StudioBrand — a wordmark that explains itself. (The logo mark lives in
+ * the footer, drawn in particles, so the header carries words only.)
  *
  * At rest it reads "AOK Studio". On arrival, and whenever the visitor hovers
  * or focuses it, each initial opens into its word — the letters pass through
@@ -116,16 +116,8 @@ export function StudioBrand() {
       ref={rootRef}
       href="/studio"
       aria-label="AOK Studio, by Apotheosis of Knowledge. Home"
-      className="flex shrink-0 items-center gap-3 rounded-md"
+      className="flex shrink-0 items-center rounded-md"
     >
-      <Image
-        src="/images/logo/Apotheosis of Knowledge LOGO PNG-15.png"
-        alt=""
-        width={40}
-        height={40}
-        priority
-        className="h-9 w-9 lg:h-10 lg:w-10"
-      />
       <span
         aria-hidden="true"
         className="inline-flex items-baseline whitespace-nowrap text-[26px] leading-none sm:text-[28px] lg:text-[30px]"
