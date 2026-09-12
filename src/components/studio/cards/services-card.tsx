@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { STUDIO_SERVICES } from '@/data/studio/services';
-import { gsap, useGSAP } from '@/lib/studio/gsap';
+import { gsap, ScrollTrigger, useGSAP } from '@/lib/studio/gsap';
 import { NOISE_CHARS, noiseOf } from '@/lib/studio/noise';
 import { useStudioMotion } from '../motion/studio-motion';
 import { StudioCard } from './studio-card';
@@ -15,9 +15,10 @@ const WORDS = STUDIO_SERVICES.map((service) => ({
 }));
 
 /**
- * ServicesCard — each service resolves out of noise, holds in order, then
- * dissolves back into noise as the next one resolves. Scroll drives it, so
- * scrolling back runs it in reverse and nothing moves while the page is still.
+ * ServicesCard — scrolling through the card steps through the services. At
+ * each step the current word breaks up into noise and the next one resolves
+ * out of it. Scroll chooses the word; a short tween always finishes the
+ * resolve, so the card never rests half-scrambled. Scrolling back steps back.
  */
 export function ServicesCard() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -29,31 +30,37 @@ export function ServicesCard() {
     () => {
       const el = wordRef.current;
       if (!el) return;
-      const setWord = (index: number) => el.setAttribute('href', WORDS[index].href);
 
       if (reduced) {
         el.textContent = WORDS[0].word;
-        setWord(0);
+        el.setAttribute('href', WORDS[0].href);
         return;
       }
 
-      el.textContent = noiseOf(WORDS[0].word.length);
-      const timeline = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: { trigger: cardRef.current, start: 'top 92%', end: 'bottom 8%', scrub: 0.5 },
-        onUpdate() {
-          setWord(Math.min(WORDS.length - 1, Math.floor(this.progress() * WORDS.length)));
-        },
-      });
-
-      WORDS.forEach(({ word }) => {
-        timeline.to(el, {
-          duration: 1,
-          scrambleText: { text: word, chars: NOISE_CHARS, revealDelay: 0.35, speed: 0.8, tweenLength: true },
+      let current = -1;
+      const show = (index: number) => {
+        if (index === current) return;
+        current = index;
+        el.setAttribute('href', WORDS[index].href);
+        gsap.to(el, {
+          duration: 0.7,
+          ease: 'none',
+          overwrite: true,
+          scrambleText: { text: WORDS[index].word, chars: NOISE_CHARS, revealDelay: 0.2, speed: 0.6 },
         });
-        // Hold: the word sits in order before the next one breaks it up.
-        timeline.to({}, { duration: 0.9 });
+      };
+      const indexAt = (progress: number) => Math.min(WORDS.length - 1, Math.floor(progress * WORDS.length));
+
+      el.textContent = noiseOf(WORDS[0].word.length);
+      const trigger = ScrollTrigger.create({
+        trigger: cardRef.current,
+        start: 'top 92%',
+        end: 'bottom 8%',
+        onUpdate: (self) => show(indexAt(self.progress)),
+        onEnter: (self) => show(indexAt(self.progress)),
+        onEnterBack: (self) => show(indexAt(self.progress)),
       });
+      if (trigger.isActive) show(indexAt(trigger.progress));
     },
     { scope: cardRef, dependencies: [reduced] }
   );
