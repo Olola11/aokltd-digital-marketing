@@ -33,7 +33,7 @@ export function StudioBrand() {
   const canUnfold = useMediaQuery('(min-width: 1024px) and (hover: hover)');
 
   useGSAP(
-    () => {
+    (_context, contextSafe) => {
       const root = rootRef.current;
       if (!root || reduced || !canUnfold) return;
 
@@ -83,7 +83,11 @@ export function StudioBrand() {
         timeline?.timeScale(1.3).reverse();
       };
 
-      document.fonts.ready.then(() => {
+      // Built once fonts have loaded (widths depend on them). contextSafe
+      // records the timeline and delayed calls in this useGSAP context, so a
+      // re-render or hot reload reverts them instead of leaving an orphan
+      // copy fighting the new one over the same elements.
+      const start = contextSafe!(() => {
         if (cancelled) return;
         timeline = build();
         // Introduce the name once per visit.
@@ -94,6 +98,7 @@ export function StudioBrand() {
           });
         });
       });
+      document.fonts.ready.then(start);
 
       root.addEventListener('pointerenter', expand);
       root.addEventListener('pointerleave', collapse);

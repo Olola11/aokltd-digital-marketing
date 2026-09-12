@@ -15,6 +15,9 @@
 //                       Speed the recording up to at most this length. Default 16.
 //   --poster-at <sec|%> Poster frame, in seconds or as a share of the final video
 //                       ("40%"). Default 0.4 with --settle, else 2.6.
+//   --scale <n>         Device pixel ratio for the capture. Default 2.6667, so the
+//                       1440×900 layout renders at 3840×2400: text is drawn at
+//                       that density rather than upscaled, and nothing is blurred.
 //   --hide "<css>"      Hide elements (e.g. a cookie banner) before recording.
 //   --keep-frames       Keep the raw frames for inspection.
 //
@@ -50,6 +53,7 @@ const posterOption = option('--poster-at', settleMs > 0 ? '0.4' : '2.6');
 const travel = Number(option('--travel', '0.55'));
 const passes = Math.max(1, Number(option('--passes', '3')));
 const targetDuration = Number(option('--target-duration', '16'));
+const scale = Number(option('--scale', '2.6667'));
 const hideSelector = option('--hide', null);
 const keepFrames = args.includes('--keep-frames');
 
@@ -64,7 +68,12 @@ await mkdir(outDir, { recursive: true });
 
 // Edge ships with Windows, so no browser download is needed.
 const browser = await chromium.launch({ channel: process.env.CAPTURE_CHANNEL ?? 'msedge', headless: true });
-const context = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: 1 });
+const context = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: scale });
+// Even dimensions, as H.264 requires.
+const OUT = {
+  width: Math.round((VIEWPORT.width * scale) / 2) * 2,
+  height: Math.round((VIEWPORT.height * scale) / 2) * 2,
+};
 const page = await context.newPage();
 
 async function prepare() {
@@ -87,9 +96,9 @@ cdp.on('Page.screencastFrame', ({ data, metadata, sessionId }) => {
 function startScreencast() {
   return cdp.send('Page.startScreencast', {
     format: 'jpeg',
-    quality: 92,
-    maxWidth: VIEWPORT.width,
-    maxHeight: VIEWPORT.height,
+    quality: 95,
+    maxWidth: OUT.width,
+    maxHeight: OUT.height,
     everyNthFrame: 1,
   });
 }
@@ -180,8 +189,11 @@ const finalSeconds = seconds * speed;
 
 ffmpeg([
   '-f', 'concat', '-safe', '0', '-i', listPath,
-  '-vf', `setpts=${speed.toFixed(5)}*PTS,fps=30,scale=1280:-2:flags=lanczos,format=yuv420p`,
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', '26', '-g', '10',
+  // Encoded at the capture's native size: no resampling, so no softening.
+  // "animation" tuning suits screen content: flat colour and hard edges.
+  '-vf', `setpts=${speed.toFixed(5)}*PTS,fps=30,scale=${OUT.width}:${OUT.height}:flags=lanczos,format=yuv420p`,
+  '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '20', '-g', '10',
+  '-profile:v', 'high', '-level', '5.2',
   '-movflags', '+faststart', '-an', mp4,
 ]);
 
