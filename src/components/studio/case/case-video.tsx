@@ -26,7 +26,8 @@ export function CaseVideo({ project }: { project: StudioProject }) {
             aria-label={`Screen recording of ${project.preview.source}, scrolling down the page`}
             className="h-full w-full object-cover object-top"
           >
-            <source src={project.preview.mp4} type="video/mp4" />
+            {/* Full-width player: the 3840×2400 rendition */}
+            <source src={project.preview.mp4Uhd} type="video/mp4" />
           </video>
           <span
             ref={barRef}

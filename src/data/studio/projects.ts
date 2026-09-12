@@ -32,7 +32,10 @@ export interface StudioProject {
   preview: {
     /** The page that was recorded, shown in captions */
     source: string;
+    /** 1920×1200 card rendition, keyframes every 12 frames for smooth scrubbing */
     mp4: string;
+    /** 3840×2400 rendition for the case study's full-width player */
+    mp4Uhd: string;
     poster: string;
     width: number;
     height: number;
@@ -71,7 +74,9 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     scope: ['Information architecture', 'Website design', 'WordPress build', 'Case study templates', 'Insights section'],
     preview: {
       source: 'gorilleandco.com',
+      source: 'gorilleandco.com',
       mp4: '/studio/work/gorille-and-co/preview.mp4',
+      mp4Uhd: '/studio/work/gorille-and-co/preview-uhd.mp4',
       poster: '/studio/work/gorille-and-co/poster.jpg',
       width: 3840,
       height: 2400,
@@ -109,10 +114,12 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     ],
     scope: ['Brand identity', 'Website design', 'Next.js build', 'Motion design', 'Editorial content'],
     preview: {
-      // The homepage's pinned curtain hero reads as a still image when
-      // recorded; the Vault shows the product in use.
-      source: 'vault.aokltd.org',
+      // A Vault article: large type and a hero illustration read clearly at
+      // card size, where the homepage's pinned hero and the Vault index's
+      // fine grey type do not.
+      source: 'vault.aokltd.org/history/geometry-of-dahomey',
       mp4: '/studio/work/aokltd/preview.mp4',
+      mp4Uhd: '/studio/work/aokltd/preview-uhd.mp4',
       poster: '/studio/work/aokltd/poster.jpg',
       width: 3840,
       height: 2400,

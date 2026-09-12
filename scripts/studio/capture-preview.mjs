@@ -22,8 +22,10 @@
 //   --keep-frames       Keep the raw frames for inspection.
 //
 // Output (public/studio/work/<slug>/):
-//   preview.mp4  H.264, 1280px wide, keyframe every 10 frames so pointer scrubbing stays smooth
-//   poster.jpg   shown before the video loads
+//   preview-uhd.mp4  H.264 at capture size (3840×2400 by default), for case study pages
+//   preview.mp4      H.264 1920px card rendition, keyframe every 12 frames so pointer
+//                    scrubbing stays smooth
+//   poster.jpg       1920px, shown before the video loads
 //
 // Frames come from the Chrome DevTools screencast rather than Playwright's
 // built-in recorder, which encodes at a low bitrate and blurs small type.
@@ -179,6 +181,7 @@ function ffmpeg(ffArgs) {
 }
 
 const mp4 = path.join(outDir, 'preview.mp4');
+const uhd = path.join(outDir, 'preview-uhd.mp4');
 const poster = path.join(outDir, 'poster.jpg');
 
 // Heavy pages process wheel input slowly, so real time can run long.
@@ -187,13 +190,25 @@ const seconds = usable[usable.length - 1].t - usable[0].t;
 const speed = seconds > targetDuration ? targetDuration / seconds : 1;
 const finalSeconds = seconds * speed;
 
+const timing = `setpts=${speed.toFixed(5)}*PTS,fps=30`;
+
+// Full rendition at the capture's native size: no resampling, so no softening.
+// "animation" tuning suits screen content: flat colour and hard edges.
 ffmpeg([
   '-f', 'concat', '-safe', '0', '-i', listPath,
-  // Encoded at the capture's native size: no resampling, so no softening.
-  // "animation" tuning suits screen content: flat colour and hard edges.
-  '-vf', `setpts=${speed.toFixed(5)}*PTS,fps=30,scale=${OUT.width}:${OUT.height}:flags=lanczos,format=yuv420p`,
-  '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '20', '-g', '10',
+  '-vf', `${timing},scale=${OUT.width}:${OUT.height}:flags=lanczos,format=yuv420p`,
+  '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '21', '-g', '30',
   '-profile:v', 'high', '-level', '5.2',
+  '-movflags', '+faststart', '-an', uhd,
+]);
+
+// Card rendition: still sharper than a card's on-screen size on a 2x display,
+// at a fraction of the weight, with dense keyframes for pointer scrubbing.
+ffmpeg([
+  '-f', 'concat', '-safe', '0', '-i', listPath,
+  '-vf', `${timing},scale=1920:-2:flags=lanczos,format=yuv420p`,
+  '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '22', '-g', '12',
+  '-profile:v', 'high', '-level', '5.1',
   '-movflags', '+faststart', '-an', mp4,
 ]);
 
@@ -212,6 +227,7 @@ console.log(
     recordedSeconds: Number(seconds.toFixed(2)),
     finalSeconds: Number(finalSeconds.toFixed(2)),
     mp4,
+    uhd,
     poster,
   })
 );
