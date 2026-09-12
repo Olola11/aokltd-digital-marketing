@@ -52,15 +52,15 @@ export function ServicesCard() {
       const indexAt = (progress: number) => Math.min(WORDS.length - 1, Math.floor(progress * WORDS.length));
 
       el.textContent = noiseOf(WORDS[0].word.length);
-      const trigger = ScrollTrigger.create({
+      ScrollTrigger.create({
         trigger: cardRef.current,
         start: 'top 92%',
         end: 'bottom 8%',
         onUpdate: (self) => show(indexAt(self.progress)),
-        onEnter: (self) => show(indexAt(self.progress)),
-        onEnterBack: (self) => show(indexAt(self.progress)),
+        // Positions are only known after ScrollTrigger measures the page, so
+        // the first word resolves then, wherever the visitor happens to be.
+        onRefresh: (self) => show(indexAt(self.progress)),
       });
-      if (trigger.isActive) show(indexAt(trigger.progress));
     },
     { scope: cardRef, dependencies: [reduced] }
   );

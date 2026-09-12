@@ -247,7 +247,9 @@ function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: 
   const trigger = ScrollTrigger.create({
     trigger: container,
     start: 'top bottom',
-    end: 'center 55%',
+    // The footer ends the page, so its mark's bottom edge always reaches the
+    // viewport's bottom: full assembly (and the real logo) is guaranteed.
+    end: 'bottom bottom',
     onUpdate: (self) => {
       progress = self.progress;
       draw();
