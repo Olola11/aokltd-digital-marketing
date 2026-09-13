@@ -143,7 +143,8 @@ export function StudioBrand() {
             />
           </span>
         ))}
-        <span className="ml-[0.3em] font-serif italic text-[#3A78C2]">Studio</span>
+        {/* A real space, not a margin: the visible text must read "AOK Studio". */}
+        <span className="whitespace-pre font-serif italic text-[#3A78C2]">{' Studio'}</span>
       </span>
     </Link>
   );

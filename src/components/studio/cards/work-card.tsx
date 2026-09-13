@@ -69,10 +69,11 @@ export function WorkCard({
       ) : (
         <div className="relative z-20 px-2 pb-5 pt-4 text-center lg:pb-6 lg:pt-5">
           <p className="font-sans text-sm text-white/70 lg:text-[15px]">
-            {/* The visible text is the industry; the name stays in the link's accessible name. */}
+            {/* The accessible name begins with the visible text (WCAG 2.5.3, so voice
+                control users can say what they see) and adds the client's name. */}
             <Link
               href={`/studio/work/${project.slug}`}
-              aria-label={`${project.name} case study`}
+              aria-label={`${project.sector}: ${project.name} case study`}
               className="after:absolute after:inset-0 after:z-30 after:content-[''] focus-visible:outline-none"
             >
               {project.sector}
