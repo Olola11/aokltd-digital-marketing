@@ -231,28 +231,33 @@ function mountParticles(container: HTMLDivElement, layers: Layers, image: HTMLIm
   resize();
 
   // The two parts wait off to either side until the footer arrives.
-  gsap.set(ring, { xPercent: -48, rotate: -120, scale: 0.9, opacity: 0 });
-  gsap.set(inner, { xPercent: 48, yPercent: 8, rotate: 14, opacity: 0 });
+  gsap.set(ring, { xPercent: -60, rotate: -140, scale: 0.88, opacity: 0 });
+  gsap.set(inner, { xPercent: 60, yPercent: 10, rotate: 16, opacity: 0 });
 
+  // Travel is slow and symmetrical so the two parts are seen apart, approaching,
+  // then joining; they become fully visible early in that journey.
+  const UNION = 1.6;
   const entrance = gsap.timeline({ paused: true, onUpdate: draw });
   entrance
     // 1. Union
-    .to(ring, { xPercent: 0, rotate: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'power4.out' }, 0)
-    .to(inner, { xPercent: 0, yPercent: 0, rotate: 0, opacity: 1, duration: 1.1, ease: 'power4.out' }, 0.1)
-    .fromTo(logo, { scale: 1 }, { scale: 1.04, duration: 0.14, ease: 'power2.out', yoyo: true, repeat: 1 }, 1.05)
+    .to(ring, { opacity: 1, duration: 0.35, ease: 'none' }, 0)
+    .to(inner, { opacity: 1, duration: 0.35, ease: 'none' }, 0.1)
+    .to(ring, { xPercent: 0, rotate: 0, scale: 1, duration: UNION, ease: 'power3.inOut' }, 0)
+    .to(inner, { xPercent: 0, yPercent: 0, rotate: 0, duration: UNION, ease: 'power3.inOut' }, 0.1)
+    .fromTo(logo, { scale: 1 }, { scale: 1.045, duration: 0.14, ease: 'power2.out', yoyo: true, repeat: 1 }, UNION + 0.05)
     // 2. Scramble: the solid mark gives way to its particles, which burst and gather
-    .to(state, { solid: 0, particles: 1, duration: 0.25, ease: 'none' }, 2.0)
-    .to(state, { progress: 0.3, duration: 0.7, ease: 'power2.out' }, 2.0)
-    .to(state, { progress: 1, duration: 1.2, ease: 'power3.inOut' }, 2.7)
+    .to(state, { solid: 0, particles: 1, duration: 0.25, ease: 'none' }, UNION + 0.9)
+    .to(state, { progress: 0.3, duration: 0.7, ease: 'power2.out' }, UNION + 0.9)
+    .to(state, { progress: 1, duration: 1.2, ease: 'power3.inOut' }, UNION + 1.6)
     // 3. Resolve
-    .to(state, { solid: 1, particles: 0, duration: 0.45, ease: 'power1.out' }, 3.8)
+    .to(state, { solid: 1, particles: 0, duration: 0.45, ease: 'power1.out' }, UNION + 2.7)
     .call(() => {
       entranceDone = true;
     });
 
   const trigger = ScrollTrigger.create({
     trigger: container,
-    start: 'top 70%',
+    start: 'top 55%',
     once: true,
     onEnter: () => entrance.play(),
   });
