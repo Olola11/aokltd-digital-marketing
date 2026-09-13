@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Development only: lets a phone on the same Wi-Fi load the dev server's
+  // scripts via this machine's LAN address. No effect on production builds.
+  allowedDevOrigins: ["10.99.127.169", "10.99.127.241"],
   images: {
     formats: ["image/avif", "image/webp"],
   },
