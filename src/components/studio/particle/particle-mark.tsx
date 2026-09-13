@@ -4,10 +4,13 @@ import { useEffect, useRef, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { Geometry, Mesh, Program, Renderer } from 'ogl';
 import { cn } from '@/lib/utils';
-import { ScrollTrigger } from '@/lib/studio/gsap';
+import { gsap, ScrollTrigger } from '@/lib/studio/gsap';
 import { useStudioMotion } from '../motion/studio-motion';
 
 const LOGO_SRC = '/images/logo/Apotheosis of Knowledge LOGO PNG-15.png';
+/** The mark in two parts, same canvas as the logo (scripts/studio/split-mark.mjs). */
+const RING_SRC = '/studio/mark/ring.png';
+const INNER_SRC = '/studio/mark/inner.png';
 const LOGO_WIDTH = 624;
 const LOGO_HEIGHT = 632;
 
@@ -70,7 +73,7 @@ interface Sample {
 
 /**
  * Samples the real logo: it is drawn centred in a square (as the overlay
- * image is, with object-contain) and every filled pixel becomes a candidate
+ * images are, with object-contain) and every filled pixel becomes a candidate
  * particle carrying that pixel's colour.
  */
 function sampleLogo(image: HTMLImageElement, maxPoints: number): Sample | null {
@@ -127,13 +130,27 @@ function sampleLogo(image: HTMLImageElement, maxPoints: number): Sample | null {
   return sample;
 }
 
-const smoothstep = (edge0: number, edge1: number, x: number) => {
-  const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
-  return t * t * (3 - 2 * t);
-};
+interface Layers {
+  /** Holds both parts; its opacity is the solid logo's visibility */
+  logo: HTMLDivElement;
+  ring: HTMLDivElement;
+  inner: HTMLDivElement;
+}
 
-/** Builds the particle field inside `container`; returns its cleanup. */
-function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: HTMLImageElement): () => void {
+/**
+ * Builds the particle field and the entrance inside `container`; returns
+ * its cleanup.
+ *
+ * Entrance, once, when the footer comes into view:
+ *   1. Union — the ring sweeps in from the left while the A and its quill
+ *      glide in from the right; they meet and click together.
+ *   2. Scramble — the whole mark breaks into its particles, which burst into
+ *      noise and gather again.
+ *   3. Resolve — the full-colour logo returns. From then on the cursor
+ *      dissolves it into particles, and it re-forms when the cursor leaves.
+ */
+function mountParticles(container: HTMLDivElement, layers: Layers, image: HTMLImageElement): () => void {
+  const { logo, ring, inner } = layers;
   const sample = sampleLogo(image, container.clientWidth < 640 ? 3200 : 6400);
   if (!sample) {
     logo.style.opacity = '1';
@@ -156,8 +173,8 @@ function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: 
     depthTest: false,
     depthWrite: false,
     uniforms: {
-      uProgress: { value: 0 },
-      uFade: { value: 1 },
+      uProgress: { value: 1 },
+      uFade: { value: 0 },
       uScale: { value: [1, 1] },
       uMouse: { value: [10, 10] },
       uMouseStrength: { value: 0 },
@@ -174,18 +191,22 @@ function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: 
   });
   const mesh = new Mesh(gl, { geometry, program, mode: gl.POINTS });
 
-  let progress = 0;
+  // Driven by the entrance timeline:
+  //   progress  — particle assembly (1 = on the mark, lower = burst into noise)
+  //   solid     — visibility of the solid, two-part logo
+  //   particles — visibility of the particle field
+  const state = { progress: 1, solid: 1, particles: 0 };
+  let entranceDone = false;
   const mouse = { x: 10, y: 10, tx: 10, ty: 10, s: 0, ts: 0 };
 
-  // Once assembled, the real logo takes over at full colour; the cursor
-  // dissolves it back into particles, and it re-forms when the cursor leaves.
   const draw = () => {
-    const shown = smoothstep(0.82, 1, progress) * (1 - mouse.s);
-    program.uniforms.uProgress.value = progress;
-    program.uniforms.uFade.value = 1 - shown;
+    // Once the entrance has played, the cursor trades the solid logo for particles.
+    const hover = entranceDone ? mouse.s : 0;
+    program.uniforms.uProgress.value = state.progress;
+    program.uniforms.uFade.value = Math.max(state.particles, hover);
     program.uniforms.uMouse.value = [mouse.x, mouse.y];
-    program.uniforms.uMouseStrength.value = mouse.s;
-    logo.style.opacity = String(shown);
+    program.uniforms.uMouseStrength.value = hover;
+    logo.style.opacity = String(state.solid * (1 - hover));
     renderer.render({ scene: mesh });
   };
 
@@ -194,7 +215,7 @@ function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: 
     const height = Math.max(1, container.clientHeight);
     renderer.setSize(width, height);
     // The mark fills 80% of the height, or of the width on narrow screens —
-    // the same box the overlay image occupies.
+    // the same box the overlay images occupy.
     let scaleY = 0.8;
     let scaleX = scaleY * (height / width);
     if (scaleX > 0.8) {
@@ -208,6 +229,33 @@ function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: 
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(container);
   resize();
+
+  // The two parts wait off to either side until the footer arrives.
+  gsap.set(ring, { xPercent: -48, rotate: -120, scale: 0.9, opacity: 0 });
+  gsap.set(inner, { xPercent: 48, yPercent: 8, rotate: 14, opacity: 0 });
+
+  const entrance = gsap.timeline({ paused: true, onUpdate: draw });
+  entrance
+    // 1. Union
+    .to(ring, { xPercent: 0, rotate: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'power4.out' }, 0)
+    .to(inner, { xPercent: 0, yPercent: 0, rotate: 0, opacity: 1, duration: 1.1, ease: 'power4.out' }, 0.1)
+    .fromTo(logo, { scale: 1 }, { scale: 1.04, duration: 0.14, ease: 'power2.out', yoyo: true, repeat: 1 }, 1.05)
+    // 2. Scramble: the solid mark gives way to its particles, which burst and gather
+    .to(state, { solid: 0, particles: 1, duration: 0.25, ease: 'none' }, 2.0)
+    .to(state, { progress: 0.3, duration: 0.7, ease: 'power2.out' }, 2.0)
+    .to(state, { progress: 1, duration: 1.2, ease: 'power3.inOut' }, 2.7)
+    // 3. Resolve
+    .to(state, { solid: 1, particles: 0, duration: 0.45, ease: 'power1.out' }, 3.8)
+    .call(() => {
+      entranceDone = true;
+    });
+
+  const trigger = ScrollTrigger.create({
+    trigger: container,
+    start: 'top 70%',
+    once: true,
+    onEnter: () => entrance.play(),
+  });
 
   // Pointer: eased toward its target, rendering only until it settles.
   let raf = 0;
@@ -244,22 +292,10 @@ function mountParticles(container: HTMLDivElement, logo: HTMLDivElement, image: 
   container.addEventListener('pointermove', onMove);
   container.addEventListener('pointerleave', onLeave);
 
-  const trigger = ScrollTrigger.create({
-    trigger: container,
-    start: 'top bottom',
-    // The footer ends the page, so its mark's bottom edge always reaches the
-    // viewport's bottom: full assembly (and the real logo) is guaranteed.
-    end: 'bottom bottom',
-    onUpdate: (self) => {
-      progress = self.progress;
-      draw();
-    },
-  });
-  progress = trigger.progress;
-  draw();
-
   return () => {
     trigger.kill();
+    entrance.kill();
+    gsap.set([ring, inner, logo], { clearProps: 'all' });
     resizeObserver.disconnect();
     cancelAnimationFrame(raf);
     container.removeEventListener('pointermove', onMove);
@@ -284,27 +320,30 @@ function detectWebGL(): boolean {
 const noopSubscribe = () => () => {};
 
 /**
- * ParticleMark — the AOK logo as a few thousand particles sampled from the
- * logo itself. They gather from scattered noise as the footer scrolls into
- * view, then the real logo resolves in full colour. There is no idle
- * animation loop: it renders only on scroll and pointer movement.
+ * ParticleMark — the AOK logo in the footer. Its two parts meet, it breaks
+ * into a few thousand particles sampled from the logo itself, and it
+ * resolves again in full colour. Rendering happens only while the entrance
+ * plays or the pointer moves: there is no idle animation loop.
  */
 export function ParticleMark({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const webgl = useSyncExternalStore(noopSubscribe, detectWebGL, () => true);
   const { reduced } = useStudioMotion();
 
   useEffect(() => {
     const container = containerRef.current;
     const logo = logoRef.current;
-    if (!container || !logo) return;
+    const ring = ringRef.current;
+    const inner = innerRef.current;
+    if (!container || !logo || !ring || !inner) return;
 
     if (reduced || !webgl) {
       logo.style.opacity = '1';
       return;
     }
-    logo.style.opacity = '0';
 
     let disposed = false;
     let teardown: (() => void) | undefined;
@@ -313,7 +352,7 @@ export function ParticleMark({ className }: { className?: string }) {
     image
       .decode()
       .then(() => {
-        if (!disposed) teardown = mountParticles(container, logo, image);
+        if (!disposed) teardown = mountParticles(container, { logo, ring, inner }, image);
       })
       .catch(() => {
         logo.style.opacity = '1';
@@ -325,27 +364,28 @@ export function ParticleMark({ className }: { className?: string }) {
     };
   }, [webgl, reduced]);
 
+  const part = 'absolute inset-0 [will-change:transform]';
+
   return (
     <div
       ref={containerRef}
       role="img"
-      aria-label="The Apotheosis of Knowledge logo, drawn in particles"
+      aria-label="The Apotheosis of Knowledge logo"
       className={cn('relative touch-pan-y', className)}
     >
       <div
         ref={logoRef}
         aria-hidden="true"
-        style={{ opacity: 0 }}
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
-        <Image
-          src={LOGO_SRC}
-          alt=""
-          width={LOGO_WIDTH}
-          height={LOGO_HEIGHT}
-          sizes="(max-width: 768px) 80vw, 600px"
-          className="h-[80%] w-auto max-w-[80%] object-contain"
-        />
+        <div className="relative aspect-[624/632] h-[80%] max-w-[80%]">
+          <div ref={ringRef} className={part}>
+            <Image src={RING_SRC} alt="" fill sizes="(max-width: 768px) 80vw, 600px" className="object-contain" />
+          </div>
+          <div ref={innerRef} className={part}>
+            <Image src={INNER_SRC} alt="" fill sizes="(max-width: 768px) 80vw, 600px" className="object-contain" />
+          </div>
+        </div>
       </div>
     </div>
   );
