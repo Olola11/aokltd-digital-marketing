@@ -13,10 +13,13 @@ import { useScrubVideo } from '../video/use-scrub-video';
 export function WorkCard({
   project,
   headingLevel = 'h2',
+  showName = true,
   className,
 }: {
   project: StudioProject;
   headingLevel?: 'h2' | 'h3';
+  /** Off on the hub, where the clients logo wall already names each client */
+  showName?: boolean;
   className?: string;
 }) {
   const { videoRef, barRef, areaRef, pointerHandlers, focusHandlers } = useScrubVideo();
@@ -37,17 +40,32 @@ export function WorkCard({
         <span className="studio-pill border-white/60">Work</span>
       </div>
 
-      <div className="relative z-20 px-2 pb-6 pt-5 text-center lg:pb-8 lg:pt-7">
-        <Heading className="font-sans text-3xl leading-[1.05] tracking-[-0.02em] lg:text-[40px]">
-          <Link
-            href={`/studio/work/${project.slug}`}
-            className="after:absolute after:inset-0 after:z-30 after:content-[''] focus-visible:outline-none"
-          >
-            {project.name}
-          </Link>
-        </Heading>
-        <p className="mt-2 font-sans text-sm text-white/70 lg:text-[15px]">{project.sector}</p>
-      </div>
+      {showName ? (
+        <div className="relative z-20 px-2 pb-6 pt-5 text-center lg:pb-8 lg:pt-7">
+          <Heading className="font-sans text-3xl leading-[1.05] tracking-[-0.02em] lg:text-[40px]">
+            <Link
+              href={`/studio/work/${project.slug}`}
+              className="after:absolute after:inset-0 after:z-30 after:content-[''] focus-visible:outline-none"
+            >
+              {project.name}
+            </Link>
+          </Heading>
+          <p className="mt-2 font-sans text-sm text-white/70 lg:text-[15px]">{project.sector}</p>
+        </div>
+      ) : (
+        <div className="relative z-20 px-2 pb-5 pt-4 text-center lg:pb-6 lg:pt-5">
+          <p className="font-sans text-sm text-white/70 lg:text-[15px]">
+            {/* The visible text is the industry; the name stays in the link's accessible name. */}
+            <Link
+              href={`/studio/work/${project.slug}`}
+              aria-label={`${project.name} case study`}
+              className="after:absolute after:inset-0 after:z-30 after:content-[''] focus-visible:outline-none"
+            >
+              {project.sector}
+            </Link>
+          </p>
+        </div>
+      )}
 
       <div
         style={{ aspectRatio: `${project.preview.width} / ${project.preview.height}` }}

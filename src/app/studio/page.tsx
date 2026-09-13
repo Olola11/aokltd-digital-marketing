@@ -44,7 +44,8 @@ export const metadata: Metadata = {
 export default function StudioPage() {
   const work: GridItem[] = STUDIO_PROJECTS.map((project) => ({
     id: `work-${project.slug}`,
-    node: <WorkCard project={project} />,
+    // The clients logo wall names each client, so the work cards lead with the industry.
+    node: <WorkCard project={project} showName={false} />,
     mobileOrder: 2,
   }));
 
