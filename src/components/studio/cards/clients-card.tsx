@@ -37,7 +37,10 @@ export function ClientsCard() {
               aria-label={`${project.name} case study`}
               className="group relative flex aspect-[3/2] items-center justify-center rounded-2xl bg-white/55 px-6 transition-colors duration-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--studio-ink)]"
             >
-              <span className="relative block h-[42%] w-[78%]">
+              <span
+                className="relative block h-[42%] w-[78%]"
+                style={project.logoScale ? { transform: `scale(${project.logoScale})` } : undefined}
+              >
                 <Image
                   src={project.logo}
                   alt=""

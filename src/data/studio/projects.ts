@@ -24,6 +24,8 @@ export interface StudioProject {
   displayUrl: string;
   /** Logo for the clients wall: trimmed and inked in brand navy by scripts/studio/prepare-client-logo.mjs */
   logo: string;
+  /** Optical size on the logo wall (1 = default), so marks read with equal weight */
+  logoScale?: number;
   sector: string;
   summary: string;
   services: StudioServiceSlug[];
@@ -101,6 +103,8 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     url: 'https://aokltd.org/',
     displayUrl: 'aokltd.org',
     logo: '/studio/clients/aokltd.png',
+    // The circle mark takes width the lettering would otherwise have.
+    logoScale: 1.15,
     sector: 'Research publishing and education',
     summary:
       'The institutional home of a Lagos research publisher, with a long-form archive on its own subdomain.',
