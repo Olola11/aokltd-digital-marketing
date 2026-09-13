@@ -38,6 +38,8 @@ export interface StudioProject {
     source: string;
     /** 1920×1200 card rendition, keyframes every 12 frames for smooth scrubbing */
     mp4: string;
+    /** 960×600 phone rendition: a fraction of the data on mobile networks */
+    mp4Sm: string;
     /** 3840×2400 rendition for the case study's full-width player */
     mp4Uhd: string;
     poster: string;
@@ -80,6 +82,7 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     preview: {
       source: 'gorilleandco.com',
       mp4: '/studio/work/gorille-and-co/preview.mp4',
+      mp4Sm: '/studio/work/gorille-and-co/preview-sm.mp4',
       mp4Uhd: '/studio/work/gorille-and-co/preview-uhd.mp4',
       poster: '/studio/work/gorille-and-co/poster.jpg',
       width: 3840,
@@ -126,6 +129,7 @@ export const STUDIO_PROJECTS: StudioProject[] = [
       // fine grey type do not.
       source: 'vault.aokltd.org/history/geometry-of-dahomey',
       mp4: '/studio/work/aokltd/preview.mp4',
+      mp4Sm: '/studio/work/aokltd/preview-sm.mp4',
       mp4Uhd: '/studio/work/aokltd/preview-uhd.mp4',
       poster: '/studio/work/aokltd/poster.jpg',
       width: 3840,

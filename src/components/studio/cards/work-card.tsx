@@ -5,10 +5,23 @@ import type { StudioProject } from '@/data/studio/projects';
 import { cn } from '@/lib/utils';
 import { useScrubVideo } from '../video/use-scrub-video';
 
+/** Shown only on touch screens, where there is no hover to discover scrubbing. */
+function TouchHint() {
+  return (
+    <span
+      aria-hidden="true"
+      className="mt-1.5 block font-sans text-xs text-white/55 [@media(hover:hover)]:hidden"
+    >
+      Drag sideways to scrub
+    </span>
+  );
+}
+
 /**
  * WorkCard — the live site, recorded, shown whole in a 16:10 screen (the
- * recording's own shape, so nothing is cropped). Moving the mouse across
- * the card scrubs the recording; the accent rule is the playhead.
+ * recording's own shape, so nothing is cropped). Moving the mouse, or
+ * dragging a finger sideways, scrubs the recording; the accent rule is the
+ * playhead. Phones get a 960px rendition; larger screens the 1920px one.
  */
 export function WorkCard({
   project,
@@ -31,7 +44,7 @@ export function WorkCard({
       {...pointerHandlers}
       {...focusHandlers}
       className={cn(
-        'group relative flex flex-col overflow-hidden rounded-[var(--studio-radius)] bg-[var(--studio-screen)] px-4 pb-4 pt-5 text-white lg:px-6 lg:pb-6 lg:pt-6',
+        'group relative flex touch-pan-y flex-col overflow-hidden rounded-[var(--studio-radius)] bg-[var(--studio-screen)] px-4 pb-4 pt-5 text-white lg:px-6 lg:pb-6 lg:pt-6',
         'has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-[var(--studio-accent)] has-[a:focus-visible]:ring-offset-2',
         className
       )}
@@ -51,6 +64,7 @@ export function WorkCard({
             </Link>
           </Heading>
           <p className="mt-2 font-sans text-sm text-white/70 lg:text-[15px]">{project.sector}</p>
+          <TouchHint />
         </div>
       ) : (
         <div className="relative z-20 px-2 pb-5 pt-4 text-center lg:pb-6 lg:pt-5">
@@ -64,6 +78,7 @@ export function WorkCard({
               {project.sector}
             </Link>
           </p>
+          <TouchHint />
         </div>
       )}
 
@@ -82,6 +97,7 @@ export function WorkCard({
           tabIndex={-1}
           className="absolute inset-0 h-full w-full object-contain"
         >
+          <source src={project.preview.mp4Sm} type="video/mp4" media="(max-width: 767px)" />
           <source src={project.preview.mp4} type="video/mp4" />
         </video>
         <span

@@ -121,7 +121,7 @@ export function StudioBrand() {
       ref={rootRef}
       href="/studio"
       aria-label="AOK Studio, by Apotheosis of Knowledge. Home"
-      className="flex shrink-0 items-center rounded-md"
+      className="flex min-h-11 shrink-0 items-center rounded-md"
     >
       <span
         aria-hidden="true"

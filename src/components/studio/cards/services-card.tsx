@@ -112,7 +112,7 @@ export function ServicesCard() {
             <li key={service.slug}>
               <Link
                 href={`/studio/services/${service.slug}`}
-                className="underline-offset-4 transition-colors duration-200 hover:text-[var(--studio-ink)] hover:underline"
+                className="inline-block py-1.5 underline-offset-4 transition-colors duration-200 hover:text-[var(--studio-ink)] hover:underline"
               >
                 {service.name}
               </Link>

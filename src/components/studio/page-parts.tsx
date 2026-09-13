@@ -18,7 +18,7 @@ export function Breadcrumbs({ items }: { items: { name: string; path: string }[]
                 {item.name}
               </span>
             ) : (
-              <Link href={item.path} className="underline-offset-4 hover:underline">
+              <Link href={item.path} className="inline-block py-2 underline-offset-4 hover:underline">
                 {item.name}
               </Link>
             )}

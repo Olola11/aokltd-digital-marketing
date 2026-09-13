@@ -15,17 +15,18 @@ const NAV = [
   { id: 'about', label: 'About', href: '/studio#about' },
 ];
 
+// min-h-11: 44px touch targets on every control.
 const item =
-  'relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-sans text-sm focus-visible:outline-none lg:px-5 lg:text-[15px]';
+  'relative inline-flex min-h-11 items-center gap-1.5 rounded-full px-4 py-2 font-sans text-sm focus-visible:outline-none lg:px-5 lg:text-[15px]';
 
 /**
- * The pill glides between links: one layoutId, so Motion morphs it from item
- * to item. Brand navy, with the label it sits behind turning white.
+ * The pill glides between links: one layoutId per nav, so Motion morphs it
+ * from item to item. Brand navy, with the label it sits behind turning white.
  */
-function NavPill() {
+function NavPill({ layoutId }: { layoutId: string }) {
   return (
     <motion.span
-      layoutId="studio-nav-pill"
+      layoutId={layoutId}
       aria-hidden="true"
       className="absolute inset-0 rounded-full bg-[var(--studio-ink)]"
       initial={{ opacity: 0, scale: 0.88 }}
@@ -38,8 +39,12 @@ function NavPill() {
 
 /**
  * StudioHeader — scrolls away with the page. Links rest as plain text; a pill
- * springs in behind whichever one is hovered, focused or last clicked.
+ * springs in behind whichever one is hovered, focused or last tapped.
  * "Start a brief" keeps the only accent colour, outlined while the sheet is open.
+ *
+ * Phones get the section links on a row of their own beneath the brand, so
+ * the mobile page carries the same navigation as desktop (Google indexes the
+ * mobile version first).
  */
 export function StudioHeader() {
   const { open, isOpen } = useEnquiry();
@@ -55,25 +60,28 @@ export function StudioHeader() {
     onBlur: () => setHovered(null),
   });
 
+  const sectionLinks = (layoutId: string, className?: string) =>
+    NAV.map((link) => (
+      <Link
+        key={link.id}
+        href={link.href}
+        {...track(link.id)}
+        onClick={() => setPressed(link.id)}
+        className={cn(item, 'transition-colors duration-200', highlight === link.id && 'text-white', className)}
+      >
+        <AnimatePresence>{highlight === link.id && <NavPill layoutId={layoutId} />}</AnimatePresence>
+        <span className="relative">{link.label}</span>
+      </Link>
+    ));
+
   return (
-    <header className="flex items-center justify-between gap-3 px-4 pb-8 pt-4 sm:px-6 lg:px-8 lg:pb-14 lg:pt-6">
+    <header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 pb-6 pt-3 sm:px-6 md:pb-8 md:pt-4 lg:px-8 lg:pb-14 lg:pt-6">
       <StudioBrand />
 
-      <nav aria-label="Studio" className="flex items-center gap-1.5 lg:gap-2">
-        <MotionConfig reducedMotion="user">
+      <MotionConfig reducedMotion="user">
+        <nav aria-label="Studio" className="flex items-center gap-1.5 lg:gap-2">
           <div className="flex items-center" onMouseLeave={() => setHovered(null)}>
-            {NAV.map((link) => (
-              <Link
-                key={link.id}
-                href={link.href}
-                {...track(link.id)}
-                onClick={() => setPressed(link.id)}
-                className={cn(item, 'hidden transition-colors duration-200 md:inline-flex', highlight === link.id && 'text-white')}
-              >
-                <AnimatePresence>{highlight === link.id && <NavPill />}</AnimatePresence>
-                <span className="relative">{link.label}</span>
-              </Link>
-            ))}
+            {sectionLinks('studio-nav-pill', 'hidden md:inline-flex')}
             {!reduced && (
               <button
                 type="button"
@@ -84,9 +92,13 @@ export function StudioHeader() {
                 }}
                 aria-pressed={paused}
                 aria-label={motionLabel}
-                className={cn(item, 'px-3 transition-colors duration-200 lg:px-4', highlight === 'motion' && 'text-white')}
+                className={cn(
+                  item,
+                  'min-w-11 justify-center px-3 transition-colors duration-200 lg:px-4',
+                  highlight === 'motion' && 'text-white'
+                )}
               >
-                <AnimatePresence>{highlight === 'motion' && <NavPill />}</AnimatePresence>
+                <AnimatePresence>{highlight === 'motion' && <NavPill layoutId="studio-nav-pill" />}</AnimatePresence>
                 {paused ? (
                   <Play className="relative h-3.5 w-3.5" aria-hidden="true" />
                 ) : (
@@ -96,24 +108,29 @@ export function StudioHeader() {
               </button>
             )}
           </div>
-        </MotionConfig>
 
-        <button
-          type="button"
-          onClick={() => open()}
-          aria-haspopup="dialog"
-          aria-expanded={isOpen}
-          className={cn(
-            item,
-            'font-medium transition-colors duration-200',
-            isOpen
-              ? 'bg-transparent ring-1 ring-inset ring-[var(--studio-ink)]'
-              : 'bg-[var(--studio-accent-soft)] hover:bg-[#cde2f9]'
-          )}
-        >
-          Start a brief
-        </button>
-      </nav>
+          <button
+            type="button"
+            onClick={() => open()}
+            aria-haspopup="dialog"
+            aria-expanded={isOpen}
+            className={cn(
+              item,
+              'font-medium transition-colors duration-200',
+              isOpen
+                ? 'bg-transparent ring-1 ring-inset ring-[var(--studio-ink)]'
+                : 'bg-[var(--studio-accent-soft)] hover:bg-[#cde2f9]'
+            )}
+          >
+            Start a brief
+          </button>
+        </nav>
+
+        {/* Phones: the section links on their own row. */}
+        <nav aria-label="Studio sections" className="-ml-4 flex w-full items-center md:hidden">
+          {sectionLinks('studio-nav-pill-mobile')}
+        </nav>
+      </MotionConfig>
     </header>
   );
 }

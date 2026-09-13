@@ -98,7 +98,10 @@ export default async function CaseStudyPage({ params }: Props) {
                 {services.map((service, i) => (
                   <span key={service.slug}>
                     {i > 0 && ', '}
-                    <Link href={`/studio/services/${service.slug}`} className="underline-offset-4 hover:underline">
+                    <Link
+                      href={`/studio/services/${service.slug}`}
+                      className="inline-block py-1 underline-offset-4 hover:underline"
+                    >
                       {service.name}
                     </Link>
                   </span>

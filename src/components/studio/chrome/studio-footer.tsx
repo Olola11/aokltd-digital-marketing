@@ -12,7 +12,8 @@ const SOCIAL = [
   { label: 'X', href: 'https://x.com/aok_ltd' },
 ];
 
-const link = 'underline-offset-4 hover:underline';
+// Padded to comfortable touch targets without changing the visual rhythm.
+const link = 'inline-block py-2 underline-offset-4 hover:underline';
 
 /**
  * StudioFooter — a full-height closing panel. The AOK mark assembles from

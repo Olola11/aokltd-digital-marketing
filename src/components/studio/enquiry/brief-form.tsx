@@ -121,7 +121,8 @@ export function BriefForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="relative mt-10">
-      <div className="space-y-4 font-sans text-2xl leading-[1.7] sm:text-3xl lg:text-[44px] lg:leading-[1.5]">
+      {/* 20px on phones so the longest option fits a line with its full stop. */}
+      <div className="space-y-4 font-sans text-xl leading-[1.8] sm:text-3xl sm:leading-[1.7] lg:text-[44px] lg:leading-[1.5]">
         <motion.p {...rise(0)}>
           I need{' '}
           <label htmlFor="brief-service" className="sr-only">
@@ -131,7 +132,7 @@ export function BriefForm({
             id="brief-service"
             {...register('service')}
             aria-invalid={!!errors.service}
-            className={cn(inlineField, 'cursor-pointer appearance-none')}
+            className={cn(inlineField, 'max-w-full cursor-pointer appearance-none')}
           >
             {STUDIO_SERVICES.map((service) => (
               <option key={service.slug} value={service.slug}>
@@ -158,7 +159,7 @@ export function BriefForm({
             id="brief-timeline"
             {...register('timeline')}
             aria-invalid={!!errors.timeline}
-            className={cn(inlineField, 'cursor-pointer appearance-none')}
+            className={cn(inlineField, 'max-w-full cursor-pointer appearance-none')}
           >
             {TIMELINES.map((timeline) => (
               <option key={timeline} value={timeline}>

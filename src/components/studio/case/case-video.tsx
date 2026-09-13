@@ -13,7 +13,7 @@ export function CaseVideo({ project }: { project: StudioProject }) {
       <div
         ref={areaRef}
         {...pointerHandlers}
-        className="relative overflow-hidden rounded-[var(--studio-radius)] bg-[var(--studio-screen)] p-2 sm:p-3 lg:p-5"
+        className="relative touch-pan-y overflow-hidden rounded-[var(--studio-radius)] bg-[var(--studio-screen)] p-2 sm:p-3 lg:p-5"
       >
         <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-black">
           <video
@@ -46,7 +46,8 @@ export function CaseVideo({ project }: { project: StudioProject }) {
         </button>
       </div>
       <figcaption className="mt-3 font-sans text-sm text-[var(--studio-ink-soft)] lg:text-[15px]">
-        Recorded from the live site at {project.preview.source}. Move your pointer across the frame to scrub.
+        Recorded from the live site at {project.preview.source}. Move your pointer, or drag sideways, across the
+        frame to scrub.
       </figcaption>
     </figure>
   );

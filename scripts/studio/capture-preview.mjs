@@ -25,6 +25,7 @@
 //   preview-uhd.mp4  H.264 at capture size (3840×2400 by default), for case study pages
 //   preview.mp4      H.264 1920px card rendition, keyframe every 12 frames so pointer
 //                    scrubbing stays smooth
+//   preview-sm.mp4   H.264 960px phone rendition, served to screens under 768px
 //   poster.jpg       1920px, shown before the video loads
 //
 // Frames come from the Chrome DevTools screencast rather than Playwright's
@@ -182,6 +183,7 @@ function ffmpeg(ffArgs) {
 
 const mp4 = path.join(outDir, 'preview.mp4');
 const uhd = path.join(outDir, 'preview-uhd.mp4');
+const sm = path.join(outDir, 'preview-sm.mp4');
 const poster = path.join(outDir, 'poster.jpg');
 
 // Heavy pages process wheel input slowly, so real time can run long.
@@ -212,6 +214,15 @@ ffmpeg([
   '-movflags', '+faststart', '-an', mp4,
 ]);
 
+// Phone rendition: small screens and mobile data.
+ffmpeg([
+  '-f', 'concat', '-safe', '0', '-i', listPath,
+  '-vf', `${timing},scale=960:-2:flags=lanczos,format=yuv420p`,
+  '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '25', '-g', '12',
+  '-profile:v', 'high', '-level', '4.0',
+  '-movflags', '+faststart', '-an', sm,
+]);
+
 const posterAt = posterOption.endsWith('%')
   ? (Number(posterOption.slice(0, -1)) / 100) * finalSeconds
   : Number(posterOption);
@@ -228,6 +239,7 @@ console.log(
     finalSeconds: Number(finalSeconds.toFixed(2)),
     mp4,
     uhd,
+    sm,
     poster,
   })
 );

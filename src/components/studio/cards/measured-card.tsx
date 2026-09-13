@@ -253,6 +253,8 @@ export function MeasuredCard() {
                       key={id}
                       className="flex flex-col items-center gap-2"
                       onMouseEnter={() => replays.current.get(id)?.()}
+                      // Touch screens have no hover: a tap re-runs the audit.
+                      onClick={() => replays.current.get(id)?.()}
                     >
                       <dt className="order-2 text-center font-sans text-xs text-[var(--studio-ink-soft)] lg:text-[13px]">
                         {metric.label}

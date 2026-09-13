@@ -28,7 +28,9 @@ const COLUMN_OFFSETS = [0, 0.18, 0.09];
  * slight tilt. Scrolling pulls them into register: by the time the grid's
  * bottom edge reaches the viewport, the columns are level, the cards are
  * square, and the grid is perfectly flush. Scroll back and the noise returns.
- * Mobile and reduced-motion visitors get the ordered grid from the start.
+ * Below desktop each card resolves on its own as it scrolls in (two columns
+ * on tablets, one on phones). Reduced-motion visitors get the ordered grid
+ * from the start.
  */
 export function ResolveGrid({ columns, className }: { columns: GridItem[][]; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -67,6 +69,25 @@ export function ResolveGrid({ columns, className }: { columns: GridItem[][]; cla
         });
       });
 
+      // Phones and tablets: one stack, so each card resolves on its own —
+      // it arrives tilted and low, and squares up as it scrolls into place.
+      mm.add('(max-width: 1023px)', () => {
+        gsap.utils.toArray<HTMLElement>('[data-resolve-card]').forEach((card, i) => {
+          const tilt = (((i * 5) % 7) - 3) * 0.6;
+          gsap.fromTo(
+            card,
+            { rotate: tilt, y: 48, scale: 0.96 },
+            {
+              rotate: 0,
+              y: 0,
+              scale: 1,
+              ease: 'none',
+              scrollTrigger: { trigger: card, start: 'top 100%', end: 'top 65%', scrub: 0.5 },
+            }
+          );
+        });
+      });
+
       return () => mm.revert();
     },
     { scope: ref, dependencies: [reduced] }
@@ -75,7 +96,10 @@ export function ResolveGrid({ columns, className }: { columns: GridItem[][]; cla
   return (
     <div
       ref={ref}
-      className={cn('flex flex-col gap-4 lg:grid lg:grid-cols-3 lg:items-stretch lg:gap-5', className)}
+      className={cn(
+        'flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:items-stretch',
+        className
+      )}
     >
       {columns.map((column, c) => (
         <div key={c} data-resolve-col className="contents lg:flex lg:flex-col lg:gap-5">
