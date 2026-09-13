@@ -349,8 +349,11 @@ export function ParticleMark({ className }: { className?: string }) {
     let teardown: (() => void) | undefined;
     const image = new window.Image();
     image.src = LOGO_SRC;
-    image
-      .decode()
+    // The entrance animates the two part images, so it waits for them too.
+    const parts = [ring, inner]
+      .map((el) => el.querySelector('img'))
+      .filter((img): img is HTMLImageElement => img !== null);
+    Promise.all([image.decode(), ...parts.map((img) => img.decode())])
       .then(() => {
         if (!disposed) teardown = mountParticles(container, { logo, ring, inner }, image);
       })
@@ -379,11 +382,13 @@ export function ParticleMark({ className }: { className?: string }) {
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
         <div className="relative aspect-[624/632] h-[80%] max-w-[80%]">
+          {/* Small PNGs (8–10KB): served as-is and loaded eagerly, so they are
+              ready before the footer arrives rather than lazily after it. */}
           <div ref={ringRef} className={part}>
-            <Image src={RING_SRC} alt="" fill sizes="(max-width: 768px) 80vw, 600px" className="object-contain" />
+            <Image src={RING_SRC} alt="" fill unoptimized loading="eager" className="object-contain" />
           </div>
           <div ref={innerRef} className={part}>
-            <Image src={INNER_SRC} alt="" fill sizes="(max-width: 768px) 80vw, 600px" className="object-contain" />
+            <Image src={INNER_SRC} alt="" fill unoptimized loading="eager" className="object-contain" />
           </div>
         </div>
       </div>
