@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { STUDIO_PROJECTS } from '@/data/studio/projects';
 import { StartBriefButton } from '../enquiry/enquiry-provider';
 import { primaryButton } from '../ui/buttons';
 import { StudioCard } from './studio-card';
@@ -18,31 +16,6 @@ export function StatementCard() {
           Websites, brand identities, motion, copy and ghostwriting, from the team behind Apotheosis of Knowledge.
         </p>
       </div>
-    </StudioCard>
-  );
-}
-
-const COUNT_WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-
-export function ClientsCard() {
-  const count = STUDIO_PROJECTS.length;
-  return (
-    <StudioCard label="Clients">
-      <ul className="flex flex-1 flex-col items-center justify-center gap-4 py-8 text-center">
-        {STUDIO_PROJECTS.map((project) => (
-          <li key={project.slug}>
-            <Link
-              href={`/studio/work/${project.slug}`}
-              className="font-sans text-2xl tracking-[-0.02em] underline-offset-4 hover:underline lg:text-3xl"
-            >
-              {project.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <p className="text-center font-serif text-sm text-[var(--studio-ink-soft)] lg:text-base">
-        {COUNT_WORDS[count] ?? count} {count === 1 ? 'site' : 'sites'} launched. More in progress.
-      </p>
     </StudioCard>
   );
 }

@@ -5,7 +5,8 @@ import { AboutSection } from '@/components/studio/hub/about-section';
 import { WorkCard } from '@/components/studio/cards/work-card';
 import { ServicesCard } from '@/components/studio/cards/services-card';
 import { MeasuredCard } from '@/components/studio/cards/measured-card';
-import { BriefCard, ClientsCard, MethodCard, StatementCard } from '@/components/studio/cards/simple-cards';
+import { BriefCard, MethodCard, StatementCard } from '@/components/studio/cards/simple-cards';
+import { ClientsCard } from '@/components/studio/cards/clients-card';
 import { JsonLd } from '@/components/studio/json-ld';
 import { studioSchema } from '@/lib/studio/structured-data';
 

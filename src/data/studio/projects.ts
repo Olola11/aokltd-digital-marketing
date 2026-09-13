@@ -22,6 +22,8 @@ export interface StudioProject {
   name: string;
   url: string;
   displayUrl: string;
+  /** Logo for the clients wall: trimmed and inked in brand navy by scripts/studio/prepare-client-logo.mjs */
+  logo: string;
   sector: string;
   summary: string;
   services: StudioServiceSlug[];
@@ -59,6 +61,7 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     name: 'Gorille x Co',
     url: 'https://gorilleandco.com/',
     displayUrl: 'gorilleandco.com',
+    logo: '/studio/clients/gorille-and-co.png',
     sector: 'Sports, entertainment and culture partnerships',
     summary:
       'The website for a partnerships firm that brings brands into sport, music and culture, and shows the commercial results.',
@@ -97,6 +100,7 @@ export const STUDIO_PROJECTS: StudioProject[] = [
     name: 'Apotheosis of Knowledge',
     url: 'https://aokltd.org/',
     displayUrl: 'aokltd.org',
+    logo: '/studio/clients/aokltd.png',
     sector: 'Research publishing and education',
     summary:
       'The institutional home of a Lagos research publisher, with a long-form archive on its own subdomain.',
