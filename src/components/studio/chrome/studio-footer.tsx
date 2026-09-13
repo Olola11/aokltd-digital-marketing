@@ -52,7 +52,14 @@ export function StudioFooter() {
               hello@aokltd.org
             </a>
             {SOCIAL.map((item) => (
-              <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" className={link}>
+              // min-w-11: "X" is a single letter, too narrow to tap on its own.
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${link} min-w-11 text-center`}
+              >
                 {item.label}
               </a>
             ))}
