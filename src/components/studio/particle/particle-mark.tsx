@@ -163,7 +163,15 @@ function mountParticles(container: HTMLDivElement, layers: Layers, image: HTMLIm
   gl.clearColor(0, 0, 0, 0);
   const canvas = gl.canvas as HTMLCanvasElement;
   canvas.setAttribute('aria-hidden', 'true');
-  Object.assign(canvas.style, { position: 'absolute', inset: '0', width: '100%', height: '100%' });
+  // The canvas is a picture, not a control: gestures belong to the page.
+  Object.assign(canvas.style, {
+    position: 'absolute',
+    inset: '0',
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    touchAction: 'auto',
+  });
   container.appendChild(canvas);
 
   const program = new Program(gl, {
@@ -279,6 +287,10 @@ function mountParticles(container: HTMLDivElement, layers: Layers, image: HTMLIm
     if (!raf) raf = requestAnimationFrame(step);
   };
   const onMove = (event: PointerEvent) => {
+    // Touch only ever means "scroll" here. Redrawing the field under a
+    // finger competes with the scroll for the main thread, and on a phone
+    // that reads as the page refusing to move.
+    if (event.pointerType !== 'mouse') return;
     const rect = container.getBoundingClientRect();
     const [sx, sy] = program.uniforms.uScale.value as number[];
     mouse.tx = (((event.clientX - rect.left) / rect.width) * 2 - 1) / sx;
@@ -294,8 +306,8 @@ function mountParticles(container: HTMLDivElement, layers: Layers, image: HTMLIm
     mouse.ts = 0;
     kick();
   };
-  container.addEventListener('pointermove', onMove);
-  container.addEventListener('pointerleave', onLeave);
+  container.addEventListener('pointermove', onMove, { passive: true });
+  container.addEventListener('pointerleave', onLeave, { passive: true });
 
   return () => {
     trigger.kill();
@@ -379,7 +391,7 @@ export function ParticleMark({ className }: { className?: string }) {
       ref={containerRef}
       role="img"
       aria-label="The Apotheosis of Knowledge logo"
-      className={cn('relative touch-pan-y', className)}
+      className={cn('relative', className)}
     >
       <div
         ref={logoRef}
