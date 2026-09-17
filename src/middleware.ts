@@ -29,6 +29,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
+  // The studio has one home. Anything that still asks aokltd.org for it is
+  // sent to the studio's own domain, the way the vault is. Icons and share
+  // images stay where they are, so nothing has to follow a redirect for them.
+  if (
+    (hostname === 'aokltd.org' || hostname === 'www.aokltd.org') &&
+    (pathname === '/studio' || pathname.startsWith('/studio/')) &&
+    !pathname.includes('.') &&
+    !pathname.endsWith('/opengraph-image')
+  ) {
+    const url = new URL(`https://studio.aokltd.org${pathname.replace(/^\/studio/, '') || '/'}`);
+    url.search = request.nextUrl.search;
+    return NextResponse.redirect(url, 301);
+  }
+
   // Handle vault.aokltd.org subdomain
   if (hostname === 'vault.aokltd.org' || hostname.startsWith('vault.localhost')) {
     // Don't rewrite API routes, static files, or Next.js internals
