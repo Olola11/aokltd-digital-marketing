@@ -13,6 +13,12 @@ export function getProjectHighlights(slug: string): { value: string; label: stri
         { value: String(nigerianFacts.length), label: 'sourced facts in the random fact generator' },
         { value: '2', label: 'typefaces carrying the entire system' },
       ];
+    case 'arsom-global':
+      return [
+        { value: '3', label: 'services, each with its own way in' },
+        { value: '4', label: 'places a building’s power goes, named before anything is sold' },
+        { value: '4', label: 'kinds of building addressed, from duplexes to factories' },
+      ];
     case 'gorille-and-co':
       return [
         { value: '6', label: 'case studies, each led by its headline result' },

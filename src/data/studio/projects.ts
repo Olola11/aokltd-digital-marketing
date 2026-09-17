@@ -147,6 +147,47 @@ export const STUDIO_PROJECTS: StudioProject[] = [
         'How AOK Studio designed and built aokltd.org and the Vault: an editorial Next.js site with a self-constructing logo, a research archive and a random fact engine.',
     },
   },
+  {
+    slug: 'arsom-global',
+    name: 'Arsom Global Consult',
+    url: 'https://arsom-global.vercel.app/',
+    displayUrl: 'arsom-global.vercel.app',
+    logo: '/studio/clients/arsom-global.png',
+    sector: 'Energy metering, audits and electrical design',
+    summary:
+      'The website for an energy consultancy that meters, audits and designs electrical systems for buildings across Nigeria.',
+    services: ['web-design', 'copywriting'],
+    platform: 'Next.js',
+    brief:
+      'Arsom Global Consult sells three things most people cannot tell apart — prepaid metering, energy audits and electrical design — to homeowners, estate managers and factory owners at the same time. The site had to send each of them to the right service, and make the case for measuring power before anyone is asked to buy any of it.',
+    approach: [
+      'The homepage opens on the question behind every enquiry: what is this bill actually paying for? It answers by breaking a building’s consumption into the four places power goes — cooling, lighting, idle equipment and wiring losses — before any service is named.',
+      'Three doors rather than a menu. Energy design, energy audit and meter installation each have their own page, reached from whichever problem the visitor arrived with.',
+      'The meter is drawn, not photographed: a dimensioned engineering elevation with a live reading, so the product reads as equipment that reports back rather than stock imagery.',
+      'Built with Next.js, with WhatsApp and a phone number as the first way in, because that is how this work actually starts in Nigeria.',
+    ],
+    scope: ['Information architecture', 'Website design', 'Next.js build', 'Website copy', 'Illustration and motion'],
+    preview: {
+      source: 'arsom-global.vercel.app',
+      mp4: '/studio/work/arsom-global/preview.mp4',
+      mp4Sm: '/studio/work/arsom-global/preview-sm.mp4',
+      mp4Uhd: '/studio/work/arsom-global/preview-uhd.mp4',
+      poster: '/studio/work/arsom-global/poster.jpg',
+      width: 3840,
+      height: 2400,
+    },
+    measured: {
+      tool: 'Lighthouse 12.8',
+      measuredAt: '2026-09-17',
+      mobile: { performance: 64, accessibility: 88, bestPractices: 100, seo: 100 },
+      desktop: { performance: 97, accessibility: 88, bestPractices: 100, seo: 100 },
+    },
+    seo: {
+      title: 'Arsom Global Consult Website — Case Study',
+      description:
+        'How AOK Studio designed and built the Arsom Global Consult website: a Next.js site for prepaid meter installation, energy audits and electrical design in Nigeria.',
+    },
+  },
 ];
 
 export function getStudioProject(slug: string): StudioProject | undefined {
