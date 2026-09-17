@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { STUDIO_SERVICES } from '@/data/studio/services';
 import { StartBriefButton } from '../enquiry/enquiry-provider';
 import { ParticleMark } from '../particle/particle-mark';
@@ -34,17 +33,14 @@ export function StudioFooter() {
         <ParticleMark className="my-6 min-h-[300px] flex-1 lg:min-h-[440px]" />
 
         <div className="grid gap-6 font-sans text-sm lg:grid-cols-12 lg:items-end lg:gap-8 lg:text-[15px]">
-          <nav aria-label="Studio services" className="lg:col-span-6">
-            <ul className="flex flex-wrap gap-x-5 gap-y-2">
-              {STUDIO_SERVICES.map((service) => (
-                <li key={service.slug}>
-                  <Link href={`/studio/services/${service.slug}`} className={link}>
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* The services are named, not linked: they live on this page. */}
+          <ul aria-label="What the studio does" className="flex flex-wrap gap-x-5 gap-y-2 lg:col-span-6">
+            {STUDIO_SERVICES.map((service) => (
+              <li key={service.slug} className="py-2 text-[var(--studio-ink-soft)]">
+                {service.name}
+              </li>
+            ))}
+          </ul>
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3 lg:col-span-6 lg:justify-end">
             <StartBriefButton className={accentButton}>Start a brief</StartBriefButton>
@@ -66,11 +62,7 @@ export function StudioFooter() {
           </div>
 
           <p className="text-[var(--studio-ink-soft)] lg:col-span-12">
-            © {year}{' '}
-            <Link href="/" className={link}>
-              Apotheosis of Knowledge Limited
-            </Link>{' '}
-            · RC 1956161 · Lagos, Nigeria
+            © {year} Apotheosis of Knowledge Limited · RC 1956161 · Lagos, Nigeria
           </p>
         </div>
       </div>

@@ -13,7 +13,8 @@ export function StatementCard() {
           A Lagos creative studio for companies whose work deserves better than noise.
         </h1>
         <p className={`mt-5 max-w-[34ch] ${soft}`}>
-          Websites, brand identities, motion, copy and ghostwriting, from the team behind Apotheosis of Knowledge.
+          Website design and development, brand identity, motion and video, copywriting and ghostwriting, for
+          companies in Nigeria and abroad.
         </p>
       </div>
     </StudioCard>

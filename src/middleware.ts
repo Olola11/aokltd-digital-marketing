@@ -4,19 +4,29 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
-  // studio.aokltd.org is a short link: the studio lives at aokltd.org/studio
-  // so it inherits the main domain's search authority.
+  // studio.aokltd.org is the studio's own address. Its pages are served from
+  // it directly, so a visitor never leaves the studio's domain.
   if (hostname === 'studio.aokltd.org' || hostname.startsWith('studio.localhost')) {
-    const url = request.nextUrl.clone();
-    if (hostname === 'studio.aokltd.org') {
-      url.protocol = 'https:';
-      url.host = 'aokltd.org';
-      url.port = '';
-    } else {
-      url.hostname = 'localhost';
+    // Assets, API routes and framework internals are served as they are.
+    if (
+      pathname.startsWith('/api/') ||
+      pathname.startsWith('/_next/') ||
+      pathname.startsWith('/images/') ||
+      pathname.includes('.')
+    ) {
+      return NextResponse.next();
     }
+
+    // Links written as /studio/... belong at the root of this domain.
+    if (pathname === '/studio' || pathname.startsWith('/studio/')) {
+      const url = request.nextUrl.clone();
+      url.pathname = pathname.replace(/^\/studio/, '') || '/';
+      return NextResponse.redirect(url, 301);
+    }
+
+    const url = request.nextUrl.clone();
     url.pathname = pathname === '/' ? '/studio' : `/studio${pathname}`;
-    return NextResponse.redirect(url, 301);
+    return NextResponse.rewrite(url);
   }
 
   // Handle vault.aokltd.org subdomain

@@ -67,5 +67,5 @@ html.lenis body {
 }
 
 .studio-faq[open] .studio-faq-icon {
-  transform: rotate(45deg);
+  transform: rotate(180deg);
 }

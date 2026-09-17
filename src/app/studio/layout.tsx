@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { StudioMotionProvider } from '@/components/studio/motion/studio-motion';
 import { EnquiryProvider } from '@/components/studio/enquiry/enquiry-provider';
+import { AnimatedFavicon } from '@/components/studio/chrome/animated-favicon';
 import { StudioHeader } from '@/components/studio/chrome/studio-header';
 import { StudioFooter } from '@/components/studio/chrome/studio-footer';
 import './studio.css';
@@ -22,6 +23,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
     <StudioMotionProvider>
       <EnquiryProvider>
         <div className="studio min-h-screen">
+          <AnimatedFavicon />
           <StudioHeader />
           <main id="main-content" tabIndex={-1} className="focus:outline-none">
             {children}

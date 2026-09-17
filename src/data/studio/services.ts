@@ -35,8 +35,6 @@ export interface StudioService {
   relatedWork: string[];
   /** Shown when relatedWork is empty */
   workNote?: string;
-  /** Pointer to overlapping AOK services, so the two pages don't compete */
-  seeAlso?: { label: string; href: string; note: string };
 }
 
 export const STUDIO_SERVICES: StudioService[] = [
@@ -109,7 +107,7 @@ export const STUDIO_SERVICES: StudioService[] = [
       },
       {
         q: 'Will my website rank on Google?',
-        a: 'Every site we build has the technical foundations search engines look for: fast loading, structured data, clean markup and a sensible page structure. Rankings also depend on content and competition, which our copywriting service addresses.',
+        a: 'Every site we build has the technical foundations search engines look for: fast loading, structured data, clean markup and a sensible page structure. Rankings also depend on content and competition, which is why copywriting is part of what we do.',
       },
       {
         q: 'Can you redesign my existing website?',
@@ -141,7 +139,7 @@ export const STUDIO_SERVICES: StudioService[] = [
     },
     h1: 'Brand identity design for businesses that mean it',
     lede:
-      'A brand identity is a set of decisions about how you look, sound and behave wherever someone meets you. We make those decisions deliberately, document them, and hand you a system your team can use without us.',
+      'A brand identity is the set of decisions about how you look, sound and behave wherever someone meets you. We design that system for companies in Lagos and abroad — logo, typography, colour and voice — document every decision, and hand it over so your team can use it without us.',
     includes: [
       {
         title: 'Positioning',
@@ -219,7 +217,7 @@ export const STUDIO_SERVICES: StudioService[] = [
     },
     h1: 'Motion graphics and video that make ideas clear',
     lede:
-      'Good motion shows how something works, what changed or why it matters, faster than text can. We design animation and edit video with that purpose, for websites, social channels and presentations.',
+      'Good motion shows how something works, what changed or why it matters, faster than text can. We design animation and motion graphics and edit video with that purpose, for websites, social channels and presentations.',
     includes: [
       {
         title: 'Motion graphics and explainers',
@@ -273,11 +271,6 @@ export const STUDIO_SERVICES: StudioService[] = [
       },
     ],
     relatedWork: ['aokltd'],
-    seeAlso: {
-      label: 'Digital marketing services',
-      href: '/services',
-      note: 'Want short-form video planned around trends and paid distribution? Our digital marketing services handle strategy and campaigns.',
-    },
   },
   {
     slug: 'copywriting',
@@ -298,7 +291,7 @@ export const STUDIO_SERVICES: StudioService[] = [
     },
     h1: 'Copywriting and content, researched before it is written',
     lede:
-      'AOK began as a research-driven publisher, so we write the way we publish: check the facts, find the clearest structure, then choose every word on purpose. The result is copy people finish reading and search engines understand.',
+      'AOK began as a research-driven publisher, so we write the way we publish: check the facts, find the clearest structure, then choose every word on purpose. Website copy, landing pages, articles and scripts that people finish reading and search engines understand.',
     includes: [
       {
         title: 'Website copy',
@@ -352,15 +345,10 @@ export const STUDIO_SERVICES: StudioService[] = [
       },
       {
         q: 'Can you run a monthly content calendar?',
-        a: 'Yes. Ongoing content planning and distribution sits with our digital marketing services, which work alongside this one.',
+        a: 'Yes. We plan a calendar around the searches and questions your audience already has, then write to it at whatever cadence the brief agrees.',
       },
     ],
     relatedWork: ['aokltd'],
-    seeAlso: {
-      label: 'Digital marketing services',
-      href: '/services',
-      note: 'Need ongoing content planning, social media management or paid campaigns? That work sits with our digital marketing services.',
-    },
   },
   {
     slug: 'ghostwriting',
@@ -381,7 +369,7 @@ export const STUDIO_SERVICES: StudioService[] = [
     },
     h1: 'Ghostwriting in your voice, under your name',
     lede:
-      'You have the knowledge, the story or the argument. We supply the time, structure and craft to put it on the page, so it sounds like you on your best day. Our name never appears on the work.',
+      'You have the knowledge, the story or the argument. We supply the time, structure and craft to put it on the page — books, articles, speeches and thought leadership — so it sounds like you on your best day. Our name never appears on the work.',
     includes: [
       { title: 'Books and memoirs', body: 'From first interview to finished manuscript, chapter by chapter.' },
       { title: 'Articles and op-eds', body: 'Researched opinion pieces for publications and your own channels.' },
@@ -428,3 +416,12 @@ export const STUDIO_SERVICES: StudioService[] = [
 export function getStudioService(slug: string): StudioService | undefined {
   return STUDIO_SERVICES.find((service) => service.slug === slug);
 }
+
+/**
+ * The questions people actually search for, two per service, in the order a
+ * visitor meets the services on the page. Answered on the hub itself, since
+ * the services no longer have pages of their own.
+ */
+export const STUDIO_FAQS = STUDIO_SERVICES.flatMap((service) =>
+  service.faqs.slice(0, 2).map((faq) => ({ ...faq, service: service.name }))
+);

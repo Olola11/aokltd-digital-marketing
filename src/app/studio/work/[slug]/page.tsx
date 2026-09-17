@@ -95,17 +95,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <div>
               <dt className={metaLabel}>Services</dt>
               <dd className={metaValue}>
-                {services.map((service, i) => (
-                  <span key={service.slug}>
-                    {i > 0 && ', '}
-                    <Link
-                      href={`/studio/services/${service.slug}`}
-                      className="inline-block py-1 underline-offset-4 hover:underline"
-                    >
-                      {service.name}
-                    </Link>
-                  </span>
-                ))}
+                {services.map((service) => service.name).join(', ')}
               </dd>
             </div>
             <div>

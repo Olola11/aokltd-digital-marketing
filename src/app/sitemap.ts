@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { VAULT_DATA, VALID_CATEGORIES } from '@/lib/vault-data';
 import { SITE_URL, VAULT_URL } from '@/lib/constants';
-import { STUDIO_SERVICES } from '@/data/studio/services';
 import { STUDIO_PROJECTS } from '@/data/studio/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -35,12 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const studioPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/studio`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    ...STUDIO_SERVICES.map((service) => ({
-      url: `${baseUrl}/studio/services/${service.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
     ...STUDIO_PROJECTS.map((project) => ({
       url: `${baseUrl}/studio/work/${project.slug}`,
       lastModified: new Date(project.measured.measuredAt),

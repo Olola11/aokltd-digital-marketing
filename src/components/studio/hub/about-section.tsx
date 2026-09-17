@@ -1,7 +1,6 @@
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
-import { STUDIO_SERVICES } from '@/data/studio/services';
-import { STUDIO_PROJECTS } from '@/data/studio/projects';
+import { FaqList } from './faq-list';
+import { ServicesList } from './services-list';
+import { WorkList } from './work-list';
 
 function Row({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
@@ -17,9 +16,6 @@ function Row({ id, title, children }: { id: string; title: string; children: Rea
     </section>
   );
 }
-
-const listLink =
-  'group flex items-start justify-between gap-6 py-5 transition-colors duration-200 hover:text-[var(--studio-ink)]';
 
 /** Editorial two-column close to the hub: label on the left, substance on the right. */
 export function AboutSection() {
@@ -38,46 +34,12 @@ export function AboutSection() {
         </div>
       </Row>
 
-      <Row id="services" title="Services">
-        <ul className="divide-y divide-[var(--studio-ink-faint)] border-b border-[var(--studio-ink-faint)]">
-          {STUDIO_SERVICES.map((service) => (
-            <li key={service.slug}>
-              <Link href={`/studio/services/${service.slug}`} className={listLink}>
-                <span>
-                  <span className="block font-sans text-2xl tracking-[-0.01em] lg:text-3xl">{service.name}</span>
-                  <span className="mt-1 block font-serif text-base text-[var(--studio-ink-soft)] lg:text-lg">
-                    {service.summary}
-                  </span>
-                </span>
-                <ArrowUpRight
-                  className="mt-1 h-6 w-6 shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <Row id="services" title="Website design, branding and writing services">
+        <ServicesList />
       </Row>
 
-      <Row id="selected-work" title="Selected work">
-        <ul className="divide-y divide-[var(--studio-ink-faint)] border-b border-[var(--studio-ink-faint)]">
-          {STUDIO_PROJECTS.map((project) => (
-            <li key={project.slug}>
-              <Link href={`/studio/work/${project.slug}`} className={listLink}>
-                <span>
-                  <span className="block font-sans text-2xl tracking-[-0.01em] lg:text-3xl">{project.name}</span>
-                  <span className="mt-1 block font-serif text-base text-[var(--studio-ink-soft)] lg:text-lg">
-                    {project.summary}
-                  </span>
-                </span>
-                <ArrowUpRight
-                  className="mt-1 h-6 w-6 shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <Row id="selected-work" title="Selected work: sites we designed and built">
+        <WorkList />
       </Row>
 
       <Row id="how-we-work" title="How we work">
@@ -85,6 +47,10 @@ export function AboutSection() {
           Every project follows the same order: brief, structure, design, build, launch. You receive a fixed proposal
           before any work begins, and you can check our results, because we publish how we measure them.
         </p>
+      </Row>
+
+      <Row id="questions" title="Common questions">
+        <FaqList />
       </Row>
     </div>
   );

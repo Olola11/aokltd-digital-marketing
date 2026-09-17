@@ -1,5 +1,5 @@
 import { SITE_URL } from '@/lib/constants';
-import { STUDIO_SERVICES, type StudioService } from '@/data/studio/services';
+import { STUDIO_FAQS, STUDIO_SERVICES } from '@/data/studio/services';
 import type { StudioProject } from '@/data/studio/projects';
 
 export const STUDIO_URL = `${SITE_URL}/studio`;
@@ -45,31 +45,22 @@ export function studioSchema() {
         itemOffered: {
           '@type': 'Service',
           name: service.name,
-          url: `${STUDIO_URL}/services/${service.slug}`,
+          description: service.seo.description,
+          url: `${STUDIO_URL}#services`,
+          provider: studioReference,
+          areaServed: AREA_SERVED,
         },
       })),
     },
   };
 }
 
-export function serviceSchema(service: StudioService) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service.name,
-    serviceType: service.name,
-    description: service.seo.description,
-    url: `${STUDIO_URL}/services/${service.slug}`,
-    provider: studioReference,
-    areaServed: AREA_SERVED,
-  };
-}
-
-export function faqSchema(service: StudioService) {
+export function faqSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: service.faqs.map((faq) => ({
+    '@id': `${STUDIO_URL}#faq`,
+    mainEntity: STUDIO_FAQS.map((faq) => ({
       '@type': 'Question',
       name: faq.q,
       acceptedAnswer: { '@type': 'Answer', text: faq.a },

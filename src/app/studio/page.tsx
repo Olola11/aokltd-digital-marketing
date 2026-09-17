@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { STUDIO_PROJECTS } from '@/data/studio/projects';
+import { STUDIO_SERVICES } from '@/data/studio/services';
 import { ResolveGrid, type GridItem } from '@/components/studio/hub/resolve-grid';
 import { AboutSection } from '@/components/studio/hub/about-section';
 import { WorkCard } from '@/components/studio/cards/work-card';
@@ -8,7 +9,7 @@ import { MeasuredCard } from '@/components/studio/cards/measured-card';
 import { BriefCard, MethodCard, StatementCard } from '@/components/studio/cards/simple-cards';
 import { ClientsCard } from '@/components/studio/cards/clients-card';
 import { JsonLd } from '@/components/studio/json-ld';
-import { studioSchema } from '@/lib/studio/structured-data';
+import { faqSchema, studioSchema } from '@/lib/studio/structured-data';
 
 const TITLE = 'AOK Studio — Website Design, Branding & Content in Lagos';
 const DESCRIPTION =
@@ -17,13 +18,11 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
+  // Every service is a section of this page now, so this page carries all
+  // of their search terms.
   keywords: [
     'creative studio Lagos',
-    'website design company in Lagos',
-    'brand identity designer Nigeria',
-    'motion graphics studio Lagos',
-    'copywriting services Nigeria',
-    'ghostwriting services Nigeria',
+    ...new Set(STUDIO_SERVICES.flatMap((service) => service.seo.keywords)),
   ],
   alternates: { canonical: '/studio' },
   openGraph: {
@@ -73,7 +72,7 @@ export default function StudioPage() {
 
   return (
     <>
-      <JsonLd data={studioSchema()} />
+      <JsonLd data={[studioSchema(), faqSchema()]} />
       <section id="work" aria-label="Studio overview" className="scroll-mt-4 px-3 sm:px-5 lg:px-8">
         <ResolveGrid columns={columns} />
       </section>
