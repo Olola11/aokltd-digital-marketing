@@ -8,7 +8,7 @@ import { CaseVideo } from '@/components/studio/case/case-video';
 import { Breadcrumbs, CtaBand, PageSection } from '@/components/studio/page-parts';
 import { formatMeasuredDate } from '@/lib/studio/format';
 import { JsonLd } from '@/components/studio/json-ld';
-import { breadcrumbSchema, caseStudySchema, studioUrl } from '@/lib/studio/structured-data';
+import { breadcrumbSchema, caseStudySchema } from '@/lib/studio/structured-data';
 import { getProjectHighlights } from '@/lib/studio/highlights';
 
 export const dynamicParams = false;
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getStudioProject(slug);
   if (!project) return {};
 
-  const path = studioUrl(`/studio/work/${project.slug}`);
+  const path = `/studio/work/${project.slug}`;
   const fullTitle = `${project.seo.title} | AOK Studio`;
   return {
     title: project.seo.title,

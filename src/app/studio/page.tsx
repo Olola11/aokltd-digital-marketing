@@ -9,7 +9,7 @@ import { MeasuredCard } from '@/components/studio/cards/measured-card';
 import { BriefCard, MethodCard, StatementCard } from '@/components/studio/cards/simple-cards';
 import { ClientsCard } from '@/components/studio/cards/clients-card';
 import { JsonLd } from '@/components/studio/json-ld';
-import { STUDIO_URL, faqSchema, studioSchema } from '@/lib/studio/structured-data';
+import { faqSchema, studioSchema } from '@/lib/studio/structured-data';
 
 const TITLE = 'AOK Studio — Website Design, Branding & Content in Lagos';
 const DESCRIPTION =
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     'creative studio Lagos',
     ...new Set(STUDIO_SERVICES.flatMap((service) => service.seo.keywords)),
   ],
-  alternates: { canonical: `${STUDIO_URL}/` },
+  alternates: { canonical: '/studio' },
   openGraph: {
     type: 'website',
-    url: `${STUDIO_URL}/`,
+    url: '/studio',
     siteName: 'AOK Studio',
     locale: 'en_NG',
     title: TITLE,

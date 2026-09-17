@@ -4,42 +4,21 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
   const pathname = request.nextUrl.pathname;
 
-  // studio.aokltd.org is the studio's own address. Its pages are served from
-  // it directly, so a visitor never leaves the studio's domain.
+  // studio.aokltd.org is a short link. The studio itself lives at
+  // aokltd.org/studio, which is its one address: serving it on the subdomain
+  // instead would leave the browser on / and wrap it in the main site's
+  // navigation and footer.
   if (hostname === 'studio.aokltd.org' || hostname.startsWith('studio.localhost')) {
-    // Assets, API routes and framework internals are served as they are.
-    if (
-      pathname.startsWith('/api/') ||
-      pathname.startsWith('/_next/') ||
-      pathname.startsWith('/images/') ||
-      pathname.includes('.')
-    ) {
-      return NextResponse.next();
-    }
-
-    // Links written as /studio/... belong at the root of this domain.
-    if (pathname === '/studio' || pathname.startsWith('/studio/')) {
-      const url = request.nextUrl.clone();
-      url.pathname = pathname.replace(/^\/studio/, '') || '/';
-      return NextResponse.redirect(url, 301);
-    }
-
     const url = request.nextUrl.clone();
-    url.pathname = pathname === '/' ? '/studio' : `/studio${pathname}`;
-    return NextResponse.rewrite(url);
-  }
-
-  // The studio has one home. Anything that still asks aokltd.org for it is
-  // sent to the studio's own domain, the way the vault is. Icons and share
-  // images stay where they are, so nothing has to follow a redirect for them.
-  if (
-    (hostname === 'aokltd.org' || hostname === 'www.aokltd.org') &&
-    (pathname === '/studio' || pathname.startsWith('/studio/')) &&
-    !pathname.includes('.') &&
-    !pathname.endsWith('/opengraph-image')
-  ) {
-    const url = new URL(`https://studio.aokltd.org${pathname.replace(/^\/studio/, '') || '/'}`);
-    url.search = request.nextUrl.search;
+    if (hostname === 'studio.aokltd.org') {
+      url.protocol = 'https:';
+      url.host = 'aokltd.org';
+      url.port = '';
+    } else {
+      url.hostname = 'localhost';
+    }
+    url.pathname =
+      pathname === '/' ? '/studio' : pathname.startsWith('/studio') ? pathname : `/studio${pathname}`;
     return NextResponse.redirect(url, 301);
   }
 

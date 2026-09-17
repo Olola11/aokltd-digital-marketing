@@ -1,26 +1,16 @@
-import { SITE_URL, STUDIO_SITE_URL } from '@/lib/constants';
+import { SITE_URL } from '@/lib/constants';
 import { STUDIO_FAQS, STUDIO_SERVICES } from '@/data/studio/services';
 import type { StudioProject } from '@/data/studio/projects';
 
-export const STUDIO_URL = STUDIO_SITE_URL;
-const STUDIO_ID = `${STUDIO_URL}/#studio`;
-
-/**
- * Internal links are written as /studio/… so they work on either host. The
- * absolute form a search engine should keep is the studio's own domain.
- */
-export function studioUrl(path: string) {
-  const rest = path.replace(/^\/studio/, '');
-  if (!rest) return `${STUDIO_URL}/`;
-  return `${STUDIO_URL}${rest.startsWith('#') ? '/' : ''}${rest}`;
-}
+export const STUDIO_URL = `${SITE_URL}/studio`;
+const STUDIO_ID = `${STUDIO_URL}#studio`;
 
 const AREA_SERVED = [
   { '@type': 'Country', name: 'Nigeria' },
   { '@type': 'Place', name: 'Worldwide' },
 ];
 
-const studioReference = { '@type': 'ProfessionalService', '@id': STUDIO_ID, name: 'AOK Studio', url: `${STUDIO_URL}/` };
+const studioReference = { '@type': 'ProfessionalService', '@id': STUDIO_ID, name: 'AOK Studio', url: STUDIO_URL };
 
 export function studioSchema() {
   return {
@@ -28,11 +18,11 @@ export function studioSchema() {
     '@type': 'ProfessionalService',
     '@id': STUDIO_ID,
     name: 'AOK Studio',
-    url: `${STUDIO_URL}/`,
+    url: STUDIO_URL,
     description:
       'A Lagos creative studio for website design and development, brand identity, motion graphics, copywriting and ghostwriting.',
     logo: `${SITE_URL}/images/logo/Apotheosis of Knowledge LOGO PNG-15.png`,
-    image: `${SITE_URL}/studio/opengraph-image`,
+    image: `${STUDIO_URL}/opengraph-image`,
     email: 'hello@aokltd.org',
     address: {
       '@type': 'PostalAddress',
@@ -56,7 +46,7 @@ export function studioSchema() {
           '@type': 'Service',
           name: service.name,
           description: service.seo.description,
-          url: `${STUDIO_URL}/#services`,
+          url: `${STUDIO_URL}#services`,
           provider: studioReference,
           areaServed: AREA_SERVED,
         },
@@ -69,7 +59,7 @@ export function faqSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    '@id': `${STUDIO_URL}/#faq`,
+    '@id': `${STUDIO_URL}#faq`,
     mainEntity: STUDIO_FAQS.map((faq) => ({
       '@type': 'Question',
       name: faq.q,
@@ -85,7 +75,7 @@ export function caseStudySchema(project: StudioProject) {
     name: `${project.name} website`,
     headline: project.seo.title,
     description: project.seo.description,
-    url: studioUrl(`/studio/work/${project.slug}`),
+    url: `${STUDIO_URL}/work/${project.slug}`,
     about: project.sector,
     creator: studioReference,
     workExample: { '@type': 'WebSite', name: project.name, url: project.url },
@@ -100,7 +90,7 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: studioUrl(item.path),
+      item: `${SITE_URL}${item.path}`,
     })),
   };
 }
